@@ -27,7 +27,7 @@ class HistoriqueStock
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\stock", inversedBy="historiqueStocks")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Stock", inversedBy="historiqueStocks")
      */
     private $stock;
 
@@ -104,5 +104,9 @@ class HistoriqueStock
         $this->user = $user;
 
         return $this;
+    }
+
+    public function __toString(){
+        return $this->id;
     }
 }
