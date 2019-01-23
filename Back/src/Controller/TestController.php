@@ -22,14 +22,6 @@ class TestController extends AbstractController
 
         $jsonProduct = $repo->findAll();
         dump($jsonProduct);
-        // foreach ($jsonProduct as $product) {
-        // $product = [
-        //     "id" => $jsonProduct->getId(),
-        //     "name" => $jsonProduct->getName(),
-        //     "supplier" => $jsonProduct->getSupplier(),
-        //     "category" => $jsonProduct->getCategory()
-        //     ];
-        // }
 
         foreach ($jsonProduct as $index => $currentValue) {
             $array[$index] = [
@@ -37,10 +29,12 @@ class TestController extends AbstractController
                 'name' => $currentValue->getName(),
                 'supplier' => $currentValue->getSupplier(),
                 'category' => $currentValue->getCategory()->getName(),
-                'stock' => $currentValue->getStock()
+                'stock' => $currentValue->getStock()->getStock(),
+                'stock_alert' => $currentValue->getStock()->getStockAlert()
                 
             ];
             }
+
        $jsonTest = \json_encode($array);
        dump($jsonTest);
 
