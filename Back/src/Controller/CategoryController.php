@@ -11,19 +11,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CategoryController extends AbstractController
 {
     /**
-     * @Route("/category", name="category")
+     * @Route("/category", name="all_categories")
      */
     public function findAll(CategoryRepository $repo)
     {
         $categories = $repo->findAll();
-
-       
-        foreach($categories as $categorie) {
-            dump($categorie->getName());
-        foreach ($categorie->getProducts() as $product){
-            dump($product->getName());
-        }
-    }
 
 
         foreach ($categories as $index => $currentValue) {
@@ -45,7 +37,7 @@ class CategoryController extends AbstractController
 
     
     /**
-     * @Route("/category/{id}", name="category_show")
+     * @Route("/category/{id}", name="category_by_one")
      */
     public function findOneCategory(Category $category)
     {
@@ -58,15 +50,9 @@ class CategoryController extends AbstractController
                   "name" => $products->getName(),
                   "stock" => $products->getStock()->getStock()
               ];
-              dump($produit);
-        
-                                    
+              dump($produit);                           
           }
 
-          //ici impossible de recupéré tout les produits via $category->getProducts->getName()
-          // je pense a un eventuel foreach(products as product) { product.name}  ou un category.products.name dans le front, a voir si comme le dit Tony products est vide ou pas, peut etre essayé un appel ajax pour essayer..
-
-          // Cas présent sur le coté faible d'une relation OneToMany 
 
         $array = [
             'id' => $category->getId(),

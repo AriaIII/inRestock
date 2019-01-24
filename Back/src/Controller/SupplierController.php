@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SupplierController extends AbstractController
 {
     /**
-     * @Route("/fournisseurs", name="supplier")
+     * @Route("/fournisseurs", name="all_suppliers")
      */
     public function supplier(SupplierRepository $repo)
     {
@@ -37,12 +37,12 @@ class SupplierController extends AbstractController
     }
 
     /**
-     * @Route("/fournisseurs/{id}", name="supplier_show")
+     * @Route("/fournisseurs/{id}", name="supplier_by_id")
      */
     public function supplierByOne(Supplier $supplier, ProductRepository $productRepo){
       
         // A mon avis on recupera l'id du fournisseur avec la request
-        //$id = $request->request->get('id)
+        //$id = $request->request->get('id')/
         //$supplier = findBy($id);
         foreach($supplier->getProducts() as $products){
             $produit[] = [
