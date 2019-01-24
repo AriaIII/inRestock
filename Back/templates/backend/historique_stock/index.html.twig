@@ -21,12 +21,12 @@
         {% for movement in historiqueStock %}
             <tr>
                 <td>{{ movement.id }}</td>
-                <td>{{ movement.product.name }}</td>
+                <td>{{ movement.stock.product.name }}</td>
                 <td>{{ movement.modification }}</td>
                 <td>{{ movement.variation }}</td>
                 <td>{{ movement.user.firstname }}</td>
-                <td>{{ movement.post.name }}</td>
-                <td>{{ movement.createdAt }}</td>
+                <td>{{ movement.user.post.name }}</td>
+                <td>{{ movement.createdAt|date('d-m-Y h-m') }}</td>
                 
             </tr>
         {% else %}
