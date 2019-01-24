@@ -44,7 +44,13 @@ class SupplierController extends AbstractController
         // A mon avis on recupera l'id du fournisseur avec la request
         //$id = $request->request->get('id)
         //$supplier = findBy($id);
-           
+        foreach($supplier->getProducts() as $products){
+            $produit[] = [
+                "id" => $products->getId(),
+                "name" => $products->getName(),
+            ];
+              dump($produit);         
+        }
 
             $array = [
                 'id' => $supplier->getId(),
@@ -55,7 +61,8 @@ class SupplierController extends AbstractController
                 'adress' => $supplier->getAdress(),
                 'postcode' => $supplier->getPostcode(),
                 'town' => $supplier->getTown(),
-                'products' => $supplier->getProducts()->getName()
+                'products' => $produit
+
              ];
             
 
