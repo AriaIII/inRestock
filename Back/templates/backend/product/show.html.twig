@@ -1,20 +1,83 @@
 {% extends 'backend/backend_layout.html.twig' %}
 
-{% block title %}Product{% endblock %}
+{% block title %}{{ product.name }}{% endblock %}
 
 {% block body %}
-    <h1>Product</h1>
+    
+    <h2 class="title is-2">Bienvenue sur la page du produit : {{ product.name }}</h2>
 
-    <table class="table">
+    <nav class="is-grouped">
+        {# le lien doit amener à la page du stock du produit ou à la page permettant de créer le stock avec le champ produit déjà entré #}
+        {% if product.stock %} 
+        <a class="button is-outlined is-warning"  href="{{ path('stock_edit', {'id': product.stock.id} ) }}"> 
+            gérer le stock du produit 
+        </a>
+        {% else %}
+        <a class="button is-outlined is-warning"  href="{{ path('stock_new') }}"> 
+            créer le stock du produit 
+        </a>
+        {% endif %}
+
+        {# le lien doit amener à un formulaire de création de fournisseur où le champ produit est déjà rempli #}
+        <a class="button is-outlined is-warning"  href="{{ path('supplier_new') }}"> 
+            ajouter un fournisseur à ce produit
+        </a>
+    </nav>
+
+    <h4 class="title is-4">liste des fournisseurs de {{ product.name }}</h4>
+
+    
+    <table class="table is-hoverable">
+        <thead>
+            <tr>
+                <th>nom</th>
+                <th>entreprise</th>
+                <th>adresse</th>
+                <th>téléphone</th>
+                <th>mail</th>
+            </tr>
+        </thead>
         <tbody>
+            {% for supplier in product.supplier %}
             <tr>
-                <th>Id</th>
-                <td>{{ product.id }}</td>
+                <td>{{ supplier.name }}</td>
+                <td>{{ supplier.societyName }}</td>
+                <td>{{ supplier.town }}</td>
+                <td>{{ supplier.phone }}</td>
+                <td>{{ supplier.mail }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="12">aucun fournisseur</td>
+            </tr>
+            {% endfor %}            
+        </tbody>
+    </table>
+
+    <h4 class="title is-4">stock de {{ product.name }}</h4>
+
+    <table class="table is-hoverable">
+        
+        <tbody>
+            {% if product.stock %}                
+            <tr>
+                <th>unité de conditionnement</th>
+                {# <td>{{ product.stock.packaging }}</td> #}
             </tr>
             <tr>
-                <th>Name</th>
-                <td>{{ product.name }}</td>
+                <th>stock actuel</th>
+                <td>{{ product.stock.stock }}</td>
             </tr>
+            <tr>
+                <th>limite de déclenchement de l'alerte</th>
+                <td>{{ product.stock.stockAlert }}</td>
+            </tr>
+
+            {% else %}
+            <tr>
+                <td>aucun stock</td>
+            </tr>
+            {% endif %}            
         </tbody>
     </table>
 
