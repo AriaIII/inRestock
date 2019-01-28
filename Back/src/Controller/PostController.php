@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Repository\PostRepository;
+use App\Repository\UserRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,8 +22,8 @@ class PostController extends AbstractController
        foreach ($post as $index => $currentValue) {
         $array[$index] = [
             'id' => $currentValue->getId(),
-            'name' => $currentValue->getName(),         
-            
+            'name' => $currentValue->getName(),
+
         ];
     }
 
@@ -36,10 +38,28 @@ class PostController extends AbstractController
     }
 
     /**
+     * @Route("/postes/change", name="post_change")
+     */
+    public function postChange(Request $request, UserRepository $userRepo, PostRepository $postRepo){
+        $postList = $postRepo->findAll();
+
+        $newPost = $request->request->get('post');
+        $postToSet = $postList[$newPost];
+
+        $userId = $request->request->get('user');
+        $user = $userRepo->findById($userId);
+        $user->setPost($postToSet);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+    }
+
+    /**
      * @Route("/postes/{id}", name="post_by_id")
      */
     public function postByOne(Post $postes){
-      
+
         // A mon avis on recupera l'id du postes avec la request
         //$id = $request->request->get('id)
         //$postes = findBy($id);
@@ -49,15 +69,15 @@ class PostController extends AbstractController
                 "firstName" => $user->getFirstName(),
                 "lastName" => $user->getLastName()
             ];
-              dump($users);         
+              dump($users);
         }
 
             $array = [
                 'id' => $postes->getId(),
-                'name' => $postes->getName(),     
+                'name' => $postes->getName(),
                 'users' => $users
              ];
-            
+
 
        $jsonOnePost = \json_encode($array);
        dump($jsonOnePost);
@@ -69,4 +89,5 @@ class PostController extends AbstractController
 
 
     }
+
 }
