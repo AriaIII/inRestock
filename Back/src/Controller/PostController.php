@@ -42,16 +42,23 @@ class PostController extends AbstractController
      */
     public function postChange(Request $request, UserRepository $userRepo, PostRepository $postRepo){
         $postList = $postRepo->findAll();
+        $data = $request->getContent();
+        $req = json_decode($data);
 
-        $newPost = $request->request->get('post');
+        dd($postList);
+        $newPost = $req->post;
         $postToSet = $postList[$newPost];
 
-        $userId = $request->request->get('user');
+
+
+        $userId = $req->user;
         $user = $userRepo->findById($userId);
-        $user->setPost($postToSet);
+        dd($user);
+        $user[0]->setPost($postToSet);
         $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($user);
+        $entityManager->persist($user[0]);
         $entityManager->flush();
+        return new Response('OK NICE');
 
     }
 
