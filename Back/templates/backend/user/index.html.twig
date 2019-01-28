@@ -3,42 +3,32 @@
 {% block title %}User index{% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
+    <h2 class="title">liste de vos salariés</h2>
 
-    <table class="table">
+    <table class="table is-hoverable">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>Username</th>
-                <th>Adress</th>
-                <th>Postcode</th>
-                <th>Town</th>
-                <th>Phone</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Téléphone</th>
                 <th>Email</th>
-                <th>Password</th>
-                <th>Photo</th>
-                <th>actions</th>
+                <th>Responsabilité</th>
+                <th>Action à effectuer</th>
             </tr>
         </thead>
         <tbody>
         {% for user in users %}
             <tr>
                 <td>{{ user.id }}</td>
-                <td>{{ user.firstName }}</td>
                 <td>{{ user.lastName }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.adress }}</td>
-                <td>{{ user.postcode }}</td>
-                <td>{{ user.town }}</td>
+                <td>{{ user.firstName }}</td>
                 <td>{{ user.phone }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ user.password }}</td>
-                <td>{{ user.photo }}</td>
+                <td>{{ user.role.name}}</td>
                 <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                        <a class="button is-warning" href="{{ path('user_show', {'id': user.id}) }}">voir la fiche du salarié</a>
+                        <a class="button is-warning" href="{{ path('user_edit', {'id': user.id}) }}">modifier la fiche du salarié</a>
                 </td>
             </tr>
         {% else %}
@@ -49,5 +39,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('user_new') }}">Create new</a>
+    <a class="button is-outlined is-warning" href="{{ path('user_new') }}">Create new</a>
 {% endblock %}
