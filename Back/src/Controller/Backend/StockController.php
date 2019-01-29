@@ -3,39 +3,34 @@
 namespace App\Controller\Backend;
 
 use App\Entity\Stock;
+use App\Entity\Product;
 use App\Form\StockType;
 use App\Repository\StockRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/backend/stock")
  */
 class StockController extends AbstractController
 {
-    /**
-     * @Route("/", name="stock_index", methods={"GET"})
-     */
-    public function index(StockRepository $stockRepository): Response
-    {
-        return $this->render('backend/stock/index.html.twig', [
-            'stocks' => $stockRepository->findAll(),
-        ]);
-    }
+
 
     /**
-     * @Route("/new", name="stock_new", methods={"GET","POST"})
+     * @Route("/new/product/{id}", name="stock_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Product $product): Response
     {
         $stock = new Stock();
         $form = $this->createForm(StockType::class, $stock);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $entityManager = $this->getDoctrine()->getManager();
+            $stock->setProduct($product);
             $entityManager->persist($stock);
             $entityManager->flush();
 
@@ -44,17 +39,8 @@ class StockController extends AbstractController
 
         return $this->render('backend/stock/new.html.twig', [
             'stock' => $stock,
+            'product' => $product,
             'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="stock_show", methods={"GET"})
-     */
-    public function show(Stock $stock): Response
-    {
-        return $this->render('backend/stock/show.html.twig', [
-            'stock' => $stock,
         ]);
     }
 

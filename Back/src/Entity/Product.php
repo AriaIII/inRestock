@@ -31,7 +31,7 @@ class Product
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Supplier", inversedBy="products")
      */
-    private $supplier;
+    private $suppliers;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Stock", mappedBy="product", cascade={"persist", "remove"})
@@ -40,7 +40,7 @@ class Product
 
     public function __construct()
     {
-        $this->supplier = new ArrayCollection();
+        $this->suppliers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,15 +75,15 @@ class Product
     /**
      * @return Collection|Supplier[]
      */
-    public function getSupplier(): Collection
+    public function getSuppliers(): Collection
     {
-        return $this->supplier;
+        return $this->suppliers;
     }
 
     public function addSupplier(Supplier $supplier): self
     {
-        if (!$this->supplier->contains($supplier)) {
-            $this->supplier[] = $supplier;
+        if (!$this->suppliers->contains($supplier)) {
+            $this->suppliers[] = $supplier;
         }
 
         return $this;
@@ -91,8 +91,8 @@ class Product
 
     public function removeSupplier(Supplier $supplier): self
     {
-        if ($this->supplier->contains($supplier)) {
-            $this->supplier->removeElement($supplier);
+        if ($this->suppliers->contains($supplier)) {
+            $this->suppliers->removeElement($supplier);
         }
 
         return $this;

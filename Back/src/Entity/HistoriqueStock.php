@@ -41,6 +41,21 @@ class HistoriqueStock
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $newStock;
+
+    /**
+     * @ORM\Column(type="string", length=25)
+     */
+    private $post;
+
+    /**
+     * @ORM\Column(type="string", length=25)
+     */
+    private $role;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -108,5 +123,41 @@ class HistoriqueStock
 
     public function __toString(){
         return $this->id;
+    }
+
+    public function getNewStock(): ?int
+    {
+        return $this->newStock;
+    }
+
+    public function setNewStock(int $newStock): self
+    {
+        $this->newStock = $newStock;
+
+        return $this;
+    }
+
+    public function getPost(): ?string
+    {
+        return $this->post;
+    }
+
+    public function setPost(string $post): self
+    {
+        $this->post = $post;
+
+        return $this;
+    }
+
+    public function getRole(): ?string
+    {
+        return $this->role;
+    }
+
+    public function setRole(string $role): self
+    {
+        $this->role = $role;
+
+        return $this;
     }
 }
