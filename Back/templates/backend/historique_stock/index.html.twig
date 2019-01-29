@@ -1,0 +1,39 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}liste des mouvements en stock{% endblock %}
+
+{% block body %}
+    <h1>liste des mouvements en stock</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>produit</th>
+                <th>modification</th>
+                <th>variation</th>
+                <th>salarié</th>
+                <th>poste</th>
+                <th>date-heure</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for movement in historiqueStock %}
+            <tr>
+                <td>{{ movement.id }}</td>
+                <td>{{ movement.stock.product.name }}</td>
+                <td>{{ movement.modification }}</td>
+                <td>{{ movement.variation }}</td>
+                <td>{{ movement.user.firstname }}</td>
+                <td>{{ movement.user.post.name }}</td>
+                <td>{{ movement.createdAt|date('d-m-Y h-m') }}</td>
+                
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

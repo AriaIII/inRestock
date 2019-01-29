@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
+        <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <title>{% block title %}InRestock{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        <section class="section">
+            <div class="container">
+                <h1 class="title is-1">
+                  InRestock
+                </h1>
+                <p class="subtitle">
+                  un site pour gérer facilement les stocks de votre restaurant
+                </p>
+                {% block nav %}{% endblock %}
+            </div>
+            
+        </section>
+        <section class="section">
+            <div class="container">
+                {% block body %}{% endblock %}
+            </div>
+        </section>
+        
+        {% block javascripts %}{% endblock %}
+       
+    </body>
+</html>
