@@ -54,7 +54,7 @@ class Supplier
     private $town;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Product", mappedBy="supplier")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Product", mappedBy="suppliers")
      */
     private $products;
 
