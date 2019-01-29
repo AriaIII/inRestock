@@ -47,12 +47,12 @@ class HistoriqueStock
     private $newStock;
 
     /**
-     * @ORM\Column(type="string", length=25)
+     * @ORM\Column(type="string", length=50)
      */
     private $post;
 
     /**
-     * @ORM\Column(type="string", length=25)
+     * @ORM\Column(type="string", length=50)
      */
     private $role;
 

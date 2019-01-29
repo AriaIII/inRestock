@@ -46,7 +46,7 @@ class User implements UserInterface, \Serializable
     private $postcode;
 
     /**
-     * @ORM\Column(type="string", length=60, nullable=true)
+     * @ORM\Column(type="string", length=75, nullable=true)
      */
     private $town;
 

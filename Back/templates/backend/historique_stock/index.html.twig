@@ -14,6 +14,8 @@
                 <th>variation</th>
                 <th>salarié</th>
                 <th>poste</th>
+                <th>role</th>
+                <th>stock</th>
                 <th>date-heure</th>
             </tr>
         </thead>
@@ -25,9 +27,11 @@
                 <td>{{ movement.modification }}</td>
                 <td>{{ movement.variation }}</td>
                 <td>{{ movement.user.firstname }}</td>
-                <td>{{ movement.user.post.name }}</td>
-                <td>{{ movement.createdAt|date('d-m-Y h-m') }}</td>
-                
+                <td>{{ movement.post}}</td>
+                <td>{{ movement.role}}</td>
+                <td>{{ movement.newStock}}</td>
+                <td>{{ movement.createdAt|date('d-m-Y à H:m') }}</td>
+
             </tr>
         {% else %}
             <tr>

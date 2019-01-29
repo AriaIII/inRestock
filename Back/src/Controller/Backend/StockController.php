@@ -51,6 +51,8 @@ class StockController extends AbstractController
     {
         $form = $this->createForm(StockType::class, $stock);
         $form->handleRequest($request);
+        $product = $stock->getProduct();
+        dump($product);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
@@ -62,6 +64,7 @@ class StockController extends AbstractController
 
         return $this->render('backend/stock/edit.html.twig', [
             'stock' => $stock,
+            'product' => $product,
             'form' => $form->createView(),
         ]);
     }

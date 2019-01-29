@@ -45,13 +45,19 @@ class CategoryController extends AbstractController
         //$id = $request->request->get('id')
         //$category = findBy($id);
           foreach($category->getProducts() as $products){
-              dump($products);
+             if ($products->getStock()) {
+                 $stock = $products->getStock()->getStock();
+             } else {
+                $stock = 'stock non créé';
+             }
+
+
               $produit[] = [
                   "id" => $products->getId(),
                   "name" => $products->getName(),
-                  "stock" => $products->getStock()->getStock()
+                  "stock" => $stock
               ];
-              dump($produit);
+
           }
 
 

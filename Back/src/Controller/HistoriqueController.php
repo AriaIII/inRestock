@@ -20,12 +20,12 @@ class HistoriqueController extends AbstractController
      */
     public function line(Request $request, StockRepository $stockRepo, UserRepository $userRepo, ModificationRepository $modifRepo)
     {
-        $data = $request->getContent();
-        $req = json_decode($data);
-        //je recupère les données envoyées en post :
+        // je recupere l'integralité de la request et je la stocke
+       $data = $request->getContent();
+
+       // j'utilise la fonction native de chez php : json_decode pour décodé mon json
+       $req = json_decode($data);
        $product = $req->product;
-
-
        // je recup l'id de l'user courrant
        $userId = $req->user;
        //je recupere l'user associé a l'id de l'user courrant

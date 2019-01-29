@@ -13,9 +13,10 @@ class HistoriqueStockController extends AbstractController
      */
     public function index(HistoriqueStockRepository $historiqueStockRepo)
     {
+        $historiqueStock = $historiqueStockRepo->findAll();
 
         return $this->render('backend/historique_stock/index.html.twig', [
-            'historiqueStock' => $historiqueStockRepo->findAll(),
+            'historiqueStock' => $historiqueStock,
         ]);
     }
 }

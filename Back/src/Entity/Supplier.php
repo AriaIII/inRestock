@@ -49,7 +49,7 @@ class Supplier
     private $postcode;
 
     /**
-     * @ORM\Column(type="string", length=10, nullable=true)
+     * @ORM\Column(type="string", length=75, nullable=true)
      */
     private $town;
 

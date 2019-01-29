@@ -29,7 +29,7 @@ class Stock
     private $stock_alert;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Product", inversedBy="stock", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Product", inversedBy="stock", cascade={"persist"})
      */
     private $product;
 
