@@ -58,8 +58,9 @@ class HistoriqueController extends AbstractController
         $newLine->setStock($stock[0]);
         $newLine->setModification($modifToSet);
         $newLine->setUser($user[0]);
-        // $newLine->setPost($user->getPost->getName());
-        // $newLine->setRole($user->getRole->getName());
+        $newLine->setPost($user[0]->getPost()->getName());
+        $newLine->setRole($user[0]->getRole()->getName());
+        $newLine->setNewStock($newStock);
         $newLine->setCreatedAt(new \DateTime());
         $entityManager->persist($newLine);
         $entityManager->flush();

@@ -21,21 +21,21 @@ class CategoryController extends AbstractController
         foreach ($categories as $index => $currentValue) {
          $array[$index] = [
              'id' => $currentValue->getId(),
-             'name' => $currentValue->getName(),           
-             
+             'name' => $currentValue->getName(),
+
          ];
          }
- 
+
     $jsonCategories = \json_encode($array);
     dump($jsonCategories);
- 
+
      $response = new Response($jsonCategories);
      $response->headers->set('Content-Type', 'application/json');
      // $response->headers->set('Access-Control-Allow-Origin', '');
      return $response;
     }
 
-    
+
     /**
      * @Route("/category/{id}", name="category_by_one")
      */
@@ -45,12 +45,13 @@ class CategoryController extends AbstractController
         //$id = $request->request->get('id')
         //$category = findBy($id);
           foreach($category->getProducts() as $products){
+              dump($products);
               $produit[] = [
                   "id" => $products->getId(),
                   "name" => $products->getName(),
                   "stock" => $products->getStock()->getStock()
               ];
-              dump($produit);                           
+              dump($produit);
           }
 
 
@@ -58,9 +59,9 @@ class CategoryController extends AbstractController
             'id' => $category->getId(),
             'name' => $category->getName(),
             'products' => $produit
-            
+
          ];
-        
+
 
    $jsonOneCategory = \json_encode($array);
    dump($jsonOneCategory);
