@@ -38,6 +38,11 @@ class Stock
      */
     private $historiqueStocks;
 
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $packaging;
+
     public function __construct()
     {
         $this->historiqueStocks = new ArrayCollection();
@@ -111,6 +116,22 @@ class Stock
                 $historiqueStock->setStock(null);
             }
         }
+
+        return $this;
+    }
+
+    public function __toString(){
+        return $this->product->getName();
+    }
+
+    public function getPackaging(): ?string
+    {
+        return $this->packaging;
+    }
+
+    public function setPackaging(?string $packaging): self
+    {
+        $this->packaging = $packaging;
 
         return $this;
     }

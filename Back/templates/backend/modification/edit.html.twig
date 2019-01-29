@@ -1,0 +1,13 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}Edit Modification{% endblock %}
+
+{% block body %}
+    <h1>Edit Modification</h1>
+
+    {{ include('backend/modification/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('modification_index') }}">back to list</a>
+
+    {{ include('backend/modification/_delete_form.html.twig') }}
+{% endblock %}

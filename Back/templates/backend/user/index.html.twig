@@ -1,0 +1,43 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <h2 class="title">liste de vos salariés</h2>
+
+    <table class="table is-hoverable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Téléphone</th>
+                <th>Email</th>
+                <th>Responsabilité</th>
+                <th>Action à effectuer</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role.name}}</td>
+                <td>
+                        <a class="button is-warning" href="{{ path('user_show', {'id': user.id}) }}">voir la fiche du salarié</a>
+                        <a class="button is-warning" href="{{ path('user_edit', {'id': user.id}) }}">modifier la fiche du salarié</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="button is-outlined is-warning" href="{{ path('user_new') }}">Create new</a>
+{% endblock %}
