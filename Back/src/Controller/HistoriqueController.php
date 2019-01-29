@@ -37,11 +37,8 @@ class HistoriqueController extends AbstractController
        $modifList = $modifRepo->findAll();
        $modifToSet = $modifList[$modification];
 
-
        // Je récupère le stock associé au produit que l'on doit modifier :
         $stock = $stockRepo->findByProduct($product);
-
-
 
        //je recupere le stock courrant
         $currentStock = $stock[0]->getStock();
@@ -66,9 +63,6 @@ class HistoriqueController extends AbstractController
         $entityManager->flush();
 
         return new Response('OK SUPER');
-
-
-
 
     }
 }
