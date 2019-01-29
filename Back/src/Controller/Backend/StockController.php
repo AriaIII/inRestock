@@ -34,7 +34,7 @@ class StockController extends AbstractController
             $entityManager->persist($stock);
             $entityManager->flush();
 
-            return $this->redirectToRoute('stock_index');
+            return $this->redirectToRoute('product_index');
         }
 
         return $this->render('backend/stock/new.html.twig', [
