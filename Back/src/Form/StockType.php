@@ -14,7 +14,7 @@ class StockType extends AbstractType
         $builder
             ->add('stock')
             ->add('stock_alert')
-
+            ->add('packaging')
         ;
     }
 
