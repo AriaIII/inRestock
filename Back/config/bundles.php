@@ -15,4 +15,5 @@ return [
     Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
     Symfony\Bundle\WebServerBundle\WebServerBundle::class => ['dev' => true],
     Liip\ImagineBundle\LiipImagineBundle::class => ['all' => true],
+    Nelmio\CorsBundle\NelmioCorsBundle::class => ['all' => true],
 ];
