@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Role;
 
+
 class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -100,6 +101,7 @@ class UserType extends AbstractType
                     'label' => 'Verification du mot de passe :'
                 ],
             ])
+
         ;
     }
 
