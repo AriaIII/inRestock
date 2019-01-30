@@ -94,6 +94,7 @@ class User implements UserInterface, \Serializable
     public function __construct()
     {
         $this->historiqueStocks = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
