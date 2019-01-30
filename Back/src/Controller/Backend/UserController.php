@@ -31,15 +31,39 @@ class UserController extends AbstractController
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
      */
-    public function new(Request $request, UserPasswordEncoderInterface $encoder): Response
+    public function new(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $userRepo ): Response
     {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
+        $newUser = new User();
+        $form = $this->createForm(UserType::class, $newUser);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $file = $user->getPhoto();
-            if(!is_null($user->getPhoto())){
+
+            $firstname = $newUser->getFirstName();
+
+            $lastname = $newUser->getLastName();
+
+            $firstLetter =  substr($firstname, 0, 1);
+            $secondLetter = substr($lastname, 0, 1);
+            $number = 1;
+            $username = $firstLetter . $secondLetter . $number;
+            $users = $userRepo->findAll();
+            dump($users);
+
+            foreach ($users as $user) {
+                $test[] = $user->getUsername();
+            }
+
+            while (array_search($username, $test))
+            {
+                $number += 1;
+                $username = $firstLetter . $secondLetter . $number;
+            }
+
+            $newUser->setUsername($username);
+
+            $file = $newUser->getPhoto();
+            if(!is_null($newUser->getPhoto())){
                 $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
                     try {
                         $file->move(
@@ -49,19 +73,19 @@ class UserController extends AbstractController
                     } catch (FileException $e) {
                     dump($e);
                     }
-            $user->setPhoto($fileName);
+            $newUser->setPhoto($fileName);
         }
             $entityManager = $this->getDoctrine()->getManager();
-            $hash = $encoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($hash);
-            $entityManager->persist($user);
+            $hash = $encoder->encodePassword($newUser, $newUser->getPassword());
+            $newUser->setPassword($hash);
+            $entityManager->persist($newUser);
             $entityManager->flush();
 
             return $this->redirectToRoute('user_index');
         }
 
         return $this->render('backend/user/new.html.twig', [
-            'user' => $user,
+            'user' => $newUser,
             'form' => $form->createView(),
         ]);
     }
