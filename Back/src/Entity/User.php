@@ -66,6 +66,12 @@ class User implements UserInterface, \Serializable
     private $password;
 
     /**
+     * @Assert\File(
+     * maxSize = "1024k",
+     * mimeTypes={ "image/gif", "image/jpeg", "image/png" },
+     * mimeTypesMessage = "Please valid image format : gif, png, jpeg"
+     * )
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $photo;
@@ -203,12 +209,12 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getPhoto(): ?string
+    public function getPhoto()
     {
         return $this->photo;
     }
 
-    public function setPhoto(?string $photo): self
+    public function setPhoto($photo): self
     {
         $this->photo = $photo;
 

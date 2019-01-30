@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class UserType extends AbstractType
 {
@@ -21,7 +22,7 @@ class UserType extends AbstractType
             ->add('phone')
             ->add('email')
             ->add('password')
-            ->add('photo')
+            ->add('photo', FileType::class)
             ->add('role')
             ->add('post')
         ;
