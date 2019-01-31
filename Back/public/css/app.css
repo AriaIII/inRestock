@@ -1,10 +1,11 @@
-html, body, p, ol, ul, dl, dt, dd, blockquote, figure, fieldset, legend, textarea, pre, iframe, hr, h1, h2, h3, h4, h5, h6 {
+p, ol, ul, dl, dt, dd, blockquote, figure, fieldset, legend, textarea, pre, iframe, hr, h1, h2, h3, h4, h5, h6 {
     margin: 0.5rem;
     padding: 0.5rem;
 }
 
-body {
-    background-color: darkgray
+body, html {
+    background-color: darkgray;
+    font-family: 'Roboto', sans-serif;
 }
 
 .section {
@@ -20,16 +21,32 @@ body {
     columns: 3;
 }
 
-.columns.is-desktop {
-    display : block;
-}
-
-li {
-    list-style: disc;
-    padding: 0.2rem;
-}
 
 a {
     color: initial;
     margin: 0.5rem;
 }
+
+.create-new{
+    margin-top: 1.5rem;
+}
+
+
+ul {
+    flex-wrap: wrap;
+    display: flex;
+  }
+  ul li {
+    flex: 1 0 33%;
+    list-style: disc;
+  }
+
+  @media (max-width: 767.98px){
+
+    ul li {
+        flex: 1 0 100%;
+        list-style: disc;
+      }
+
+
+  }
