@@ -15,15 +15,6 @@ body {
     background-color: lightgray
 }
 
-.columns {
-    -moz-columns: 3;
-    columns: 3;
-}
-
-.columns.is-desktop {
-    display : block;
-}
-
 li {
     list-style: disc;
     padding: 0.2rem;
@@ -33,3 +24,4 @@ a {
     color: initial;
     margin: 0.5rem;
 }
+
