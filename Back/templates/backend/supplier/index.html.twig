@@ -1,28 +1,26 @@
 {% extends 'backend/backend_layout.html.twig' %}
 
-{% block title %}Supplier index{% endblock %}
+{% block title %}Liste des fournisseurs{% endblock %}
 
 {% block body %}
-    <h1>Supplier index</h1>
+    <h1 class="title is-2">Liste des fournisseurs</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>SocietyName</th>
-                <th>Name</th>
+                <th>Society</th>
+                <th>Nom</th>
                 <th>Mail</th>
-                <th>Phone</th>
-                <th>Adress</th>
-                <th>Postcode</th>
-                <th>Town</th>
-                <th>actions</th>
+                <th>Telephone</th>
+                <th>Adresse</th>
+                <th>Code postal</th>
+                <th>Ville</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for supplier in suppliers %}
             <tr>
-                <td>{{ supplier.id }}</td>
                 <td>{{ supplier.societyName }}</td>
                 <td>{{ supplier.name }}</td>
                 <td>{{ supplier.mail }}</td>
@@ -31,17 +29,17 @@
                 <td>{{ supplier.postcode }}</td>
                 <td>{{ supplier.town }}</td>
                 <td>
-                    <a href="{{ path('supplier_show', {'id': supplier.id}) }}">show</a>
-                    <a href="{{ path('supplier_edit', {'id': supplier.id}) }}">edit</a>
+                    <a href="{{ path('supplier_show', {'id': supplier.id}) }}"><i class="fas fa-info-circle"></i></a>
+                    <a href="{{ path('supplier_edit', {'id': supplier.id}) }}"><i class="fas fa-edit"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="9">no records found</td>
+                <td colspan="9">Aucuns fournisseurs</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('supplier_new') }}">Create new</a>
+    <a class="create-new button is-primary" href="{{ path('supplier_new') }}">Nouveau fournisseurs </a>
 {% endblock %}

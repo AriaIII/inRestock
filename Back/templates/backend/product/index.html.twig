@@ -12,13 +12,13 @@
                         <a href="{{ path('product_edit', {'id': product.id}) }}"><i class="fas fa-edit"></i></a>
                 </li>
                 {% else %}
-                <li>no records found </li>
+                <li>Aucun produits trouvé </li>
                 {% endfor %}
             </ul>
 
 
-    <a class="create-new button is-primary" href="{{ path('product_new') }}">Create new</a>
-</div>
+    <a class="create-new button is-primary" href="{{ path('product_new') }}">Nouveau produit</a>
+
 
 
 

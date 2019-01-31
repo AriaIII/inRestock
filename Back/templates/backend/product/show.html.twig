@@ -4,27 +4,27 @@
 
 {% block body %}
 
-    <h2 class="title is-2">Bienvenue sur la page du produit : {{ product.name }}</h2>
+    <h2 class="title is-2">{{ product.name }}</h2>
 
     <nav class="is-grouped">
         {# le lien doit amener à la page du stock du produit ou à la page permettant de créer le stock avec le champ produit déjà entré #}
         {% if product.stock %}
-        <a class="button is-outlined is-warning"  href="{{ path('stock_edit', {'id': product.stock.id} ) }}">
+        <a class="button is-info"  href="{{ path('stock_edit', {'id': product.stock.id} ) }}">
             gérer le stock du produit
         </a>
         {% else %}
-        <a class="button is-outlined is-warning"  href="{{ path('stock_new', {'id': product.id}) }}">
+        <a class="button is-info"  href="{{ path('stock_new', {'id': product.id}) }}">
             créer le stock du produit
         </a>
         {% endif %}
 
         {# le lien doit amener à un formulaire de création de fournisseur où le champ produit est déjà rempli #}
-        <a class="button is-outlined is-warning"  href="{{ path('supplier_new') }}">
+        <a class="button is-info"  href="{{ path('supplier_new') }}">
             ajouter un fournisseur à ce produit
         </a>
     </nav>
 
-    <h4 class="title is-4">liste des fournisseurs de {{ product.name }}</h4>
+    <h4 class="create-new title is-4">Liste des fournisseurs de {{ product.name }}</h4>
 
 
     <table class="table is-hoverable">
@@ -48,13 +48,13 @@
             </tr>
             {% else %}
             <tr>
-                <td colspan="12">aucun fournisseur</td>
+                <td colspan="12">Aucun fournisseur</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 
-    <h4 class="title is-4">stock de {{ product.name }}</h4>
+    <h4 class="title is-4">Stock de {{ product.name }}</h4>
 
     <table class="table is-hoverable">
 
@@ -65,25 +65,39 @@
                 <td>{{ product.stock.packaging }}</td>
             </tr>
             <tr>
-                <th>stock actuel</th>
+                <th>Stock actuel</th>
                 <td>{{ product.stock.stock }}</td>
             </tr>
             <tr>
-                <th>limite de déclenchement de l'alerte</th>
+                <th>Limite de déclenchement de l'alerte</th>
                 <td>{{ product.stock.stockAlert }}</td>
             </tr>
 
             {% else %}
             <tr>
-                <td>aucun stock</td>
+                <td>Aucun stock</td>
             </tr>
             {% endif %}
         </tbody>
     </table>
 
-    <a href="{{ path('product_index') }}">back to list</a>
+    <div class="field is-grouped">
+            <p class="control">
+              <a class="button is-primary" href="{{ path('product_index') }}">
+                  Retour a la liste
+              </a>
+            </p>
+            <p class="control">
+              <a class="button is-warning" href="{{ path('product_edit', {'id': product.id}) }}">
+                  Modifier le produit
+              </a>
+            </p>
+            <p class="control">
+            {{ include('backend/product/_delete_form.html.twig') }}
 
-    <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+            </p>
+          </div>
 
-    {{ include('backend/product/_delete_form.html.twig') }}
+
+
 {% endblock %}

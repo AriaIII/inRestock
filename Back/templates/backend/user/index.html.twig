@@ -3,12 +3,11 @@
 {% block title %}User index{% endblock %}
 
 {% block body %}
-    <h2 class="title">liste de vos salariés</h2>
+    <h2 class="title">Liste de vos salariés</h2>
 
     <table class="table is-hoverable">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Téléphone</th>
@@ -20,15 +19,14 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <td>{{ user.id }}</td>
                 <td>{{ user.lastName }}</td>
                 <td>{{ user.firstName }}</td>
                 <td>{{ user.phone }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.role.name}}</td>
                 <td>
-                        <a class="button is-warning" href="{{ path('user_show', {'id': user.id}) }}">voir la fiche du salarié</a>
-                        <a class="button is-warning" href="{{ path('user_edit', {'id': user.id}) }}">modifier la fiche du salarié</a>
+                        <a class="button is-info" href="{{ path('user_show', {'id': user.id}) }}">voir la fiche du salarié</a>
+                        <a class="button is-info" href="{{ path('user_edit', {'id': user.id}) }}">modifier la fiche du salarié</a>
                 </td>
             </tr>
         {% else %}
@@ -38,6 +36,5 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a class="button is-outlined is-warning" href="{{ path('user_new') }}">Create new</a>
+    <a class="create-new button is-primary" href="{{ path('user_new') }}">Nouveau utilisateur </a>
 {% endblock %}
