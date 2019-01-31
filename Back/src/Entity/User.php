@@ -61,7 +61,7 @@ class User implements UserInterface, \Serializable
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $password;
 
@@ -94,7 +94,7 @@ class User implements UserInterface, \Serializable
     public function __construct()
     {
         $this->historiqueStocks = new ArrayCollection();
-        
+
     }
 
     public function getId(): ?int
