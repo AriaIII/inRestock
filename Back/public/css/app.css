@@ -45,3 +45,8 @@ a {
 .title {
     color: #474646
 }
+
+.error li {
+    color: red;
+    list-style: none;
+}

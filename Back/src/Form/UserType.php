@@ -130,13 +130,19 @@ class UserType extends AbstractType
                 'label' => 'Prénom* :',
                 'attr' => [
                     'class' => 'input is-rounded'
-                    ]
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'La valeur ne peut pas être vide'
+                    ]),
+                ]
             ])
             ->add('lastName', TextType::class, [
                 'label' => 'Nom de famille* :',
                 'attr' => [
                     'class' => 'input is-rounded'
-                    ]
+                ],
+                'required' => true
             ])
             ->addEventListener(FormEvents::PRE_SET_DATA, $listener)
             ->add('adress', TextareaType::class, [
