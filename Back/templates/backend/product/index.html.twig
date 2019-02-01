@@ -3,11 +3,14 @@
 {% block title %}Liste des produits{% endblock %}
 
 {% block body %}
-    <h2 class="title is-2">Liste des produits disponibles :</h2>
+    <div class="new-title">
+        <h2 class="title is-2">Liste des produits disponibles :</h2>
+    </div>
 
-            <ul>
+
+            <ul class="list-ul">
                 {% for product in products %}
-                <li>  {{ product.name }}
+                <li class="list-li">  {{ product.name }}
                         <a href="{{ path('product_show', {'id': product.id}) }}"><i class="fas fa-info-circle"></i></a>
                         <a href="{{ path('product_edit', {'id': product.id}) }}"><i class="fas fa-edit"></i></a>
                 </li>
@@ -17,7 +20,7 @@
             </ul>
 
 
-    <a class="create-new button is-primary" href="{{ path('product_new') }}">Nouveau produit</a>
+    <a class="button is-primary" href="{{ path('product_new') }}">Nouveau produit</a>
 
 
 

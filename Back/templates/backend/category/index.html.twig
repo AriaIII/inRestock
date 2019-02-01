@@ -3,7 +3,7 @@
 {% block title %}Category index{% endblock %}
 
 {% block body %}
-<h2 class="title is-2">Liste des catégories : </h2>
+<div class="new-title"><h2 class="title is-2">Liste des catégories : </h2></div>
 
 
 
@@ -18,6 +18,6 @@
     </div>
 
 
-    <a class="create-new button is-primary" href="{{ path('category_new') }}">Nouvelle catégorie </a>
+    <a class="button is-primary" href="{{ path('category_new') }}">Nouvelle catégorie </a>
 
 {% endblock %}

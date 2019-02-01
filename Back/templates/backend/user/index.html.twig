@@ -1,9 +1,11 @@
 {% extends 'backend/backend_layout.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}Liste de salariés{% endblock %}
 
 {% block body %}
-    <h2 class="title">Liste de vos salariés</h2>
+    <div class="new-title">
+        <h2 class="title is-2">Liste de vos salariés :</h2>
+    </div>
 
     <table class="table is-hoverable">
         <thead>
@@ -25,8 +27,8 @@
                 <td>{{ user.email }}</td>
                 <td>{{ user.role.name}}</td>
                 <td>
-                        <a class="button is-info" href="{{ path('user_show', {'id': user.id}) }}">voir la fiche du salarié</a>
-                        <a class="button is-info" href="{{ path('user_edit', {'id': user.id}) }}">modifier la fiche du salarié</a>
+                        <a class="button is-warning" href="{{ path('user_show', {'id': user.id}) }}">voir la fiche du salarié</a>
+                        <a class="button is-warning" href="{{ path('user_edit', {'id': user.id}) }}">modifier la fiche du salarié</a>
                 </td>
             </tr>
         {% else %}
@@ -36,5 +38,5 @@
         {% endfor %}
         </tbody>
     </table>
-    <a class="create-new button is-primary" href="{{ path('user_new') }}">Nouveau utilisateur </a>
+    <a class="button is-primary" href="{{ path('user_new') }}">Nouvel utilisateur </a>
 {% endblock %}

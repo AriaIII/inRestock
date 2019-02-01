@@ -1,16 +1,46 @@
 
 
-body, html {
-    background-color: darkgray;
+html{
+    background: url("../images/bois-gris.jpg!d");
+    background-size: cover;
+    background-position: center;
+    background-repeat:no-repeat;
+    background-color:  rgb(145, 143, 143);
     font-family: 'Roboto', sans-serif;
 }
 
 .section {
     padding-bottom : 0;
 }
+.table.is-hoverable{
+    background:  rgba(255,255,255,0.38);
+
+
+}
 
 .table {
-    background-color: lightgray
+    background:  rgba(255,255,255,0.38);
+    width: 100%;
+}
+
+.table.is-hoverable tbody tr:not(.is-selected):hover {
+    background:  rgba(255,255,255,0.60);
+  }
+
+.title {
+
+    text-align: center;
+    color: #E0E3E1;
+
+    padding-top:0.4em;
+    padding-bottom: 0.4em;
+    /* -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
+    text-transform: uppercase; */
+
 }
 
 .columns {
@@ -25,22 +55,113 @@ a {
 }
 
 .create-new{
-    margin-top: 1.5rem;
+    margin-top: 1em;
+
+}
+
+ul li {
+    list-style:disc;
 }
 
 
-ul {
+.transparent{
+    background:  rgba(255,255,255,0.38);
+    padding: 2em;
+
+}
+
+.transparent-list{
+    padding:2em;
+
+}
+
+.list-ul {
     flex-wrap: wrap;
     display: flex;
+    background:  rgba(255,255,255,0.38);
+    padding:2em;
+    padding-left:4em;
+    margin-bottom : 2em;
   }
-  ul li {
+
+ .list-li {
     flex: 1 0 33%;
     list-style: disc;
+    color:black;
   }
+
+  .button.is-danger {
+    background-color : #75688B;
+    color:white;
+  }
+
+  .button.is-warning{
+      background-color: #CFAE3A;
+      color:#3f384b;
+  }
+
+
+  .navbar.is-primary {
+    background-color : #CFAE3A;
+
+  }
+
+.button.is-primary{
+    background-color : #B5A1D7;
+    color:white;
+}
+
+.new-title{
+    background-color: #373833;
+}
+
+.tags {
+    background:  rgba(255,255,255,0.38);
+    padding: 1em;
+    padding-left: 2em;
+}
+
+.navbar.is-primary .navbar-brand > a.navbar-item:hover, .navbar.is-primary .navbar-brand > a.navbar-item.is-active,
+.navbar.is-primary .navbar-brand .navbar-link:hover,
+.navbar.is-primary .navbar-brand .navbar-link.is-active {
+  background-color: #EDC742;
+  color: #fff;
+}
+
+.navbar.is-primary .navbar-start > a.navbar-item:hover, .navbar.is-primary .navbar-start > a.navbar-item.is-active,
+.navbar.is-primary .navbar-start .navbar-link:hover,
+.navbar.is-primary .navbar-start .navbar-link.is-active,
+.navbar.is-primary .navbar-end > a.navbar-item:hover,
+.navbar.is-primary .navbar-end > a.navbar-item.is-active,
+.navbar.is-primary .navbar-end .navbar-link:hover,
+.navbar.is-primary .navbar-end .navbar-link.is-active {
+  background-color: #EDC742;
+  color: #fff;
+}
+
+.navbar.is-primary .navbar-start > a.navbar-item.button.is-danger:hover {
+background-color: #B5A1D7;
+}
+
+.button.is-primary:hover, .button.is-primary.is-hovered {
+    background-color: #4A4257;
+    border-color: transparent;
+    color: #fff;
+  }
+
+
+.tags.span{
+ padding :1em;
+}
+
+.hop {
+    display: flex;
+}
+
 
   @media (max-width: 767.98px){
 
-    ul li {
+    .list-li {
         flex: 1 0 100%;
         list-style: disc;
       }
