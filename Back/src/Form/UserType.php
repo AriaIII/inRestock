@@ -170,7 +170,7 @@ class UserType extends AbstractType
                     ]
             ])
             ->add('photo', FileType::class, [
-                'label' => 'Photo :',
+                'label' => 'Photo (format gif, png, jpeg) :',
                 'attr' => [
                     'class' => 'file'
                 ],

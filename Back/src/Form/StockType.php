@@ -6,15 +6,31 @@ use App\Entity\Stock;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class StockType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('stock')
-            ->add('stock_alert')
-            ->add('packaging')
+            ->add('stock', TextType::class, [
+                'label' => 'Valeur actuelle du stock :',
+                'attr' => [
+                    'class' => 'input is-rounded'
+                    ]
+            ])
+            ->add('stock_alert', TextType::class, [
+                'label' => 'Limite basse du stock (déclenche une alerte quand elle est atteinte) :',
+                'attr' => [
+                    'class' => 'input is-rounded'
+                    ]
+            ])
+            ->add('packaging', TextType::class, [
+                'label' => 'Conditionnement du produit :',
+                'attr' => [
+                    'class' => 'input is-rounded'
+                    ]
+            ])
         ;
     }
 

@@ -4,7 +4,9 @@ html, body, p, ol, ul, dl, dt, dd, blockquote, figure, fieldset, legend, textare
 }
 
 body {
-    background-color: darkgray
+    background-color: #D6CFC1;
+    color: #474646
+    
 }
 
 .section {
@@ -12,7 +14,8 @@ body {
 }
 
 .table {
-    background-color: lightgray
+    background-color: #8C8C8C;
+    color: #474646
 }
 
 li {
@@ -24,4 +27,21 @@ a {
     color: initial;
     margin: 0.5rem;
 }
+.button.is-warning {
+    background-color: #CFAE3A;
+    color: #474646
+}
 
+.button.is-danger {
+    background-color: #75688B
+}
+
+.button.is-outlined.is-warning {
+    
+    border-color: #CFAE3A;
+    color: #CFAE3A
+
+}
+.title {
+    color: #474646
+}
