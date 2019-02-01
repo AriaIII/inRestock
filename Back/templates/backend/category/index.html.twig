@@ -13,11 +13,12 @@
                 <span class="tag"><a href="{{ path('category_show', {'id': category.id}) }}">{{category.name}}</a></span>
 
         {% else %}
-        <p>Aucunes catégories trouvés</p>
+        <p>Aucune catégorie trouvée</p>
         {% endfor %}
     </div>
 
 
     <a class="button is-primary" href="{{ path('category_new') }}">Nouvelle catégorie </a>
+
 
 {% endblock %}

@@ -7,6 +7,7 @@ html{
     background-repeat:no-repeat;
     background-color:  rgb(145, 143, 143);
     font-family: 'Roboto', sans-serif;
+
 }
 
 .section {
@@ -19,6 +20,7 @@ html{
 }
 
 .table {
+
     background:  rgba(255,255,255,0.38);
     width: 100%;
 }
@@ -168,3 +170,9 @@ background-color: #B5A1D7;
 
 
   }
+
+
+.error li {
+    color: red;
+    list-style: none;
+}

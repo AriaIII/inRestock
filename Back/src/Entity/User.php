@@ -69,7 +69,7 @@ class User implements UserInterface, \Serializable
      * @Assert\File(
      * maxSize = "1024k",
      * mimeTypes={ "image/gif", "image/jpeg", "image/png" },
-     * mimeTypesMessage = "Please valid image format : gif, png, jpeg"
+     * mimeTypesMessage = "Prière de mettre une image au format suivant : gif, png, jpeg"
      * )
      *
      * @ORM\Column(type="string", length=255, nullable=true)

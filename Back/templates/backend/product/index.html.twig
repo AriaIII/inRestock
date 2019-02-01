@@ -7,7 +7,7 @@
         <h2 class="title is-2">Liste des produits disponibles :</h2>
     </div>
 
-
+ <p>Cliquez sur <i class="fas fa-info-circle"></i> pour accéder au détail du produit et sur <i class="fas fa-edit"></i> pour le modifier.</p>
             <ul class="list-ul">
                 {% for product in products %}
                 <li class="list-li">  {{ product.name }}
@@ -15,7 +15,7 @@
                         <a href="{{ path('product_edit', {'id': product.id}) }}"><i class="fas fa-edit"></i></a>
                 </li>
                 {% else %}
-                <li>Aucun produits trouvé </li>
+                <li>Aucun produit trouvé </li>
                 {% endfor %}
             </ul>
 
