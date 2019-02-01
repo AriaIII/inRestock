@@ -1,26 +1,26 @@
 {% extends 'backend/backend_layout.html.twig' %}
 
-{% block title %}Modification index{% endblock %}
+{% block title %}Modifications{% endblock %}
 
 {% block body %}
-    <h1>Modification index</h1>
+    <div class="new-title">
+        <h2 class="title is-2">Liste des modifications :</h2>
+    </div>
 
-    <table class="table">
+    <table class="table is-hoverable">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
+                <th>Nom</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for modification in modifications %}
             <tr>
-                <td>{{ modification.id }}</td>
+
                 <td>{{ modification.name }}</td>
                 <td>
-                    <a href="{{ path('modification_show', {'id': modification.id}) }}">show</a>
-                    <a href="{{ path('modification_edit', {'id': modification.id}) }}">edit</a>
+                    <a href="{{ path('modification_edit', {'id': modification.id}) }}"><i class="fas fa-edit"></i></a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +31,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('modification_new') }}">Create new</a>
+    <a class="button is-primary" href="{{ path('modification_new') }}">Nouvelle modification</a>
+
 {% endblock %}
