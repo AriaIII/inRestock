@@ -1,25 +1,28 @@
 {% extends 'backend/backend_layout.html.twig' %}
 
-{% block title %}liste des produits{% endblock %}
+{% block title %}Liste des produits{% endblock %}
 
 {% block body %}
-    <h2 class="title is-2">Bienvenue sur la page de gestion de vos produits.</h2>
-    <h4 class="title is-4">liste des produits disponibles :</h4>
-    <p>Cliquez sur <i class="fas fa-info-circle"></i> pour accéder au détail du produit et sur <i class="fas fa-edit"></i> pour le modifier.</p>
-<div class="">
-        <ul class="">
-            {% for product in products %}
+    <div class="new-title">
+        <h2 class="title is-2">Liste des produits disponibles :</h2>
+    </div>
 
-                <li>
-                    {{ product.name }}
-                    <a href="{{ path('product_show', {'id': product.id}) }}"><i class="fas fa-info-circle"></i></a>
-                    <a href="{{ path('product_edit', {'id': product.id}) }}"><i class="fas fa-edit"></i></a>
+ <p>Cliquez sur <i class="fas fa-info-circle"></i> pour accéder au détail du produit et sur <i class="fas fa-edit"></i> pour le modifier.</p>
+            <ul class="list-ul">
+                {% for product in products %}
+                <li class="list-li">  {{ product.name }}
+                        <a href="{{ path('product_show', {'id': product.id}) }}"><i class="fas fa-info-circle"></i></a>
+                        <a href="{{ path('product_edit', {'id': product.id}) }}"><i class="fas fa-edit"></i></a>
                 </li>
-            {% else %}
-                <li>no records found </li>
-            {% endfor %}
-        </ul>
-</div>
+                {% else %}
+                <li>Aucun produit trouvé </li>
+                {% endfor %}
+            </ul>
 
-    <a class="button is-warning is-outlined" href="{{ path('product_new') }}">Create new</a>
+
+    <a class="button is-primary" href="{{ path('product_new') }}">Nouveau produit</a>
+
+
+
+
 {% endblock %}

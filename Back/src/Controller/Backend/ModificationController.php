@@ -81,15 +81,14 @@ class ModificationController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="modification_delete", methods={"DELETE"})
+     * @Route("/delete/{id}", name="modification_delete")
      */
     public function delete(Request $request, Modification $modification): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$modification->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($modification);
             $entityManager->flush();
-        }
+
 
         return $this->redirectToRoute('modification_index');
     }

@@ -3,26 +3,24 @@
 {% block title %}liste des mouvements en stock{% endblock %}
 
 {% block body %}
-    <h1>liste des mouvements en stock</h1>
+   <div class="new-title"> <h2 class="title is-2">Liste des mouvements en stock</h2></div>
 
-    <table class="table">
+    <table class="table is-hoverable">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>produit</th>
-                <th>modification</th>
-                <th>variation</th>
-                <th>salarié</th>
-                <th>poste</th>
-                <th>role</th>
-                <th>stock</th>
-                <th>date-heure</th>
+                <th>Produit</th>
+                <th>Modification</th>
+                <th>Variation</th>
+                <th>Employé</th>
+                <th>Poste</th>
+                <th>Role</th>
+                <th>Stock</th>
+                <th>Date-heure</th>
             </tr>
         </thead>
         <tbody>
         {% for movement in historiqueStock %}
             <tr>
-                <td>{{ movement.id }}</td>
                 <td>{{ movement.stock.product.name }}</td>
                 <td>{{ movement.modification }}</td>
                 <td>{{ movement.variation }}</td>
@@ -35,7 +33,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="12">no records found</td>
+                <td colspan="12">Aucun historique trouvé !</td>
             </tr>
         {% endfor %}
         </tbody>

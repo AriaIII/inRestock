@@ -1,30 +1,51 @@
 {% extends 'base.html.twig' %}
 
+
+{% block stylesheets %}
+{% endblock %}
+
+
 {% block nav %}
-    <nav class="is-grouped">
-        <a class="button is-outlined is-warning"  href="{{ path('user_index') }}"> 
-            Utilisateurs 
-        </a>
-        <a class="button is-outlined is-warning"  href="{{ path('product_index') }}"> 
-            Produits 
-        </a>
-        <a class="button is-outlined is-warning"  href="{{ path('supplier_index') }}"> 
-            Fournisseurs 
-        </a>
-        <a class="button is-outlined is-warning"  href="{{ path('category_index') }}"> 
-            Catégories 
-        </a>
-        <a class="button is-outlined is-warning"  href="{{ path('post_index') }}"> 
-            Postes 
-        </a>
-        <a class="button is-outlined is-warning"  href="{{ path('role_index') }}"> 
-            Rôles 
-        </a>
-        <a class="button is-outlined is-warning"  href="{{ path('modification_index') }}"> 
-            Modifications 
-        </a>
-        <a class="button is-outlined is-warning"  href="{{ path('historique_stock') }}"> 
-            Historique des modifications 
-        </a>
-    </nav>
+
+    <nav class="navbar is-primary">
+        <div class="container">
+          <div class="navbar-brand">
+            <a  href= "{{path('index')}}">
+              <img src="{{asset('images/logoNavP.svg')}}" width="55" height="35">
+            </a>
+
+            <span class="navbar-burger burger" data-target="navMenu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </div>
+          <div id="navMenu" class="navbar-menu">
+            <div class="navbar-start">
+              <a href="{{ path('user_index') }}" class="navbar-item">Utilisateurs</a>
+              <a href="{{ path('product_index') }}" class="navbar-item">Produits</a>
+              <a href="{{ path('supplier_index') }}" class="navbar-item">Fournisseurs</a>
+              <a href="{{ path('category_index') }}" class="navbar-item">Categories</a>
+              <a href="{{ path('post_index') }}" class="navbar-item">Postes</a>
+              <a href="{{ path('role_index') }}" class="navbar-item">Rôles</a>
+              <a href="{{ path('modification_index') }}" class="navbar-item">Modifications</a>
+              <a href="{{ path('historique_stock') }}" class="navbar-item">Historique des modifications</a>
+              <a style="margin-top:1em" "href="#" class="navbar-item button is-danger">Déconnexion</a>
+            </div>
+
+
+          </div>
+        </div>
+      </nav>
+
+      <script type="text/javascript">
+        (function() {
+          var burger = document.querySelector('.burger');
+          var nav = document.querySelector('#'+burger.dataset.target);
+          burger.addEventListener('click', function(){
+            burger.classList.toggle('is-active');
+            nav.classList.toggle('is-active');
+          });
+        })();
+      </script>
 {% endblock %}
