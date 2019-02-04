@@ -10,17 +10,19 @@
  <div class="transparent">
         <h3 class="subtitle">Employés actuellement affectés à ce poste : </h3>
        <div>
-            {% for user in post.users %}
+           <ul class="transparent-list">
+        {% for user in post.users %}
 
-            <ul class="transparent-list">
                  <li class="list-li">
-        {{user.firstName}}{{user.lastName}}
+        {{user.firstName}} {{user.lastName}}
                 </li>
         {% else %}
-                <li>Aucun poste trouvé </li>
-            </ul>
+                <li>Aucun salarié trouvé </li>
         {% endfor %}
+            </ul>
        </div>
+
+       <img src="{{ asset(image_upload_path ~  (post.photo)) }}">
  </div>
 
 

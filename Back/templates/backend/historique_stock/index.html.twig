@@ -8,14 +8,14 @@
     <table class="table is-hoverable">
         <thead>
             <tr>
-                <th>Produit</th>
-                <th>Modification</th>
-                <th>Variation</th>
-                <th>Employé</th>
-                <th>Poste</th>
-                <th>Role</th>
-                <th>Stock</th>
-                <th>Date-heure</th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Produit', 'p.name') }}</th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Modification', 'm.name') }}</th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Variation', 'h.variation') }}</th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Employé', 'u.firstName') }}</th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Poste', 'h.post') }}</th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Role', 'h.role') }}</th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Stock', 'h.newStock') }}</th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Date-heure', 'h.createdAt') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -38,4 +38,16 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <div class="navigation has-text-centered">
+            {{ knp_pagination_render(historiqueStock, null, {}, {
+                'position': 'centered',
+                'size': 'large',
+                'rounded': true,
+
+             }) }}
+
+        </div>
+
+
 {% endblock %}

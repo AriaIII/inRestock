@@ -4,14 +4,15 @@ namespace App\Controller\Backend;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Service\FileUploader;
 use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/backend/user")
@@ -31,37 +32,30 @@ class UserController extends AbstractController
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
      */
-    public function new(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $userRepo ): Response
+    public function new(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $userRepo, FileUploader $fileUploader ): Response
     {
         $newUser = new User();
         $form = $this->createForm(UserType::class, $newUser);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             // appel à la fontion custom createUsername() pour créer automatique le username
             $username = $this->createUsername($newUser, $userRepo);
-            
+          
             $newUser->setUsername($username);
 
+            //UPLOAD IMAGE
             $file = $newUser->getPhoto();
             if(!is_null($newUser->getPhoto())){
-                $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
-                    try {
-                        $file->move(
-                            $this->getParameter('users_directory'),
-                            $fileName
-                        );
-                    } catch (FileException $e) {
-                    // dump($e);
-                    }
-            $newUser->setPhoto($fileName);
+                $fileName = $fileUploader->upload($file);
+                $newUser->setPhoto($fileName);
             }
-
             // appel à la fonction custom createPassword() pour générer un mot de passa automatique
-            $password = $this->createPassword(4);
-            
+            $password = $this->createPassword(4);   
+            //appel a la fonction custom mail qui enverra le message au salarié
             $mail = $this->mail($newUser, $password);
- 
+
             $entityManager = $this->getDoctrine()->getManager();
             $hash = $encoder->encodePassword($newUser, $newUser->getPassword());
             $newUser->setPassword($hash);
@@ -90,12 +84,12 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, User $user, UserPasswordEncoderInterface $encoder): Response
+    public function edit(Request $request, User $user, UserPasswordEncoderInterface $encoder, FileUploader $fileUploader): Response
     {
         $oldImage = $user->getPhoto();
         if(!empty($oldImage)) {
             $user->setPhoto(
-                new File($this->getParameter('users_directory').'/'.$oldImage)
+                new File($this->getParameter('image_directory').'/'.$oldImage)
             );
         }
 
@@ -106,29 +100,20 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             if(!is_null($user->getPhoto())){
                 $file = $user->getPhoto();
-
-                $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
-                try {
-                    $file->move(
-                        $this->getParameter('users_directory'),
-                        $fileName
-                    );
-                } catch (FileException $e) {
-                    dump($e);
-                }
-
+                $fileName = $fileUploader->upload($file);
                 $user->setPhoto($fileName);
                 if(!empty($oldImage)){
                     unlink(
-                        $this->getParameter('users_directory') .'/'.$oldImage
+                        $this->getParameter('image_directory') .'/'.$oldImage
                     );
                 }
             } else {
                 $user->setPhoto($oldImage);
             }
 
+            //je recup le manager doctrine
             $entityManager = $this->getDoctrine()->getManager();
-
+            //je verifie si le password rempli est vide, si oui je recup l'ancien password, si non je met le password entré dans le formulaire
             if(empty($user->getPassword()) || is_null($user->getPassword())){
                 $encodedPassword = $oldPassword;
 
@@ -165,16 +150,7 @@ class UserController extends AbstractController
         return $this->redirectToRoute('user_index');
     }
 
-   /**
-     * @return string
-     */
-    private function generateUniqueFileName()
-    {
-        // md5() reduces the similarity of the file names generated by
-        // uniqid(), which is based on timestamps
-        return md5(uniqid());
-    }
-
+  
     public function createUsername($newUser, $userRepo) 
     {
         // cette fonction sert à créer le username automatiquement

@@ -29,6 +29,7 @@ class UserController extends AbstractController
             'poste' => $currentValue->getPost()->getName(),
             'photo' => $currentValue->getPhoto(),
 
+
         ];
     }
     //J'encode ce tableau en json

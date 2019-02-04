@@ -23,6 +23,7 @@ class PostController extends AbstractController
         $array[$index] = [
             'id' => $currentValue->getId(),
             'name' => $currentValue->getName(),
+            'picture' => $currentValue->getPhoto()
 
         ];
     }
