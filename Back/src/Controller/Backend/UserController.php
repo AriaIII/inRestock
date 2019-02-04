@@ -42,7 +42,7 @@ class UserController extends AbstractController
 
             // appel à la fontion custom createUsername() pour créer automatique le username
             $username = $this->createUsername($newUser, $userRepo);
-          
+
             $newUser->setUsername($username);
 
             //UPLOAD IMAGE
@@ -52,7 +52,7 @@ class UserController extends AbstractController
                 $newUser->setPhoto($fileName);
             }
             // appel à la fonction custom createPassword() pour générer un mot de passa automatique
-            $password = $this->createPassword(4);   
+            $password = $this->createPassword(4);
             //appel a la fonction custom mail qui enverra le message au salarié
             $mail = $this->mail($newUser, $password);
 
@@ -94,7 +94,6 @@ class UserController extends AbstractController
         }
 
         $form = $this->createForm(UserType::class, $user);
-        $oldPassword = $user->getPassword();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -113,15 +112,6 @@ class UserController extends AbstractController
 
             //je recup le manager doctrine
             $entityManager = $this->getDoctrine()->getManager();
-            //je verifie si le password rempli est vide, si oui je recup l'ancien password, si non je met le password entré dans le formulaire
-            if(empty($user->getPassword()) || is_null($user->getPassword())){
-                $encodedPassword = $oldPassword;
-
-                } else {
-                $encodedPassword = $encoder->encodePassword($user, $user->getPassword());
-                }
-
-            $user->setPassword($encodedPassword);
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -150,8 +140,8 @@ class UserController extends AbstractController
         return $this->redirectToRoute('user_index');
     }
 
-  
-    public function createUsername($newUser, $userRepo) 
+
+    public function createUsername($newUser, $userRepo)
     {
         // cette fonction sert à créer le username automatiquement
         $firstname = $newUser->getFirstName();
@@ -163,7 +153,7 @@ class UserController extends AbstractController
         $number = 1;
         $username = $firstLetter . $secondLetter . $number;
         $users = $userRepo->findAll();
-        
+
         // pour éviter que le username soit identique pour 2 utilisateurs, on récupère tous les usernames en base
         // et on vérifie si le nouveau username existe déjà.
         // si oui, on incrémente le nombre tant qu'on en trouve un existant déjà en base.
@@ -180,16 +170,16 @@ class UserController extends AbstractController
         return $username;
     }
 
-    public function createPassword($passwordLength) 
+    public function createPassword($passwordLength)
     {
         // la fonction génère un mot de passe aléatoire du nombre de chiffres passé en argument
         $password = "";
         for($i = 1; $i <= $passwordLength; $i++)
         {
             $nb = rand(0, 9);
-            
+
             $numbers [] = $nb;
-                        
+
             $password .= $nb;
         }
         return $password;
@@ -208,7 +198,7 @@ class UserController extends AbstractController
         $firstname = $newUser->getFirstName();
         $lastname = $newUser->getLastName();
 
-        
+
         $message = (new \Swift_Message('Nouveau salarié inRestock'))
         ->setFrom(['inrestock@free.fr' => 'restaurant X'])
         ->setTo(['inrestock@free.fr'])
