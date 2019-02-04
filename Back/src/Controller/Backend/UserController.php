@@ -38,28 +38,9 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $firstname = $newUser->getFirstName();
-
-            $lastname = $newUser->getLastName();
-
-            $firstLetter =  substr($firstname, 0, 1);
-            $secondLetter = substr($lastname, 0, 1);
-            $number = 1;
-            $username = $firstLetter . $secondLetter . $number;
-            $users = $userRepo->findAll();
-            dump($users);
-
-            foreach ($users as $user) {
-                $test[] = $user->getUsername();
-            }
-
-            while (array_search($username, $test))
-            {
-                $number += 1;
-                $username = $firstLetter . $secondLetter . $number;
-            }
-
+            // appel à la fontion custom createUsername() pour créer automatique le username
+            $username = $this->createUsername($newUser, $userRepo);
+            
             $newUser->setUsername($username);
 
             $file = $newUser->getPhoto();
@@ -71,10 +52,16 @@ class UserController extends AbstractController
                             $fileName
                         );
                     } catch (FileException $e) {
-                    dump($e);
+                    // dump($e);
                     }
             $newUser->setPhoto($fileName);
-        }
+            }
+
+            // appel à la fonction custom createPassword() pour générer un mot de passa automatique
+            $password = $this->createPassword(4);
+            
+            $mail = $this->mail($newUser, $password);
+ 
             $entityManager = $this->getDoctrine()->getManager();
             $hash = $encoder->encodePassword($newUser, $newUser->getPassword());
             $newUser->setPassword($hash);
@@ -187,4 +174,85 @@ class UserController extends AbstractController
         // uniqid(), which is based on timestamps
         return md5(uniqid());
     }
+
+    public function createUsername($newUser, $userRepo) 
+    {
+        // cette fonction sert à créer le username automatiquement
+        $firstname = $newUser->getFirstName();
+        $lastname = $newUser->getLastName();
+
+        // on prend la 1e lettre du nom et du prénom et on y acolle un nombre.
+        $firstLetter =  substr($firstname, 0, 1);
+        $secondLetter = substr($lastname, 0, 1);
+        $number = 1;
+        $username = $firstLetter . $secondLetter . $number;
+        $users = $userRepo->findAll();
+        
+        // pour éviter que le username soit identique pour 2 utilisateurs, on récupère tous les usernames en base
+        // et on vérifie si le nouveau username existe déjà.
+        // si oui, on incrémente le nombre tant qu'on en trouve un existant déjà en base.
+        foreach ($users as $user) {
+            $test[] = $user->getUsername();
+        }
+
+        while (array_search($username, $test))
+        {
+            $number += 1;
+            $username = $firstLetter . $secondLetter . $number;
+        }
+
+        return $username;
+    }
+
+    public function createPassword($passwordLength) 
+    {
+        // la fonction génère un mot de passe aléatoire du nombre de chiffres passé en argument
+        $password = "";
+        for($i = 1; $i <= $passwordLength; $i++)
+        {
+            $nb = rand(0, 9);
+            
+            $numbers [] = $nb;
+                        
+            $password .= $nb;
+        }
+        return $password;
+    }
+
+    public function mail($newUser, $password)
+    {
+        // fonction créant le mail qui enverra le mot de passe au salarié, lui permettant de se connecter à son compte dans le restaurant et d'agir sur les stocks.
+        $transport = (new \Swift_SmtpTransport('smtp.free.fr', 25))
+        ->setUsername('inrestock@free.fr')
+        ->setPassword('In2Restock7')
+        ;
+
+        $mailer = new \Swift_Mailer($transport);
+
+        $firstname = $newUser->getFirstName();
+        $lastname = $newUser->getLastName();
+
+        
+        $message = (new \Swift_Message('Nouveau salarié inRestock'))
+        ->setFrom(['inrestock@free.fr' => 'restaurant X'])
+        ->setTo(['inrestock@free.fr'])
+        ->setBody(
+            '<html>' .
+            '   <body>' .
+            '       <p>Bonjour et bienvenue '.$firstname.' '.$lastname.'</p>'.
+            '       <p>Voici votre mot de passe : <span>'.$password.'</span>'.
+            '       <p>Il vous servira à vous connecter à la base de gestion des stocks de notre restaurant.</p>'.
+            '       <p>Bien cordialement,</p>'.
+            '       <p>La direction</p>'.
+            '   </body>' .
+            '</html>',
+            'text/html')
+        ->addPart('Bonjour et bienvenue '.$firstname.' '.$lastname.
+            'Voici votre mot de passe : '.$password.
+            'Il vous servira à vous connecter à la base de gestion des stocks de notre restaurant.',
+            'text/plain')
+        ;
+        return $result = $mailer->send($message);
+    }
 }
+

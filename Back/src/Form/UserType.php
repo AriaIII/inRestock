@@ -51,33 +51,16 @@ class UserType extends AbstractType
                 ],
                 
             ])
-            ->add('password', RepeatedType::class, [
+            ->add('password', PasswordType::class, [
                 'empty_data' => '',
                 'required' => true,
-                'type' => PasswordType::class,
-                'invalid_message' => 'Les deux champs du mot passe doivent être identiques.',
-                'options' => [
-                    'attr' => [
-                        'class' => 'input is-rounded'
-                    ]
+                'attr' => [
+                    'class' => 'input is-rounded',
+                    'readonly' => true,
+                    'placeholder' => 'Le mot de passe est généré automatiquement et envoyé à votre salarié.'
                 ],
-                'first_options'  => [
-                    'label' => 'Mot de passe* :',
-                ],
-                'second_options' => [
-                    'label' => 'Vérification du mot de passe* :'
-                ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'La valeur ne peut pas être vide'
-                    ]),
-                    new Length([
-                        'min'        => 4,
-                        'max'        => 6,
-                        'minMessage' => 'Votre mot de passe doit avoir un min de {{ limit }} caractères.',
-                        'maxMessage' => 'Votre mot de passe doit avoir un max de {{ limit }} caractères.'
-                    ])
-                ]
+                'label' => 'Mot de passe :'
+                
             ])
             
             ;
@@ -92,36 +75,6 @@ class UserType extends AbstractType
                 ],
                 
             ])
-            ->add('password', RepeatedType::class, [
-                'empty_data' => '',
-                'required' => false,
-                'type' => PasswordType::class,
-                'invalid_message' => 'Les deux champs du mot passe doivent être identiques.',
-                'options' => [
-                    'attr' => [
-                        'class' => 'input is-rounded',
-                        'placeholder' => 'Ne remplir que si vous voulez changer le mot passe.'
-                    ]
-                ],
-                'first_options'  => [
-                    'label' => 'Mot de passe :',
-                ],
-                'second_options' => [
-                    'label' => 'Vérification du mot de passe :'
-                ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'La valeur ne peut pas être vide'
-                    ]),
-                    new Length([
-                        'min'        => 4,
-                        'max'        => 6,
-                        'minMessage' => 'Votre mot de passe doit avoir un min de {{ limit }} caractères.',
-                        'maxMessage' => 'Votre mot de passe doit avoir un max de {{ limit }} caractères.'
-                    ])
-                ]
-            ])
-            
             ;
         }          
     };
