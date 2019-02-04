@@ -65,6 +65,36 @@ ul li {
     list-style:disc;
 }
 
+.pagination-list li {
+    list-style:none;
+}
+
+.pagination-link{
+    color: #E0E3E1;
+    background-color: #373833;
+    border-color: white;
+
+}
+
+.pagination-next , .pagination-previous {
+    color:#E0E3E1;
+    background-color: #373833;
+}
+
+.pagination-link.is-current {
+    background-color : #75688B;
+    border-color: #3f384b;
+}
+
+.pagination-link:focus, .pagination-next:focus, .pagination-previous:focus {
+    border-color: #3f384b;
+}
+
+.pagination-link:hover, .pagination-previous:hover , .pagination-next:hover{
+    color: #E0E3E1;
+}
+
+
 
 .transparent{
     background:  rgba(255,255,255,0.38);

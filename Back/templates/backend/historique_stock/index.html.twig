@@ -5,17 +5,19 @@
 {% block body %}
    <div class="new-title"> <h2 class="title is-2">Liste des mouvements en stock</h2></div>
 
+
+
     <table class="table is-hoverable">
         <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(historiqueStock, 'Produit', 'p.name') }}</th>
-                <th>{{ knp_pagination_sortable(historiqueStock, 'Modification', 'm.name') }}</th>
-                <th>{{ knp_pagination_sortable(historiqueStock, 'Variation', 'h.variation') }}</th>
-                <th>{{ knp_pagination_sortable(historiqueStock, 'Employé', 'u.firstName') }}</th>
-                <th>{{ knp_pagination_sortable(historiqueStock, 'Poste', 'h.post') }}</th>
-                <th>{{ knp_pagination_sortable(historiqueStock, 'Role', 'h.role') }}</th>
-                <th>{{ knp_pagination_sortable(historiqueStock, 'Stock', 'h.newStock') }}</th>
-                <th>{{ knp_pagination_sortable(historiqueStock, 'Date-heure', 'h.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Produit', 'p.name') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Modification', 'm.name') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Variation', 'h.variation') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Employé', 'u.firstName') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Poste', 'h.post') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Role', 'h.role') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Stock', 'h.newStock') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Date-heure', 'h.createdAt') }}<i class="fas fa-sort"></i></th>
             </tr>
         </thead>
         <tbody>
@@ -39,7 +41,7 @@
         </tbody>
     </table>
 
-    <div class="navigation has-text-centered">
+    <div class="navigation">
             {{ knp_pagination_render(historiqueStock, null, {}, {
                 'position': 'centered',
                 'size': 'large',
