@@ -4,14 +4,15 @@ namespace App\Controller\Backend;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Service\FileUploader;
 use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/backend/user")
@@ -31,49 +32,39 @@ class UserController extends AbstractController
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
      */
-    public function new(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $userRepo ): Response
+    public function new(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $userRepo, FileUploader $fileUploader ): Response
     {
         $newUser = new User();
         $form = $this->createForm(UserType::class, $newUser);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            //GENERATION USERNAME
             $firstname = $newUser->getFirstName();
-
             $lastname = $newUser->getLastName();
-
             $firstLetter =  substr($firstname, 0, 1);
             $secondLetter = substr($lastname, 0, 1);
             $number = 1;
             $username = $firstLetter . $secondLetter . $number;
             $users = $userRepo->findAll();
-            dump($users);
+            // dump($users);
 
             foreach ($users as $user) {
-                $test[] = $user->getUsername();
+                $list[] = $user->getUsername();
             }
 
-            while (array_search($username, $test))
+            while (array_search($username, $list))
             {
                 $number += 1;
                 $username = $firstLetter . $secondLetter . $number;
             }
-
             $newUser->setUsername($username);
 
+            //UPLOAD IMAGE
             $file = $newUser->getPhoto();
             if(!is_null($newUser->getPhoto())){
-                $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
-                    try {
-                        $file->move(
-                            $this->getParameter('users_directory'),
-                            $fileName
-                        );
-                    } catch (FileException $e) {
-                    dump($e);
-                    }
-            $newUser->setPhoto($fileName);
+                $fileName = $fileUploader->upload($file);
+                $newUser->setPhoto($fileName);
         }
             $entityManager = $this->getDoctrine()->getManager();
             $hash = $encoder->encodePassword($newUser, $newUser->getPassword());
@@ -103,12 +94,12 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, User $user, UserPasswordEncoderInterface $encoder): Response
+    public function edit(Request $request, User $user, UserPasswordEncoderInterface $encoder, FileUploader $fileUploader): Response
     {
         $oldImage = $user->getPhoto();
         if(!empty($oldImage)) {
             $user->setPhoto(
-                new File($this->getParameter('users_directory').'/'.$oldImage)
+                new File($this->getParameter('image_directory').'/'.$oldImage)
             );
         }
 
@@ -119,29 +110,20 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             if(!is_null($user->getPhoto())){
                 $file = $user->getPhoto();
-
-                $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
-                try {
-                    $file->move(
-                        $this->getParameter('users_directory'),
-                        $fileName
-                    );
-                } catch (FileException $e) {
-                    dump($e);
-                }
-
+                $fileName = $fileUploader->upload($file);
                 $user->setPhoto($fileName);
                 if(!empty($oldImage)){
                     unlink(
-                        $this->getParameter('users_directory') .'/'.$oldImage
+                        $this->getParameter('image_directory') .'/'.$oldImage
                     );
                 }
             } else {
                 $user->setPhoto($oldImage);
             }
 
+            //je recup le manager doctrine
             $entityManager = $this->getDoctrine()->getManager();
-
+            //je verifie si le password rempli est vide, si oui je recup l'ancien password, si non je met le password entré dans le formulaire
             if(empty($user->getPassword()) || is_null($user->getPassword())){
                 $encodedPassword = $oldPassword;
 

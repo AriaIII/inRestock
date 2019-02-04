@@ -4,7 +4,7 @@ twig:
     strict_variables: '%kernel.debug%'
     globals:
         image_upload_path: 'uploads/images/'
-        users_image_path: 'uploads/images/user/'
+
 
 
 
