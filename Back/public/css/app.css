@@ -45,11 +45,14 @@ html{
 
 }
 
-.columns {
-    -moz-columns: 3;
-    columns: 3;
+
+#home-columns {
+    margin: 2em;
 }
 
+#home-logo {
+    padding: 2em;
+}
 
 a {
     color: initial;

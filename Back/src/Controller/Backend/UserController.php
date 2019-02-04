@@ -188,7 +188,7 @@ class UserController extends AbstractController
     public function mail($newUser, $password)
     {
         // fonction créant le mail qui enverra le mot de passe au salarié, lui permettant de se connecter à son compte dans le restaurant et d'agir sur les stocks.
-        $transport = (new \Swift_SmtpTransport('smtp.free.fr', 25))
+        $transport = (new \Swift_SmtpTransport('smtp.free.fr', 465, 'ssl'))
         ->setUsername('inrestock@free.fr')
         ->setPassword('In2Restock7')
         ;
