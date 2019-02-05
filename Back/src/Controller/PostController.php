@@ -63,39 +63,4 @@ class PostController extends AbstractController
 
     }
 
-    /**
-     * @Route("/postes/{id}", name="post_by_id")
-     */
-    public function postByOne(Post $postes){
-
-        // A mon avis on recupera l'id du postes avec la request
-        //$id = $request->request->get('id)
-        //$postes = findBy($id);
-        foreach($postes->getUsers() as $user){
-            $users[] = [
-                "id" => $user->getId(),
-                "firstName" => $user->getFirstName(),
-                "lastName" => $user->getLastName()
-            ];
-              dump($users);
-        }
-
-            $array = [
-                'id' => $postes->getId(),
-                'name' => $postes->getName(),
-                'users' => $users
-             ];
-
-
-       $jsonOnePost = \json_encode($array);
-       dump($jsonOnePost);
-
-       $response = new Response($jsonOnePost);
-       $response->headers->set('Content-Type', 'application/json');
-       // $response->headers->set('Access-Control-Allow-Origin', '');
-       return $response;
-
-
-    }
-
 }

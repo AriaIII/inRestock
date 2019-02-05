@@ -52,7 +52,7 @@ class CategoryController extends AbstractController
              }
 
 
-              $produit[] = [
+              $productList[] = [
                   "id" => $products->getId(),
                   "name" => $products->getName(),
                   "stock" => $stock
@@ -60,11 +60,15 @@ class CategoryController extends AbstractController
 
           }
 
+          if(!isset($productList)){
+            $productList = "Pas de produits";
+        }
+
 
         $array = [
             'id' => $category->getId(),
             'name' => $category->getName(),
-            'products' => $produit
+            'products' => $productList
 
          ];
 

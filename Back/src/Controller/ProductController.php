@@ -24,13 +24,27 @@ class ProductController extends AbstractController
 
 
         foreach ($product as $index => $currentValue) {
+            // à chaque tour de boucle je recupere l'entité Stock
+            $stock = $currentValue->getStock();
+            // je verifie si elle existe, si non je mets un message par defaut
+            if (!$stock) {
+                $currentStock = 'Pas de stock';
+                $currentStockAlert = 'Pas d\'alerte';
+                $currentPackaging = 'Pas de packaging';
+            //si oui je recupere le nom des champs associés
+            }else{
+                $currentStock = $stock->getStock();
+                $currentStockAlert = $stock->getStockAlert();
+                $currentPackaging = $stock->getPackaging();
+            }
+
             $array[$index] = [
                 'id' => $currentValue->getId(),
                 'name' => $currentValue->getName(),
                 'category' => $currentValue->getCategory()->getName(),
-                'stock' => $currentValue->getStock()->getStock(),
-                'stock_alert' => $currentValue->getStock()->getStockAlert(),
-                // 'packaging' => $currentValue->getStock()->getPackaging()
+                'stock' => $currentStock,
+                'stock_alert' => $currentStockAlert,
+                'packaging' => $currentPackaging
 
 
             ];

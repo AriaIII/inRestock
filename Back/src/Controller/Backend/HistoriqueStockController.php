@@ -18,6 +18,8 @@ class HistoriqueStockController extends AbstractController
     {
 
         // $historiqueStock = $historiqueStockRepo->findAll();
+
+        //A SEPARER
         $dql   = "SELECT h FROM App:HistoriqueStock h
                   JOIN  h.stock s
                   JOIN s.product p
