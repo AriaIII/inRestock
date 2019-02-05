@@ -3,52 +3,62 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-    <h3 class="title is-3">{{ user.firstName }} {{ user.lastname }}</h3>
+    <div class="card">
+        <div class="card-content">
+            <div class="media">
+                <div class="media-left">
+                    <figure class="image is-200x200">
+                       <img src="{{ asset(image_upload_path ~  (user.photo)) | imagine_filter('users') }}">
+                    
+                    </figure>  
+                </div> 
+             
+                <div class="media-content">
+                    <h3 class="title is-3">{{ user.firstName }} {{ user.lastname }}</h3>
 
-    <p>Pseudo : {{ user.username }}</p>
-    <p>Adresse : {{ user.adress }}, {{ user.postcode }} {{ user.town }}</p>
-    <p>Téléphone : </p>
-
-    <table class="table">
-        <tbody>
-            
-            
-                <td>{{ user.username }}</td>
-            </tr>
-            <tr>
-                <th>Adress</th>
-                <td>{{ user.adress }}</td>
-            </tr>
-            <tr>
-                <th>Postcode</th>
-                <td>{{ user.postcode }}</td>
-            </tr>
-            <tr>
-                <th>Town</th>
-                <td>{{ user.town }}</td>
-            </tr>
-            <tr>
-                <th>Phone</th>
-                <td>{{ user.phone }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>Photo</th>
-                <td><img src="{{ asset(image_upload_path ~  (user.photo)) | imagine_filter('users') }}"></td>
-            </tr>
-        </tbody>
-    </table>
-
+                    <p>Pseudo : {{ user.username }}</p>
+                    <p>Adresse : {{ user.adress }}, {{ user.postcode }} {{ user.town }}</p>
+                    <p>Téléphone : {{ user.phone }}</p>
+                    <p>Email : {{ user.email }}</p>
+                    <p>Responsabilité actuelle : {{ user.role }} </p>
+                
+                </div>
+            </div> 
+        </div>
+    </div>
     <a href="{{ path('user_index') }}">back to list</a>
 
     <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
 
     {{ include('backend/user/_delete_form.html.twig') }}
 {% endblock %}
+
+
+{# <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-4">John Smith</p>
+              <p class="subtitle is-6">@johnsmith</p>
+            </div>
+          </div>
+      
+          <div class="content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+            <a href="#">#css</a> <a href="#">#responsive</a>
+            <br>
+            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+          </div>
+        </div>
+      </div> #}
