@@ -19,6 +19,10 @@ class SupplierRepository extends ServiceEntityRepository
         parent::__construct($registry, Supplier::class);
     }
 
+    public function findAll()
+    {
+        return $this->findBy(array(), array('name' => 'ASC'));
+    }
     // /**
     //  * @return Supplier[] Returns an array of Supplier objects
     //  */

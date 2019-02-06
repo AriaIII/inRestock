@@ -19,6 +19,10 @@ class RoleRepository extends ServiceEntityRepository
         parent::__construct($registry, Role::class);
     }
 
+    public function findAll()
+    {
+        return $this->findBy(array(), array('name' => 'ASC'));
+    }
     // /**
     //  * @return Role[] Returns an array of Role objects
     //  */
