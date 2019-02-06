@@ -1,17 +1,40 @@
 {% extends 'backend/backend_layout.html.twig' %}
 
-{% block title %}Role{% endblock %}
+{% block title %}Rôle {{role.name}}{% endblock %}
 
 {% block body %}
-    <h2 class="title is-2">{{role.name}}</h2>
+<h2 class="title is-2">Rôle {{role.name}}</h2>
 
-    <table class="table">
-    <h3 class="subtitle">Liste des employé </h3>
+<div class="new-title">
+    <h4 class="title is-4">Liste des salariés ayant ce rôle</h4>
+</div>
+<div class="transparent">
+    <ul>
+        {% for user in role.users %}
+        <li>
+            {{ user.lastname }} {{ user.firstname }}
+        </li>
+        {% else %}
+        <tr>
+            <td colspan="12">Aucun salarié</td>
+        </tr>
+        {% endfor %}
+    </ul>
+</div>
+<div class="field is-grouped">
+    <p class="control">
+        <a class="button is-primary" href="{{ path('role_index') }}">
+            Retour à la liste
+        </a>
+    </p>
+    <p class="control">
+        <a class="button is-warning" href="{{ path('role_edit', {'id': role.id}) }}">
+            Modifier le rôle
+        </a>
+    </p>
+    <p class="control">
+        {{ include('backend/role/_delete_form.html.twig') }}
+    </p>
+</div>
 
-
-    <a href="{{ path('role_index') }}">back to list</a>
-
-    <a href="{{ path('role_edit', {'id': role.id}) }}">edit</a>
-
-    {{ include('backend/role/_delete_form.html.twig') }}
 {% endblock %}

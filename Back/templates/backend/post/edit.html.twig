@@ -1,13 +1,18 @@
 {% extends 'backend/backend_layout.html.twig' %}
 
-{% block title %}Edit Post{% endblock %}
+{% block title %} {{post.name}} : modification {% endblock %}
 
 {% block body %}
-    <h1>Edit Post</h1>
+<div class="new-title">
+        <h2 class="title is-3">Modification du poste :</h2>
+</div>
 
     {{ include('backend/post/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('post_index') }}">back to list</a>
-
+    <p class="control"></p>
+        <a class="button is-primary" href="{{ path('post_index') }}">Retour à la liste</a>
+    </p>
+    
     {{ include('backend/post/_delete_form.html.twig') }}
+</div>
 {% endblock %}

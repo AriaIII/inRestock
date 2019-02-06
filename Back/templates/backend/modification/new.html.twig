@@ -1,11 +1,15 @@
 {% extends 'backend/backend_layout.html.twig' %}
 
-{% block title %}New Modification{% endblock %}
+{% block title %}Nouvelle mModification{% endblock %}
 
 {% block body %}
-    <h1>Create new Modification</h1>
+<div class="new-title">
+    <h4 class="title is-4">Créer une nouvelle modification</h4>
+</div>
 
     {{ include('backend/modification/_form.html.twig') }}
-
-    <a href="{{ path('modification_index') }}">back to list</a>
+    <p class="control">
+        <a class="button is-primary" href="{{ path('modification_index') }}">Retour à la liste</a>
+    </p>
+</div>
 {% endblock %}
