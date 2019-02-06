@@ -28,7 +28,6 @@ class HistoriqueStockRepository extends ServiceEntityRepository
             ->join('h.modification', 'm')
             ->orderBy('h.createdAt', 'DESC')
             ->getQuery()
-
             ;
 
         }
