@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CategoryController extends AbstractController
 {
     /**
-     * @Route("/category", name="all_categories")
+     * @Route("/categories", name="all_categories")
      */
     public function findAll(CategoryRepository $repo)
     {

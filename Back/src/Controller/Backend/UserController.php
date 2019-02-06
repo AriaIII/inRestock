@@ -209,7 +209,7 @@ class UserController extends AbstractController
             '<html>' .
             '   <body>' .
             '       <p>Bonjour et bienvenue '.$firstname.' '.$lastname.'</p>'.
-            '       <p>Voici votre mot de passe : <span>'.$password.'</span>'.
+            '       <p>Voici votre mot de passe : <span>'.$password.'</span></p>'.
             '       <p>Il vous servira à vous connecter à la base de gestion des stocks de notre restaurant.</p>'.
             '       <p>Bien cordialement,</p>'.
             '       <p>La direction</p>'.

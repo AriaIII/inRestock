@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ModificationController extends AbstractController
 {
     /**
-     * @Route("/modification", name="all_modification")
+     * @Route("/modifications", name="all_modification")
      */
     public function findAll(ModificationRepository $repo)
     {

@@ -8,7 +8,7 @@ html{
     background-color:  rgb(145, 143, 143);
     font-family: 'Roboto', sans-serif;
 
-    margin:0;
+  margin:0;
   padding:0;
   background: url("../images/bois-gris.jpg!d") no-repeat center fixed;
   -webkit-background-size: cover; /* pour anciens Chrome et Safari */

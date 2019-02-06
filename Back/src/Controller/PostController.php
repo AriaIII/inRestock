@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PostController extends AbstractController
 {
      /**
-     * @Route("/postes", name="all_posts")
+     * @Route("/posts", name="all_posts")
      */
     public function post(PostRepository $repo)
     {
@@ -39,7 +39,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/postes/change", name="post_change")
+     * @Route("/posts/change", name="post_change")
      */
     public function postChange(Request $request, UserRepository $userRepo, PostRepository $postRepo){
         $postList = $postRepo->findAll();
@@ -49,8 +49,6 @@ class PostController extends AbstractController
         dd($postList);
         $newPost = $req->post;
         $postToSet = $postList[$newPost];
-
-
 
         $userId = $req->user;
         $user = $userRepo->findById($userId);
