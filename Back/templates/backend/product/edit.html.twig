@@ -8,8 +8,9 @@
     </div>
 
     {{ include('backend/product/_form.html.twig', {'button_label': 'Valider'}) }}
-
-    <a class="button is-primary" href="{{ path('product_index') }}">Retour à la liste</a>
-
+    <p class="control">
+        <a class="button is-primary" href="{{ path('product_index') }}">Retour à la liste</a>
+    </p>
     {{ include('backend/product/_delete_form.html.twig') }}
+</div>
 {% endblock %}
