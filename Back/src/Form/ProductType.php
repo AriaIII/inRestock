@@ -3,13 +3,14 @@
 namespace App\Form;
 
 use App\Entity\Product;
+use App\Entity\Category;
+use App\Entity\Supplier;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use App\Entity\Supplier;
-use App\Entity\Category;
 
 class ProductType extends AbstractType
 {
@@ -20,7 +21,12 @@ class ProductType extends AbstractType
                 'label' => 'Nom* :',
                 'attr' => [
                     'class' => 'input is-rounded'
-                    ]
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'La valeur ne peut pas être vide'
+                    ]),
+                ]
             ])
             ->add('category', EntityType::class, [
                 'label' => 'Catégorie* :',

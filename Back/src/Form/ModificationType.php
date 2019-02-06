@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Modification;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -17,7 +18,12 @@ class ModificationType extends AbstractType
                 'label' => 'Nom* :',
                 'attr' => [
                     'class' => 'input is-rounded'
-                    ]
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'La valeur ne peut pas être vide'
+                    ]),
+                ]
             ])
         ;
     }
