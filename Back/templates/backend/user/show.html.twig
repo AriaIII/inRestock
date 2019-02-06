@@ -1,64 +1,46 @@
 {% extends 'backend/backend_layout.html.twig' %}
 
-{% block title %}User{% endblock %}
+{% block title %} {{user.lastname}} : fiche {% endblock %}
 
 {% block body %}
-    <div class="card">
-        <div class="card-content">
-            <div class="media">
-                <div class="media-left">
-                    <figure class="image is-200x200">
-                       <img src="{{ asset(image_upload_path ~  (user.photo)) | imagine_filter('users') }}">
-                    
-                    </figure>  
-                </div> 
-             
-                <div class="media-content">
-                    <h3 class="title is-3">{{ user.firstName }} {{ user.lastname }}</h3>
+<div class="card">
+    <div class="card-content">
+        <div class="media">
+            <div class="media-left">
+                <figure class="image is-200x200">
+                    <img src="{{ asset(image_upload_path ~  (user.photo)) | imagine_filter('users') }}">
 
-                    <p>Pseudo : {{ user.username }}</p>
-                    <p>Adresse : {{ user.adress }}, {{ user.postcode }} {{ user.town }}</p>
-                    <p>Téléphone : {{ user.phone }}</p>
-                    <p>Email : {{ user.email }}</p>
-                    <p>Responsabilité actuelle : {{ user.role }} </p>
-                
+                </figure>
+            </div>
+
+            <div class="media-content">
+                <div class="new-title">
+                    <h3 class="title is-3">{{ user.firstName }} {{ user.lastname }}</h3>
                 </div>
-            </div> 
+                <p>Pseudo : {{ user.username }}</p>
+                <p>Adresse : {{ user.adress }}, {{ user.postcode }} {{ user.town }}</p>
+                <p>Téléphone : {{ user.phone }}</p>
+                <p>Email : {{ user.email }}</p>
+                <p>Responsabilité actuelle : {{ user.role }} </p>
+
+            </div>
         </div>
     </div>
-    <a href="{{ path('user_index') }}">back to list</a>
+</div>
 
-    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
-
-    {{ include('backend/user/_delete_form.html.twig') }}
+<div class="field is-grouped">
+    <p class="control">
+        <a class="button is-primary" href="{{ path('user_index') }}">
+            Retour à la liste
+        </a>
+    </p>
+    <p class="control">
+        <a class="button is-warning" href="{{ path('user_edit', {'id': user.id}) }}">
+            Modifier la fiche
+        </a>
+    </p>
+    
+        {{ include('backend/user/_delete_form.html.twig') }}
+    
+</div>
 {% endblock %}
-
-
-{# <div class="card">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="media">
-            <div class="media-left">
-              <figure class="image is-48x48">
-                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-              </figure>
-            </div>
-            <div class="media-content">
-              <p class="title is-4">John Smith</p>
-              <p class="subtitle is-6">@johnsmith</p>
-            </div>
-          </div>
-      
-          <div class="content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-            <a href="#">#css</a> <a href="#">#responsive</a>
-            <br>
-            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-          </div>
-        </div>
-      </div> #}
