@@ -19,6 +19,20 @@ class HistoriqueStockRepository extends ServiceEntityRepository
         parent::__construct($registry, HistoriqueStock::class);
     }
 
+        public function customHistory(){
+
+            return $this->createQueryBuilder('h')
+            ->join('h.stock', 's')
+            ->join('s.product','p')
+            ->join('h.user', 'u')
+            ->join('h.modification', 'm')
+            ->orderBy('h.createdAt', 'DESC')
+            ->getQuery()
+
+            ;
+
+        }
+
     // /**
     //  * @return HistoriqueStock[] Returns an array of HistoriqueStock objects
     //  */
