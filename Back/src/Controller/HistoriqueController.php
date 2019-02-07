@@ -20,39 +20,37 @@ class HistoriqueController extends AbstractController
      */
     public function line(Request $request, StockRepository $stockRepo, UserRepository $userRepo, ModificationRepository $modifRepo)
     {
-        // je recupere l'integralité de la request et je la stocke
+        // On recupere l'integralité de la request et on la stocke
        $data = $request->getContent();
-       // j'utilise la fonction native de chez php : json_decode pour décodé mon json
+       // On utilise la fonction native de chez php : json_decode pour décodé le json
        $req = json_decode($data);
-
-       // je recup l'id de l'user courrant
+       // On récupère l'id de l'user courant
        $userId = $req->user;
-       //je recupere l'user associé a l'id de l'user courrant
+       // On récupère l'user associé à l'id de l'user courant
        $user = $userRepo->findById($userId);
-
        $userToSet = $user[0]->getFirstName();
+       
        $variation = $req->variation;
 
        $modification = $req->modification;
-       $modifList = $modifRepo->findAll();
-       $modifToSet = $modifList[$modification];
+       $modifToSet = $modifRepo->findById($modification);
        $modif = $modifToSet->getName();
 
-       // Je récupère le stock associé au produit que l'on doit modifier :
+       // On récupère le stock associé au produit que l'on doit modifier :
         $product = $req->product;
         $stock = $stockRepo->findByProduct($product);
-        $productToSet = $stock[0]->getProduct()->getName(); // retourne une string du produit
+        $productToSet = $stock[0]->getProduct()->getName(); 
         $stockAlert = $stock[0]->getStockAlert();
-       //je recupere le stock courrant
+       //On récupère le stock courant
         $currentStock = $stock[0]->getStock();
-        // je lui rajoute la variation
+        // On lui rajoute la variation
         $newStock = $currentStock + $variation;
-        // je set le newStock et je le push en bdd
+        // on set le newStock et on le push en bdd
         $stock[0]->setStock($newStock);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($stock[0]);
 
-        //ensuite je crée une nouvelle ligne HistoriqueStock et je la rempli avec les données recupérer plus haut
+        ///ensuite on crée une nouvelle ligne HistoriqueStock et on la remplit avec les données récupérer plus haut
         $newLine = new HistoriqueStock();
         $newLine->setVariation($variation);
         // $newLine->setProduct($productToSet);
@@ -80,7 +78,7 @@ class HistoriqueController extends AbstractController
     }
 
     public function mail($productToSet, $stockAlert){
-         // fonction créant le mail qui enverra le mot de passe au salarié, lui permettant de se connecter à son compte dans le restaurant et d'agir sur les stocks.
+    
          $transport = (new \Swift_SmtpTransport('smtp.free.fr', 25))
          ->setUsername('inrestock@free.fr')
          ->setPassword('In2Restock7')

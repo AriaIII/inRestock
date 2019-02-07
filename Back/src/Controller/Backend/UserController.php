@@ -59,7 +59,7 @@ class UserController extends AbstractController
             $mail = $this->mail($newUser, $password);
 
             $entityManager = $this->getDoctrine()->getManager();
-            $hash = $encoder->encodePassword($newUser, $newUser->getPassword());
+            $hash = $encoder->encodePassword($newUser, $password);
             $newUser->setPassword($hash);
             $entityManager->persist($newUser);
             $entityManager->flush();

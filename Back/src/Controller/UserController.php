@@ -15,17 +15,19 @@ class UserController extends AbstractController
      */
     public function user(UserRepository $repo)
     {
-        // je recupère tout mes users
+        // on récupère tout mes users
        $users = $repo->findAll();
 
-        // je crée un tableau personnalisé et je stocke les valeurs associés au clés
+        // on crée un tableau personnalisé et je stocke les valeurs associées aux clés
        foreach ($users as $index => $currentValue) {
-        // à chaque tour de boucle je recupère l'entité Post
+
+        // à chaque tour de boucle on récupère l'entité Post
         $post = $currentValue->getPost();
-        // je verifie si elle existe, si non je mets un message par defaut
+
+        // on vérifie si elle existe, sinon je mets un message par défaut
         if(!$post){
             $currentPost = "Pas de poste";
-        // si oui je recupere le nom du poste
+        // si oui on récupère le nom du poste
         }else{
             $currentPost = $post->getName();
         }
@@ -41,16 +43,16 @@ class UserController extends AbstractController
 
         ];
     }
-    //J'encode ce tableau en json
-   $jsonUser = \json_encode($array);
+        //On encode ce tableau en json
+     $jsonUser = \json_encode($array);
 
-    // je retourne un réponse
-    $response = new Response($jsonUser);
+        // On retourne une réponse
+        $response = new Response($jsonUser);
 
-    // je configure les headers
-    $response->headers->set('Content-Type', 'application/json;charset=utf-8');
-    // $response->headers->set('Access-Control-Allow-Origin', '');
-    return $response;
+        // On configure les headers
+        $response->headers->set('Content-Type', 'application/json;charset=utf-8');
+        // $response->headers->set('Access-Control-Allow-Origin', '');
+        return $response;
 
     }
 
@@ -75,8 +77,6 @@ class UserController extends AbstractController
 
 
        $jsonOneUser = \json_encode($array);
-       dump($jsonOneUser);
-
        $response = new Response($jsonOneUser);
        $response->headers->set('Content-Type', 'application/json');
        // $response->headers->set('Access-Control-Allow-Origin', '');
