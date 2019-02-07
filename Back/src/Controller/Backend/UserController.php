@@ -45,8 +45,10 @@ class UserController extends AbstractController
 
             $newUser->setUsername($username);
 
-            //UPLOAD IMAGE
+            /*------------------------- UPLOAD IMAGE ---------------------------------
+             on recupere l'image du formulaire et on la stocke */
             $file = $newUser->getPhoto();
+            // on verifie si l'utilisateur a entré une image (si le champs image est null)
             if(!is_null($newUser->getPhoto())){
                 $fileName = $fileUploader->upload($file);
                 $newUser->setPhoto($fileName);
@@ -87,6 +89,7 @@ class UserController extends AbstractController
     public function edit(Request $request, User $user, UserPasswordEncoderInterface $encoder, FileUploader $fileUploader): Response
     {
         $oldImage = $user->getPhoto();
+        // incomprehension ici
         if(!empty($oldImage)) {
             $user->setPhoto(
                 new File($this->getParameter('image_directory').'/'.$oldImage)
@@ -206,7 +209,7 @@ class UserController extends AbstractController
             '<html>' .
             '   <body>' .
             '       <p>Bonjour et bienvenue '.$firstname.' '.$lastname.'</p>'.
-            '       <p>Voici votre mot de passe : <span>'.$password.'</span>'.
+            '       <p>Voici votre mot de passe : <span>'.$password.'</span></p>'.
             '       <p>Il vous servira à vous connecter à la base de gestion des stocks de notre restaurant.</p>'.
             '       <p>Bien cordialement,</p>'.
             '       <p>La direction</p>'.

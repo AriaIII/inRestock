@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SupplierController extends AbstractController
 {
     /**
-     * @Route("/fournisseurs", name="all_suppliers")
+     * @Route("/suppliers", name="all_suppliers")
      */
     public function supplier(SupplierRepository $repo)
     {
@@ -21,8 +21,8 @@ class SupplierController extends AbstractController
        foreach ($suppliers as $index => $currentValue) {
         $array[$index] = [
             'id' => $currentValue->getId(),
-            'name' => $currentValue->getName(),         
-            
+            'name' => $currentValue->getName(),
+
         ];
         }
 
@@ -37,34 +37,40 @@ class SupplierController extends AbstractController
     }
 
     /**
-     * @Route("/fournisseurs/{id}", name="supplier_by_id")
+     * @Route("/supplier/{id}", name="supplier_by_id")
      */
-    public function supplierByOne(Supplier $supplier, ProductRepository $productRepo){
-      
+    public function supplierByOne(Supplier $supplier){
+
         // A mon avis on recupera l'id du fournisseur avec la request
         //$id = $request->request->get('id')/
         //$supplier = findBy($id);
-        foreach($supplier->getProducts() as $products){
-            $produit[] = [
-                "id" => $products->getId(),
-                "name" => $products->getName(),
-            ];
-              dump($produit);         
-        }
 
-            $array = [
-                'id' => $supplier->getId(),
-                'name' => $supplier->getName(),
-                'society_name' => $supplier->getSocietyName(),
-                'telephone' => $supplier->getPhone(),
-                'mail' => $supplier->getMail(),
-                'adress' => $supplier->getAdress(),
-                'postcode' => $supplier->getPostcode(),
-                'town' => $supplier->getTown(),
-                'products' => $produit
+            foreach($supplier->getProducts() as $products){
+
+                    $productList[] = [
+                        "id" => $products->getId(),
+                        "name" => $products->getName(),
+                    ];
+
+                }
+
+                if(!isset($productList)){
+                    $productList = "Pas de produits";
+                }
+
+        $array = [
+            'id' => $supplier->getId(),
+            'name' => $supplier->getName(),
+            'society_name' => $supplier->getSocietyName(),
+            'telephone' => $supplier->getPhone(),
+            'mail' => $supplier->getMail(),
+            'adress' => $supplier->getAdress(),
+            'postcode' => $supplier->getPostcode(),
+            'town' => $supplier->getTown(),
+            'products' => $productList,
 
              ];
-            
+
 
        $jsonOneSupplier = \json_encode($array);
        dump($jsonOneSupplier);

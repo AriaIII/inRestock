@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/user", name="all_user")
+     * @Route("/users", name="all_user")
      */
     public function user(UserRepository $repo)
     {
@@ -20,15 +20,24 @@ class UserController extends AbstractController
 
         // je crée un tableau personnalisé et je stocke les valeurs associés au clés
        foreach ($users as $index => $currentValue) {
+        // à chaque tour de boucle je recupère l'entité Post
+        $post = $currentValue->getPost();
+        // je verifie si elle existe, si non je mets un message par defaut
+        if(!$post){
+            $currentPost = "Pas de poste";
+        // si oui je recupere le nom du poste
+        }else{
+            $currentPost = $post->getName();
+        }
+
         $array[$index] = [
             'id' => $currentValue->getId(),
             'username' => $currentValue->getUsername(),
             'firstname' => $currentValue->getFirstName(),
             'lastname' => $currentValue->getLastName(),
             'role' => $currentValue->getRole()->getName(),
-            'poste' => $currentValue->getPost()->getName(),
+            'poste' => $currentPost,
             'photo' => $currentValue->getPhoto(),
-
 
         ];
     }

@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ModificationController extends AbstractController
 {
     /**
-     * @Route("/modification", name="all_modification")
+     * @Route("/modifications", name="all_modification")
      */
     public function findAll(ModificationRepository $repo)
     {
@@ -35,27 +35,4 @@ class ModificationController extends AbstractController
      return $response;
     }
 
-     /**
-     * @Route("/modification/{id}", name="modification_by_one")
-     */
-    public function modificationByOne(Modification $modification){
-
-        // A mon avis on recupera l'id du postes avec la request
-        //$id = $request->request->get('id');
-        //$modification = findBy($id);
-
-        $array = [
-            'id' => $modification->getId(),
-            'name' => $modification->getName(),
-            ];
-
-
-       $jsonOneModification = \json_encode($array);
-       dump($jsonOneModification);
-
-       $response = new Response($jsonOneModification);
-       $response->headers->set('Content-Type', 'application/json');
-       // $response->headers->set('Access-Control-Allow-Origin', '');
-       return $response;
-    }
 }
