@@ -19,6 +19,11 @@ class ModificationRepository extends ServiceEntityRepository
         parent::__construct($registry, Modification::class);
     }
 
+    public function findAll()
+    {
+        return $this->findBy(array(), array('name' => 'ASC'));
+    }
+
     // /**
     //  * @return Modification[] Returns an array of Modification objects
     //  */
