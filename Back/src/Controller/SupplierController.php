@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SupplierController extends AbstractController
 {
     /**
-     * @Route("/fournisseurs", name="all_suppliers")
+     * @Route("/suppliers", name="all_suppliers")
      */
     public function supplier(SupplierRepository $repo)
     {
@@ -37,7 +37,7 @@ class SupplierController extends AbstractController
     }
 
     /**
-     * @Route("/fournisseurs/{id}", name="supplier_by_id")
+     * @Route("/supplier/{id}", name="supplier_by_id")
      */
     public function supplierByOne(Supplier $supplier){
 

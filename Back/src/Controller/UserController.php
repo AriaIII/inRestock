@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/user", name="all_user")
+     * @Route("/users", name="all_user")
      */
     public function user(UserRepository $repo)
     {
@@ -38,7 +38,6 @@ class UserController extends AbstractController
             'role' => $currentValue->getRole()->getName(),
             'poste' => $currentPost,
             'photo' => $currentValue->getPhoto(),
-
 
         ];
     }

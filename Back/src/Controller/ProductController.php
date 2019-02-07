@@ -16,7 +16,7 @@ class ProductController extends AbstractController
 {
 
     /**
-     * @Route("/produit", name="all_produit")
+     * @Route("/products", name="all_produit")
      */
     public function produit(ProductRepository $repo){
 
@@ -60,7 +60,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/produit/{id}", name="produit_by_one")
+     * @Route("/product/{id}", name="produit_by_one")
      */
     public function produitByOne(Product $product){
 
