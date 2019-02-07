@@ -3,8 +3,11 @@
 {% block title %}{{category.name}}{% endblock %}
 
 {% block body %}
+<div class="new-title">
     <h2 class="title is-2">{{category.name}}</h2>
-    <h3 class="create-new subtitle is-5">Produits associés à cette catégorie :</h3>
+</div>
+<div class="transparent">
+    <h3 class="subtitle is-5">Produits associés à cette catégorie :</h3>
     {% for product in category.products %}
 
         <ul>
@@ -15,7 +18,7 @@
             <li>Aucun produit trouvé </li>
         </ul>
     {% endfor %}
-
+</div>
 
     <div class="field is-grouped create-new">
             <p class="control">
