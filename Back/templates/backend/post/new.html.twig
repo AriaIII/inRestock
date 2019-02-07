@@ -1,11 +1,15 @@
 {% extends 'backend/backend_layout.html.twig' %}
 
-{% block title %}New Post{% endblock %}
+{% block title %}Nouveau poste{% endblock %}
 
 {% block body %}
-    <h1>Create new Post</h1>
+<div class="new-title">
+    <h4 class="title is-4">Créer un nouveau poste</h4>
+</div>
 
     {{ include('backend/post/_form.html.twig') }}
-
-    <a href="{{ path('post_index') }}">back to list</a>
+    <p class="control">
+        <a class="button is-primary" href="{{ path('post_index') }}">Retour à la liste</a>
+    </p>
+</div>
 {% endblock %}

@@ -3,56 +3,50 @@
 {% block title %}Supplier{% endblock %}
 
 {% block body %}
-   <div class="new-title"> <h2 class="title is-2">{{supplier.name}}</h2></div>
+<div class="card">
+    <div class="card-content">
+        <div class="media">
 
-    <table class="table is-hoverable">
-        <tbody>
-            <tr>
-                <th>Society</th>
-                <td>{{ supplier.societyName }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ supplier.name }}</td>
-            </tr>
-            <tr>
-                <th>Mail</th>
-                <td>{{ supplier.mail }}</td>
-            </tr>
-            <tr>
-                <th>Telephone</th>
-                <td>{{ supplier.phone }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ supplier.adress }}</td>
-            </tr>
-            <tr>
-                <th>Code postale</th>
-                <td>{{ supplier.postcode }}</td>
-            </tr>
-            <tr>
-                <th>Ville</th>
-                <td>{{ supplier.town }}</td>
-            </tr>
-        </tbody>
-    </table>
+            <div class="media-content">
+                <div class="new-title">
+                    <h3 class="title is-3">{{ supplier.name }}</h3>
+                </div>
+                <p>Société : {{ supplier.societyName }}</p>
+                <p>Adresse : {{ supplier.adress }}, {{ supplier.postcode }} {{ supplier.town }}</p>
+                <p>Téléphone : {{ supplier.phone }}</p>
+                <p>Email : {{ supplier.mail }}</p>
 
+
+            </div>
+        </div>
+    </div>
+    <div class="card-content">
+        <div class="new-title">
+            <h3 class="title is-4">Produit(s) fourni(s) :</h3>
+        </div>
+        <ul>
+            {% for product in supplier.products %}
+            <li>{{product.name}}</li>
+            {% else %}
+            <p>Néant</p>
+            {% endfor %}
+        </ul>
+    </div>
     <div class="field is-grouped">
-            <p class="control">
-              <a class="button is-primary" href="{{ path('supplier_index') }}">
-                  Retour a la liste
-              </a>
-            </p>
-            <p class="control">
-              <a class="button is-warning" href="{{ path('supplier_edit', {'id': supplier.id}) }}">
-                  Modifier le fournisseur
-              </a>
-            </p>
-            <p class="control">
+        <p class="control">
+            <a class="button is-primary" href="{{ path('supplier_index') }}">
+                Retour à la liste
+            </a>
+        </p>
+        <p class="control">
+            <a class="button is-warning" href="{{ path('supplier_edit', {'id': supplier.id}) }}">
+                Modifier le fournisseur
+            </a>
+        </p>
+        <p class="control">
             {{ include('backend/supplier/_delete_form.html.twig') }}
 
-            </p>
-          </div>
-
+        </p>
+    </div>
+</div>
 {% endblock %}

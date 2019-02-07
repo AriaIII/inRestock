@@ -95,7 +95,11 @@ class UserType extends AbstractType
                 'attr' => [
                     'class' => 'input is-rounded'
                 ],
-                'required' => true
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'La valeur ne peut pas être vide'
+                    ]),
+                ]
             ])
             ->addEventListener(FormEvents::PRE_SET_DATA, $listener)
             ->add('adress', TextareaType::class, [
@@ -123,10 +127,15 @@ class UserType extends AbstractType
                     ]
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Email :',
+                'label' => 'Email* :',
                 'attr' => [
                     'class' => 'input is-rounded'
-                    ]
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'La valeur ne peut pas être vide'
+                    ]),
+                ]
             ])
             ->add('photo', FileType::class, [
                 'label' => 'Photo (format gif, png, jpeg) :',

@@ -67,7 +67,7 @@ class SupplierType extends AbstractType
                     ]
             ])
             ->add('products', EntityType::class, [
-                'label' => 'Rôle* :',
+                'label' => 'Produits :',
                 'class' => Product::class,
                 'choice_label' => 'name',
                 'multiple' => true,

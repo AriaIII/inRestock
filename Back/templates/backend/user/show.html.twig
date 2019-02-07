@@ -1,62 +1,45 @@
 {% extends 'backend/backend_layout.html.twig' %}
 
-{% block title %}User{% endblock %}
+{% block title %} {{user.lastname}} : fiche {% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+<div class="card">
+    <div class="card-content">
+        <div class="media">
+            <div class="media-left">
+                <figure class="image is-200x200">
+                    <img src="{{ asset(image_upload_path ~  (user.photo))  }}">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>FirstName</th>
-                <td>{{ user.firstName }}</td>
-            </tr>
-            <tr>
-                <th>LastName</th>
-                <td>{{ user.lastName }}</td>
-            </tr>
-            <tr>
-                <th>Username</th>
-                <td>{{ user.username }}</td>
-            </tr>
-            <tr>
-                <th>Adress</th>
-                <td>{{ user.adress }}</td>
-            </tr>
-            <tr>
-                <th>Postcode</th>
-                <td>{{ user.postcode }}</td>
-            </tr>
-            <tr>
-                <th>Town</th>
-                <td>{{ user.town }}</td>
-            </tr>
-            <tr>
-                <th>Phone</th>
-                <td>{{ user.phone }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>Photo</th>
-                <td><img src="{{ asset(image_upload_path ~  (user.photo ?: 'default-user-image.png')) | imagine_filter('users') }}"></td>
-            </tr>
-        </tbody>
-    </table>
+                </figure>
+            </div>
+            <div class="media-content">
+                <div class="new-title">
+                    <h3 class="title is-3">{{ user.firstName }} {{ user.lastname }}</h3>
+                </div>
+                <p>Pseudo : {{ user.username }}</p>
+                <p>Adresse : {{ user.adress }}, {{ user.postcode }} {{ user.town }}</p>
+                <p>Téléphone : {{ user.phone }}</p>
+                <p>Email : {{ user.email }}</p>
+                <p>Responsabilité actuelle : {{ user.role }} </p>
 
-    <a href="{{ path('user_index') }}">back to list</a>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
-
-    {{ include('backend/user/_delete_form.html.twig') }}
+<div class="field is-grouped">
+    <p class="control">
+        <a class="button is-primary" href="{{ path('user_index') }}">
+            Retour à la liste
+        </a>
+    </p>
+    <p class="control">
+        <a class="button is-warning" href="{{ path('user_edit', {'id': user.id}) }}">
+            Modifier la fiche
+        </a>
+    </p>
+    
+        {{ include('backend/user/_delete_form.html.twig') }}
+    
+</div>
 {% endblock %}

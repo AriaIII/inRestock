@@ -3,15 +3,17 @@
 {% block title %}Liste des fournisseurs{% endblock %}
 
 {% block body %}
-   <div class="new-title"> <h1 class="title is-2">Liste des fournisseurs</h1></div>
+   <div class="new-title"> 
+       <h2 class="title is-2">Liste des fournisseurs</h2>
+    </div>
 
     <table class="table is-hoverable">
         <thead>
             <tr>
-                <th>Society</th>
+                <th>Société</th>
                 <th>Nom</th>
-                <th>Mail</th>
-                <th>Telephone</th>
+                <th>Email</th>
+                <th>Téléphone</th>
                 <th>Adresse</th>
                 <th>Code postal</th>
                 <th>Ville</th>
@@ -35,11 +37,11 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="9">Aucuns fournisseurs</td>
+                <td colspan="9">Aucun fournisseur</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a class="create-new button is-primary" href="{{ path('supplier_new') }}">Nouveau fournisseurs </a>
+    <a class="button is-primary" href="{{ path('supplier_new') }}">Nouveau fournisseur </a>
 {% endblock %}

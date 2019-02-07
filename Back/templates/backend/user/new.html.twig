@@ -1,11 +1,15 @@
 {% extends 'backend/backend_layout.html.twig' %}
 
-{% block title %}New User{% endblock %}
+{% block title %}Nouvel utilisateur{% endblock %}
 
 {% block body %}
-    <h1>Create new User</h1>
+<div class="new-title">
+    <h4 class="title is-4">Créer un nouvel utilisateur</h4>
+</div>
 
     {{ include('backend/user/_form.html.twig') }}
-    
-    <a href="{{ path('user_index') }}">back to list</a>
+    <p class="control"></p>
+        <a class="button is-primary" href="{{ path('user_index') }}">back to list</a>
+    </p>
+</div>
 {% endblock %}

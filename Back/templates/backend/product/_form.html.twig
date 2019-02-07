@@ -1,4 +1,8 @@
 {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-    {{ form_widget(form) }}
-    <button class="button is-warning">{{ button_label|default('Enregistrer') }}</button>
+{{ form_widget(form, {'attr': {'class': 'error transparent'}}) }}
+<div class="field is-grouped">
+    <p class="control create-form">
+        <button class="button is-warning">{{ button_label|default('Enregistrer') }}</button>
+    </p>
+
 {{ form_end(form) }}
