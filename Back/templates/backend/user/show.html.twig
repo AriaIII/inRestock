@@ -49,7 +49,7 @@
             </tr>
             <tr>
                 <th>Photo</th>
-                <td><img src="{{ asset(image_upload_path ~  (user.photo)) | imagine_filter('users') }}"></td>
+                <td><img src="{{ asset(image_upload_path ~  (user.photo ?: 'default-user-image.png')) | imagine_filter('users') }}"></td>
             </tr>
         </tbody>
     </table>

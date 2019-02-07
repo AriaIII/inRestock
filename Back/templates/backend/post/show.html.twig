@@ -22,7 +22,7 @@
             </ul>
        </div>
 
-       <img src="{{ asset(image_upload_path ~  (post.photo)) }}">
+       <img src="{{ asset(image_upload_path ~  (post.photo ?: 'default-poste.jpeg')) }}">
  </div>
 
 

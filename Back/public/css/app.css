@@ -1,13 +1,9 @@
 
 
 html{
-    /* background: url("../images/bois-gris.jpg!d");
-    background-size: cover;
-    background-position: center center;
-    background-repeat:no-repeat; */
-    background-color:  rgb(145, 143, 143);
-    font-family: 'Roboto', sans-serif;
 
+  background-color:  rgb(145, 143, 143);
+  font-family: 'Roboto', sans-serif;
   margin:0;
   padding:0;
   background: url("../images/bois-gris.jpg!d") no-repeat center fixed;

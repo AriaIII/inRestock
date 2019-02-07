@@ -17,16 +17,7 @@ class HistoriqueStockController extends AbstractController
     public function index(HistoriqueStockRepository $historiqueStockRepo, EntityManagerInterface $em, Request $request, PaginatorInterface $paginator)
     {
 
-        // $historiqueStock = $historiqueStockRepo->findAll();
-
-        //A SEPARER
-        $dql   = "SELECT h FROM App:HistoriqueStock h
-                  JOIN  h.stock s
-                  JOIN s.product p
-                  JOIN h.user u
-                  JOIN h.modification m
-                ";
-        $query = $em->createQuery($dql);
+        $query = $historiqueStockRepo->customHistory();
 
         $historiqueStock = $paginator->paginate(
             $query, /* query NOT result */
