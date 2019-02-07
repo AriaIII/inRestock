@@ -8,7 +8,7 @@
         <div class="media">
             <div class="media-left">
                 <figure class="image is-128x128">
-                    <img src="{{ asset(image_upload_path ~  (user.photo))  }}">
+                    <img class="is-rounded" src="{{ asset(image_upload_path ~  ((user.photo ?: 'default-user-image.jpg')))  }}">
 
                 </figure>
             </div>
