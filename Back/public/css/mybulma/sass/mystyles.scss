@@ -11,7 +11,9 @@ $grey: rgb(145, 143, 143);
 $grey-darker: #373833;
 $gold: #CFAE3A;
 $gold-light:#FFD647;
-$grey-transparent: rgba(255,255,255,0.38);
+$white-transparent: rgba(255,255,255,0.38);
+$grey-transparent:rgba(255,255,255,0.60);
+
 
 // Update Bulma's global variables
 $family-sans-serif: "Nunito", sans-serif;
@@ -25,12 +27,14 @@ $navbar-background-color: $gold;
 $navbar-item-hover-background-color: $gold-light;
 $navbar-item-hover-color: $purple;
 
-$table-background-color: $grey-transparent;
-$table-row-hover-background-color:rgba(255,255,255,0.60);
+$table-background-color: $white-transparent;
+$table-row-hover-background-color:$grey-transparent;
 
-$card-background-color: $grey-transparent;
+$card-background-color: $white-transparent;
 
 $title-color: $beige-lighter;
+
+$tag-background-color: $grey-transparent;
 
 $body-background-color: $grey;
 
@@ -47,9 +51,13 @@ $input-shadow: none;
 @import "../bulma-0.7.2/sass/elements/form.sass";
 @import "../bulma-0.7.2/sass/elements/title.sass";
 @import "../bulma-0.7.2/sass/elements/table.sass";
+@import "../bulma-0.7.2/sass/elements/table.sass";
+@import "../bulma-0.7.2/sass/elements/tag.sass";
+@import "../bulma-0.7.2/sass/elements/image.sass";
 @import "../bulma-0.7.2/sass/components/navbar.sass";
 @import "../bulma-0.7.2/sass/components/card.sass";
 @import "../bulma-0.7.2/sass/components/media.sass";
 @import "../bulma-0.7.2/sass/components/pagination.sass";
+@import "../bulma-0.7.2/sass/grid/columns.sass";
 @import "../bulma-0.7.2/sass/layout/hero.sass";
 @import "../bulma-0.7.2/sass/layout/section.sass";

@@ -34,7 +34,11 @@ class StockController extends AbstractController
             $entityManager->persist($stock);
             $entityManager->flush();
 
-            return $this->redirectToRoute('product_index');
+            $productId = $stock->getProduct()->getId();
+
+            return $this->redirectToRoute('product_show', [
+                'id' => $productId,
+            ]);
         }
 
         return $this->render('backend/stock/new.html.twig', [
@@ -52,13 +56,15 @@ class StockController extends AbstractController
         $form = $this->createForm(StockType::class, $stock);
         $form->handleRequest($request);
         $product = $stock->getProduct();
-        dump($product);
+        
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('stock_index', [
-                'id' => $stock->getId(),
+            $productId = $stock->getProduct()->getId();
+
+            return $this->redirectToRoute('product_show', [
+                'id' => $productId,
             ]);
         }
 
@@ -80,6 +86,11 @@ class StockController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('stock_index');
+        $productId = $stock->getProduct()->getId();
+
+
+        return $this->redirectToRoute('product_show', [
+            'id' => $productId,
+        ]);
     }
 }

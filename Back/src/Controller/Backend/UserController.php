@@ -160,9 +160,14 @@ class UserController extends AbstractController
         // pour éviter que le username soit identique pour 2 utilisateurs, on récupère tous les usernames en base
         // et on vérifie si le nouveau username existe déjà.
         // si oui, on incrémente le nombre tant qu'on en trouve un existant déjà en base.
-        foreach ($users as $user) {
-            $test[] = $user->getUsername();
+        if (!empty($users)) {
+            foreach ($users as $user) {
+                $test[] = $user->getUsername();
+            }
+        } else {
+            $test = [];
         }
+        
 
         while (array_search($username, $test))
         {

@@ -1,11 +1,15 @@
 {% extends 'backend/backend_layout.html.twig' %}
 
-{% block title %}New Stock{% endblock %}
+{% block title %}stock de {{product.name}} {% endblock %}
 
 {% block body %}
-    <h1>Créer le stock de {{product.name}} </h1>
+<div class="new-title">
+    <h4 class="title is-4">Créer le stock de {{product.name}}</h4>
+</div>
 
     {{ include('backend/stock/_form.html.twig') }}
-
-    <a href="{{ path('product_show', {'id': product.id}) }}">retour au produit</a>
+    <p class="control">
+        <a class="button is-primary" href="{{ path('product_show', {'id': product.id}) }}">retour au produit</a>
+    </p>
+</div>
 {% endblock %}
