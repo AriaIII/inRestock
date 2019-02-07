@@ -25,9 +25,7 @@ class RoleController extends AbstractController
         ];
     }
 
-   $jsonRole = \json_encode($array);
-   dump($jsonRole);
-
+    $jsonRole = \json_encode($array);
     $response = new Response($jsonRole);
     $response->headers->set('Content-Type', 'application/json;charset=utf-8');
     // $response->headers->set('Access-Control-Allow-Origin', '');

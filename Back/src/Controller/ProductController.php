@@ -24,14 +24,14 @@ class ProductController extends AbstractController
 
 
         foreach ($product as $index => $currentValue) {
-            // à chaque tour de boucle je recupere l'entité Stock
+           // à chaque tour de boucle on récupère l'entité Stock
             $stock = $currentValue->getStock();
-            // je verifie si elle existe, si non je mets un message par defaut
+            //on vérifie si elle existe, sinon on met un message par défaut
             if (!$stock) {
                 $currentStock = 'Pas de stock';
                 $currentStockAlert = 'Pas d\'alerte';
                 $currentPackaging = 'Pas de packaging';
-            //si oui je recupere le nom des champs associés
+            //si oui on récupère le nom des champs associés
             }else{
                 $currentStock = $stock->getStock();
                 $currentStockAlert = $stock->getStockAlert();
@@ -76,10 +76,7 @@ class ProductController extends AbstractController
             'stock_alert' => $product->getStock()->getStockAlert(),
             ];
 
-
        $jsonOneProduct = \json_encode($array);
-       dump($jsonOneProduct);
-
        $response = new Response($jsonOneProduct);
        $response->headers->set('Content-Type', 'application/json');
        // $response->headers->set('Access-Control-Allow-Origin', '');

@@ -29,8 +29,6 @@ class PostController extends AbstractController
     }
 
    $jsonSupplier = \json_encode($array);
-   dump( $jsonSupplier);
-
     $response = new Response($jsonSupplier);
     $response->headers->set('Content-Type', 'application/json');
     // $response->headers->set('Access-Control-Allow-Origin', '');
@@ -44,16 +42,15 @@ class PostController extends AbstractController
     public function postChange(Request $request, UserRepository $userRepo, PostRepository $postRepo){
         $postList = $postRepo->findAll();
         $data = $request->getContent();
-        $req = json_decode($data);
-
-        dd($postList);
+        $req = json_decode($data);   
+        
         $newPost = $req->post;
         $postToSet = $postList[$newPost];
-
+        
         $userId = $req->user;
-        $user = $userRepo->findById($userId);
-        dd($user);
+        $user = $userRepo->findById($userId); 
         $user[0]->setPost($postToSet);
+        
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user[0]);
         $entityManager->flush();

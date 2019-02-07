@@ -27,8 +27,6 @@ class ModificationController extends AbstractController
          }
 
     $jsonModification = \json_encode($array);
-    dump($jsonModification);
-
      $response = new Response($jsonModification);
      $response->headers->set('Content-Type', 'application/json');
      // $response->headers->set('Access-Control-Allow-Origin', '');

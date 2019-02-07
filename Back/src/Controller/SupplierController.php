@@ -27,8 +27,6 @@ class SupplierController extends AbstractController
         }
 
    $jsonSupplier = \json_encode($array);
-   dump( $jsonSupplier);
-
     $response = new Response($jsonSupplier);
     $response->headers->set('Content-Type', 'application/json');
     // $response->headers->set('Access-Control-Allow-Origin', '');
@@ -55,7 +53,7 @@ class SupplierController extends AbstractController
                 }
 
                 if(!isset($productList)){
-                    $productList = "Pas de produits";
+                    $productList = "Pas de produits"; // on defini un message d'erreur s'il n'y a pas de produits
                 }
 
         $array = [
@@ -73,8 +71,6 @@ class SupplierController extends AbstractController
 
 
        $jsonOneSupplier = \json_encode($array);
-       dump($jsonOneSupplier);
-
        $response = new Response($jsonOneSupplier);
        $response->headers->set('Content-Type', 'application/json');
        // $response->headers->set('Access-Control-Allow-Origin', '');
