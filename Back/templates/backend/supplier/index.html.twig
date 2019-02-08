@@ -3,10 +3,11 @@
 {% block title %}Liste des fournisseurs{% endblock %}
 
 {% block body %}
-   <div class="new-title"> 
-       <h2 class="title is-2">Liste des fournisseurs</h2>
-    </div>
+<div class="new-title">
+    <h2 class="title is-2">Liste des fournisseurs</h2>
+</div>
 
+<div class="table__wrapper">
     <table class="table is-hoverable">
         <thead>
             <tr>
@@ -21,7 +22,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for supplier in suppliers %}
+            {% for supplier in suppliers %}
             <tr>
                 <td>{{ supplier.societyName }}</td>
                 <td>{{ supplier.name }}</td>
@@ -35,13 +36,13 @@
                     <a href="{{ path('supplier_edit', {'id': supplier.id}) }}"><i class="fas fa-edit"></i></a>
                 </td>
             </tr>
-        {% else %}
+            {% else %}
             <tr>
                 <td colspan="9">Aucun fournisseur</td>
             </tr>
-        {% endfor %}
+            {% endfor %}
         </tbody>
     </table>
-
-    <a class="button is-primary" href="{{ path('supplier_new') }}">Nouveau fournisseur </a>
+</div>
+<a class="button is-primary" href="{{ path('supplier_new') }}">Nouveau fournisseur </a>
 {% endblock %}

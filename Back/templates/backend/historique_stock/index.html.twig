@@ -3,10 +3,12 @@
 {% block title %}liste des mouvements en stock{% endblock %}
 
 {% block body %}
-   <div class="new-title"> <h2 class="title is-2">Liste des mouvements en stock</h2></div>
+<div class="new-title">
+    <h2 class="title is-2">Liste des mouvements en stock</h2>
+</div>
 
 
-
+<div class="table__wrapper">
     <table class="table is-hoverable">
         <thead>
             <tr>
@@ -21,7 +23,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for movement in historiqueStock %}
+            {% for movement in historiqueStock %}
             <tr>
                 <td>{{ movement.stock.product.name }}</td>
                 <td>{{ movement.modification }}</td>
@@ -33,23 +35,23 @@
                 <td>{{ movement.createdAt|date('d-m-Y à H:m') }}</td>
 
             </tr>
-        {% else %}
+            {% else %}
             <tr>
                 <td colspan="12">Aucune historique trouvée !</td>
             </tr>
-        {% endfor %}
+            {% endfor %}
         </tbody>
     </table>
+</div>
+<div class="navigation">
+    {{ knp_pagination_render(historiqueStock, null, {}, {
+    'position': 'centered',
+    'size': 'large',
+    'rounded': true,
 
-    <div class="navigation">
-            {{ knp_pagination_render(historiqueStock, null, {}, {
-                'position': 'centered',
-                'size': 'large',
-                'rounded': true,
+    }) }}
 
-             }) }}
-
-        </div>
+</div>
 
 
 {% endblock %}

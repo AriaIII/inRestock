@@ -27,63 +27,65 @@
     <h4 class="title is-4">Liste des fournisseurs de {{ product.name }}</h4>
 </div>
 
-
-<table class="table is-hoverable">
-    <thead>
-        <tr>
-            <th>Nom</th>
-            <th>Entreprise</th>
-            <th>Adresse</th>
-            <th>Téléphone</th>
-            <th>Mail</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for supplier in product.suppliers %}
-        <tr>
-            <td>{{ supplier.name }}</td>
-            <td>{{ supplier.societyName }}</td>
-            <td>{{ supplier.town }}</td>
-            <td>{{ supplier.phone }}</td>
-            <td>{{ supplier.mail }}</td>
-        </tr>
-        {% else %}
-        <tr>
-            <td colspan="12">Aucun fournisseur</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="table__wrapper">
+    <table class="table is-hoverable">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Entreprise</th>
+                <th>Adresse</th>
+                <th>Téléphone</th>
+                <th>Mail</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for supplier in product.suppliers %}
+            <tr>
+                <td>{{ supplier.name }}</td>
+                <td>{{ supplier.societyName }}</td>
+                <td>{{ supplier.town }}</td>
+                <td>{{ supplier.phone }}</td>
+                <td>{{ supplier.mail }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="12">Aucun fournisseur</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 <div class="new-title">
     <h4 class="title is-4">Stock de {{ product.name }}</h4>
 </div>
 
-<table class="table is-hoverable">
+<div class="table__wrapper">
+    <table class="table is-hoverable">
 
-    <tbody>
-        {% if product.stock %}
-        <tr>
-            <th>Unité de conditionnement</th>
-            <td>{{ product.stock.packaging }}</td>
-        </tr>
-        <tr>
-            <th>Stock actuel</th>
-            <td>{{ product.stock.stock }}</td>
-        </tr>
-        <tr>
-            <th>Limite de déclenchement de l'alerte</th>
-            <td>{{ product.stock.stockAlert }}</td>
-        </tr>
+        <tbody>
+            {% if product.stock %}
+            <tr>
+                <th>Unité de conditionnement</th>
+                <td>{{ product.stock.packaging }}</td>
+            </tr>
+            <tr>
+                <th>Stock actuel</th>
+                <td>{{ product.stock.stock }}</td>
+            </tr>
+            <tr>
+                <th>Limite de déclenchement de l'alerte</th>
+                <td>{{ product.stock.stockAlert }}</td>
+            </tr>
 
-        {% else %}
-        <tr>
-            <td>Aucun stock</td>
-        </tr>
-        {% endif %}
-    </tbody>
-</table>
-
+            {% else %}
+            <tr>
+                <td>Aucun stock</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
 <div class="field is-grouped">
     <p class="control">
         <a class="button is-primary" href="{{ path('product_index') }}">

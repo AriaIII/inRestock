@@ -68,8 +68,15 @@ ul li {
 
 /* button */
 
+@media (max-width: 666px){
+
+    .field.is-grouped {
+        display: block;
+      }
+  }
+
 .button.is-primary:hover, .button.is-primary.is-hovered {
-    background-color: #4A4257;
+    background-color: #75688B;
     border-color: transparent;
     color: #E0E3E1;
   }
@@ -151,7 +158,7 @@ ul li {
     color: #E0E3E1;
 }
 
-/* card pour les utilisateurs et les fournisseurs*/
+/* card pour les utilisateurs, fournisseurs, postes*/
 
 .card {
     font-weight: bold;
@@ -164,6 +171,17 @@ ul li {
 .media-right {
     margin: 1rem;
 }
+
+@media (max-width: 666px){
+
+    #post-card > .card-content {
+        min-height: 450px;
+      }
+
+    .media {
+        display: block;
+    }
+  }
 
 /* gestion des fonds transparents */
 .transparent{
