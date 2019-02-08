@@ -3,11 +3,13 @@
 {% block title %}Liste des salariés{% endblock %}
 
 {% block body %}
-    <div class="new-title">
-        <h2 class="title is-2">Liste de vos salariés :</h2>
-    </div>
+<div class="new-title">
+    <h2 class="title is-2">Liste de vos salariés :</h2>
+</div>
 
+<div class="table__wrapper">
     <table class="table is-hoverable">
+
         <thead>
             <tr>
                 <th>Nom</th>
@@ -19,7 +21,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for user in users %}
+            {% for user in users %}
             <tr>
                 <td>{{ user.lastName }}</td>
                 <td>{{ user.firstName }}</td>
@@ -27,18 +29,22 @@
                 <td>{{ user.email }}</td>
                 <td>{{ user.role.name}}</td>
                 <td>
-                        <a class="button is-warning" href="{{ path('user_show', {'id': user.id}) }}">voir la fiche du salarié</a>
-                        <a class="button is-warning" href="{{ path('user_edit', {'id': user.id}) }}">modifier la fiche du salarié</a>
+                    <a class="button is-warning" href="{{ path('user_show', {'id': user.id}) }}">voir la fiche du
+                        salarié</a>
+                    <a class="button is-warning" href="{{ path('user_edit', {'id': user.id}) }}">modifier la fiche du
+                        salarié</a>
                 </td>
             </tr>
-        {% else %}
+            {% else %}
             <tr>
                 <td colspan="12">no records found</td>
             </tr>
-        {% endfor %}
+            {% endfor %}
         </tbody>
-    </table>
 
-    <a class="button is-primary" href="{{ path('user_new') }}">Nouvel utilisateur </a>
+    </table>
+</div>
+
+<a class="button is-primary" href="{{ path('user_new') }}">Nouvel utilisateur </a>
 
 {% endblock %}

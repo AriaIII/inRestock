@@ -17,6 +17,7 @@ a {
     margin: 0.5rem;
 }
 
+/* listes */
 ul li {
     list-style:disc;
 }
@@ -34,6 +35,23 @@ ul li {
     flex: 1 0 33%;
     list-style: disc;
     color:black;
+  }
+
+
+@media (max-width: 875px){
+
+    .list-li {
+        flex: 1 0 50%;
+        list-style: disc;
+      }
+  }
+
+@media (max-width: 733px){
+
+    .list-li {
+        flex: 1 0 100%;
+        list-style: disc;
+      }
   }
 
 /* title */
@@ -95,6 +113,13 @@ ul li {
     margin-top: 1em;
 }
 
+/* barre de défilement  */
+.table__wrapper {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+
 /* pagination */
 
 .pagination-list li {
@@ -126,7 +151,7 @@ ul li {
     color: #E0E3E1;
 }
 
-/* card */
+/* card pour les utilisateurs et les fournisseurs*/
 
 .card {
     font-weight: bold;
@@ -140,6 +165,7 @@ ul li {
     margin: 1rem;
 }
 
+/* gestion des fonds transparents */
 .transparent{
     background:  rgba(255,255,255,0.38);
     padding: 2em;
@@ -156,10 +182,12 @@ p.transparent {
 
 }
 
-
+/* tag pour la page produit */
 .tags {
     margin-top: 1rem;
 }
+
+/* affichage des erreurs formulaire en rouge */
 
 .error li {
     color: red;
@@ -167,14 +195,8 @@ p.transparent {
 }
 
 
-  @media (max-width: 767.98px){
-
-    .list-li {
-        flex: 1 0 100%;
-        list-style: disc;
-      }
 
 
-  }
 
 
+  
