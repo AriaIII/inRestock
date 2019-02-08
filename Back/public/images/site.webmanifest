@@ -1,6 +1,6 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "inRestock",
+    "short_name": "inRestock",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
