@@ -212,6 +212,13 @@ p.transparent {
     list-style: none;
 }
 
+/* fil d'ariane */
+
+.breadcrumb.transparent {
+    padding-top : 0;
+    padding-bottom: 0;
+}
+
 
 
 
