@@ -3,6 +3,21 @@
 {% block title %} {{supplier.name}} : modification {% endblock %}
 
 {% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="{{path('index')}}">Accueil</a></li>
+        <li><a href="{{ path('supplier_index') }}">Fournisseurs</a></li>        
+        
+        {% if referer == url('supplier_index') %}
+            <li class="is-active"><a href="#" aria-current="page">{{supplier.name}} : modification</a></li>
+        {% elseif referer == url('supplier_show', {'id' : supplier.id}) %}
+            <li><a href="{{ path('supplier_show', {'id' : supplier.id}) }}">{{supplier.name}}</a></li>        
+            <li class="is-active"><a href="#" aria-current="page">{{supplier.name}} : modification</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
 <div class="new-title">
     <h2 class="title is-3">Modification du fournisseur :</h2>
 </div>

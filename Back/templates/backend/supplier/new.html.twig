@@ -3,6 +3,22 @@
 {% block title %}Nouveau fournisseur{% endblock %}
 
 {% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="{{path('index')}}">Accueil</a></li>
+        {% if referer == url('supplier_index') %}
+            <li><a href="{{ path('supplier_index') }}">Fournisseurs</a></li>
+        {% elseif referer == url('product_show', {"id" : product.id }) %}
+
+            <li><a href="{{path('product_show', {"id" : product.id})}}">{{product.name}}</a></li>
+
+        {% endif %}
+       
+        <li class="is-active"><a href="#" aria-current="page">Nouveau Fournisseur</a></li>
+    </ul>
+</nav>
+
 <div class="new-title">
     <h4 class="title is-4">Créer un nouveau fournisseur</h4>
 </div>
