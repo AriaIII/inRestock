@@ -17,8 +17,7 @@
     </a>
     {% endif %}
 
-    {# le lien doit amener à un formulaire de création de fournisseur où le champ produit est déjà rempli #}
-    <a class="button is-warning" href="{{ path('supplier_new', {'id' : product.id}) }}">
+    <a class="button is-warning" href="{{ path('supplier_new') }}">
         Créer un nouveau fournisseur pour ce produit
     </a>
 </nav>

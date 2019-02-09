@@ -16,10 +16,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class SupplierController extends AbstractController
 {
-    /**
-     * @Route("/new/{id}", name="supplier_new", methods={"GET","POST"})
+   
+      /**
+     * @Route("/new", name="supplier_new", methods={"GET","POST"})
      */
-    public function new(Request $request, Product $product): Response
+    public function new(Request $request): Response
     {
         $supplier = new Supplier();
         $form = $this->createForm(SupplierType::class, $supplier);
@@ -35,7 +36,6 @@ class SupplierController extends AbstractController
 
         return $this->render('backend/supplier/new.html.twig', [
             'supplier' => $supplier,
-            'product' => $product,
             'form' => $form->createView(),
         ]);
     }
