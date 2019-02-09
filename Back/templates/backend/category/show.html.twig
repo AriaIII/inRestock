@@ -12,7 +12,7 @@
 
         <ul>
              <li>
-                    <a href="{{ path('product_show', {'id': product.id}) }}">{{product.name}}</a>
+                    <a href="{{ path('backend_product_show', {'id': product.id}) }}">{{product.name}}</a>
             </li>
     {% else %}
             <li>Aucun produit trouvé </li>
@@ -22,12 +22,12 @@
 
     <div class="field is-grouped create-new">
             <p class="control">
-              <a class="button is-primary" href="{{ path('category_index') }}">
+              <a class="button is-primary" href="{{ path('backend__category_index') }}">
                   Retour a la liste
               </a>
             </p>
             <p class="control">
-              <a class="button is-warning" href="{{ path('category_edit', {'id': category.id}) }}">
+              <a class="button is-warning" href="{{ path('backend__category_edit', {'id': category.id}) }}">
                   Modifier la catégorie
               </a>
             </p>

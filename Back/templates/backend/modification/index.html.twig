@@ -6,7 +6,7 @@
 
 <nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
     <ul>
-      <li><a href="{{path('index')}}">Accueil</a></li>
+      <li><a href="{{ path('backend_index')}}">Accueil</a></li>
       <li class="is-active"><a href="#" aria-current="page">Liste des modifications</a></li>
     </ul>
   </nav>
@@ -28,7 +28,7 @@
 
                 <td>{{ modification.name }}</td>
                 <td>
-                    <a href="{{ path('modification_edit', {'id': modification.id}) }}"><i class="fas fa-edit"></i></a>
+                    <a href="{{ path('backend_modification_edit', {'id': modification.id}) }}"><i class="fas fa-edit"></i></a>
                 </td>
             </tr>
         {% else %}
@@ -39,6 +39,6 @@
         </tbody>
     </table>
 
-    <a class="button is-primary" href="{{ path('modification_new') }}">Nouvelle modification</a>
+    <a class="button is-primary" href="{{ path('backend_modification_new') }}">Nouvelle modification</a>
 
 {% endblock %}

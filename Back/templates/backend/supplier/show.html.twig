@@ -6,8 +6,8 @@
 
 <nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
     <ul>
-        <li><a href="{{path('index')}}">Accueil</a></li>
-        <li><a href="{{ path('supplier_index') }}">Fournisseurs</a></li>
+        <li><a href="{{ path('backend_index')}}">Accueil</a></li>
+        <li><a href="{{ path('backend_supplier_index') }}">Fournisseurs</a></li>
         <li class="is-active"><a href="#" aria-current="page">{{ supplier.name }}</a></li>
     </ul>
 </nav>
@@ -43,12 +43,12 @@
     </div>
     <div class="field is-grouped">
         <p class="control">
-            <a class="button is-primary" href="{{ path('supplier_index') }}">
+            <a class="button is-primary" href="{{ path('backend_supplier_index') }}">
                 Retour à la liste
             </a>
         </p>
         <p class="control">
-            <a class="button is-warning" href="{{ path('supplier_edit', {'id': supplier.id}) }}">
+            <a class="button is-warning" href="{{ path('backend_supplier_edit', {'id': supplier.id}) }}">
                 Modifier le fournisseur
             </a>
         </p>

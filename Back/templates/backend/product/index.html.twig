@@ -14,8 +14,8 @@
 <ul class="list-ul">
     {% for product in products %}
     <li class="list-li"> {{ product.name }}
-        <a href="{{ path('product_show', {'id': product.id}) }}"><i class="fas fa-info-circle"></i></a>
-        <a href="{{ path('product_edit', {'id': product.id}) }}"><i class="fas fa-edit"></i></a>
+        <a href="{{ path('backend_product_show', {'id': product.id}) }}"><i class="fas fa-info-circle"></i></a>
+        <a href="{{ path('backend_product_edit', {'id': product.id}) }}"><i class="fas fa-edit"></i></a>
     </li>
     {% else %}
     <li>Aucun produit trouvé </li>
@@ -23,7 +23,7 @@
 </ul>
 
 
-<a class="button is-primary" href="{{ path('product_new') }}">Nouveau produit</a>
+<a class="button is-primary" href="{{ path('backend_product_new') }}">Nouveau produit</a>
 
 
 

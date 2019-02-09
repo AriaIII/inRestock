@@ -6,7 +6,7 @@
 
 <nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
         <ul>
-            <li><a href="{{path('index')}}">Accueil</a></li>
+            <li><a href="{{ path('backend_index')}}">Accueil</a></li>
             <li class="is-active"><a href="#" aria-current="page">Liste des postes</a></li>
         </ul>
     </nav>
@@ -27,8 +27,8 @@
             <tr>
                 <td>{{ post.name }}</td>
                 <td class="has-text-centered">
-                    <a href="{{ path('post_show', {'id': post.id}) }}"><i class="fas fa-info-circle has-text-centered"></i></a>
-                    <a href="{{ path('post_edit', {'id': post.id}) }}"><i class="fas fa-edit has-text-centered"></i></a>
+                    <a href="{{ path('backend_post_show', {'id': post.id}) }}"><i class="fas fa-info-circle has-text-centered"></i></a>
+                    <a href="{{ path('backend_post_edit', {'id': post.id}) }}"><i class="fas fa-edit has-text-centered"></i></a>
                 </td>
             </tr>
         {% else %}
@@ -40,5 +40,5 @@
     </table>
 
 
-    <a class="button is-primary" href="{{ path('post_new') }}">Nouveau poste </a>
+    <a class="button is-primary" href="{{ path('backend_post_new') }}">Nouveau poste </a>
 {% endblock %}

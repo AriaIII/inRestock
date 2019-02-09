@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * @Route("/backend/user")
+ * @Route("/backend/user", name="backend_")
  */
 class UserController extends AbstractController
 {
@@ -64,7 +64,7 @@ class UserController extends AbstractController
             $entityManager->persist($newUser);
             $entityManager->flush();
 
-            return $this->redirectToRoute('user_index');
+            return $this->redirectToRoute('backend_user_index');
         }
 
         return $this->render('backend/user/new.html.twig', [
@@ -118,7 +118,7 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('user_index', [
+            return $this->redirectToRoute('backend_user_index', [
                 'id' => $user->getId(),
             ]);
         }
@@ -140,7 +140,7 @@ class UserController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('user_index');
+        return $this->redirectToRoute('backend_user_index');
     }
 
 

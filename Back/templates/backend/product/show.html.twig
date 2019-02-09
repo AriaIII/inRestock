@@ -8,16 +8,16 @@
     {# le lien doit amener à la page du stock du produit ou à la page permettant de créer le stock avec le champ
     produit déjà entré #}
     {% if product.stock %}
-    <a class="button is-warning" href="{{ path('stock_edit', {'id': product.stock.id} ) }}">
+    <a class="button is-warning" href="{{ path('backend_stock_edit', {'id': product.stock.id} ) }}">
         Gérer le stock du produit
     </a>
     {% else %}
-    <a class="button is-warning" href="{{ path('stock_new', {'id': product.id}) }}">
+    <a class="button is-warning" href="{{ path('backend_stock_new', {'id': product.id}) }}">
         Créer le stock du produit
     </a>
     {% endif %}
 
-    <a class="button is-warning" href="{{ path('supplier_new') }}">
+    <a class="button is-warning" href="{{ path('backend_supplier_new') }}">
         Créer un nouveau fournisseur pour ce produit
     </a>
 </nav>
@@ -87,12 +87,12 @@
 </div>
 <div class="field is-grouped">
     <p class="control">
-        <a class="button is-primary" href="{{ path('product_index') }}">
+        <a class="button is-primary" href="{{ path('backend_product_index') }}">
             Retour a la liste
         </a>
     </p>
     <p class="control">
-        <a class="button is-warning" href="{{ path('product_edit', {'id': product.id}) }}">
+        <a class="button is-warning" href="{{ path('backend_product_edit', {'id': product.id}) }}">
             Modifier le produit
         </a>
     </p>

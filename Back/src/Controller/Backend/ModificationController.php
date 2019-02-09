@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backend/modification")
+ * @Route("/backend/modification", name = "backend_")
  */
 class ModificationController extends AbstractController
 {
@@ -39,7 +39,7 @@ class ModificationController extends AbstractController
             $entityManager->persist($modification);
             $entityManager->flush();
 
-            return $this->redirectToRoute('modification_index');
+            return $this->redirectToRoute('backend_modification_index');
         }
 
         return $this->render('backend/modification/new.html.twig', [
@@ -69,7 +69,7 @@ class ModificationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('modification_index', [
+            return $this->redirectToRoute('backend_modification_index', [
                 'id' => $modification->getId(),
             ]);
         }
@@ -90,6 +90,6 @@ class ModificationController extends AbstractController
             $entityManager->flush();
 
 
-        return $this->redirectToRoute('modification_index');
+        return $this->redirectToRoute('backend_modification_index');
     }
 }
