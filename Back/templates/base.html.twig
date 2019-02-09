@@ -23,6 +23,8 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+{% set referer = app.request.headers.get('referer') %}
+
     {% block nav %}{% endblock %}
 
         <section class="section">

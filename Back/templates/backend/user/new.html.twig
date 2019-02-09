@@ -3,6 +3,14 @@
 {% block title %}Nouvel utilisateur{% endblock %}
 
 {% block body %}
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="{{path('index')}}#">Accueil</a></li>
+            <li><a href="{{path('index')}}#">Utilisateurs</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Nouvel utilisateur</a></li>
+        </ul>
+    </nav>
+
 <div class="new-title">
     <h4 class="title is-4">Créer un nouvel utilisateur</h4>
 </div>

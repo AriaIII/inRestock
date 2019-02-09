@@ -3,6 +3,15 @@
 {% block title %}Stock {{product.name}} {% endblock %}
 
 {% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="{{path('index')}}">Accueil</a></li>
+            <li><a href="{{path('product_show', {'id' : product.id})}}">{{product.name}}</a></li>
+            <li class="is-active"><a href="{{ path('role_index') }}" aria-current="page">Modifier le stock</a></li>
+        </ul>
+    </nav>
+
 <div class="new-title">
     <h4 class="title is-4">Stock de {{product.name}}</h4>
 </div>

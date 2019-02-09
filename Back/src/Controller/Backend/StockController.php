@@ -17,7 +17,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class StockController extends AbstractController
 {
 
-
     /**
      * @Route("/new/product/{id}", name="stock_new", methods={"GET","POST"})
      */

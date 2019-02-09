@@ -3,10 +3,23 @@
 {% block title %} {{user.lastname}} : modification {% endblock %}
 
 {% block body %}
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="{{path('index')}}#">Accueil</a></li>
+        <li><a href="#">Utilisateurs</a></li>        
+        
+        {% if referer == url('user_index') %}
+            <li class="is-active"><a href="{{ path('user_edit', {'id' : user.id}) }}" aria-current="page">{{user.lastname}} : modification</a></li>
+        {% elseif referer == url('user_show', {'id' : user.id}) %}
+            <li><a href="{{ path('user_show', {'id' : user.id}) }}">{{user.lastname}}</a></li>        
+            <li class="is-active"><a href="{{ path('user_edit', {'id' : user.id}) }}" aria-current="page">{{user.lastname}} : modification</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
 <div class="new-title">
     <h2 class="title is-3">Modification de la fiche :</h2>
 </div>
-
 
     {{ include('backend/user/_form.html.twig', {'button_label': 'Valider'}) }}
 
