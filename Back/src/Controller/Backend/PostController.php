@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\File;
 
 /**
- * @Route("/backend/post")
+ * @Route("/backend/post", name="backend_")
  */
 class PostController extends AbstractController
 {
@@ -48,7 +48,7 @@ class PostController extends AbstractController
             $entityManager->persist($post);
             $entityManager->flush();
 
-            return $this->redirectToRoute('post_index');
+            return $this->redirectToRoute('backend_post_index');
         }
 
         return $this->render('backend/post/new.html.twig', [
@@ -101,7 +101,7 @@ class PostController extends AbstractController
             $entityManager->persist($post);
             $entityManager->flush();
 
-            return $this->redirectToRoute('post_index', [
+            return $this->redirectToRoute('backend_post_index', [
                 'id' => $post->getId(),
             ]);
         }
@@ -123,6 +123,6 @@ class PostController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('post_index');
+        return $this->redirectToRoute('backend_post_index');
     }
 }

@@ -1,4 +1,4 @@
-<form class="delete-form"  method="post" action="{{ path('stock_delete', {'id': stock.id}) }}" onsubmit="return confirm('Etes-vous sûr(e) de vouloir supprimer ce stock ?');">
+<form class="delete-form"  method="post" action="{{ path('backend_stock_delete', {'id': stock.id}) }}" onsubmit="return confirm('Etes-vous sûr(e) de vouloir supprimer ce stock ?');">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ stock.id) }}">
     <button class="button is-danger">Supprimer</button>

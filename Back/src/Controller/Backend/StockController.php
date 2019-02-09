@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("/backend/stock")
+ * @Route("/backend/stock", name="backend_")
  */
 class StockController extends AbstractController
 {
@@ -35,7 +35,7 @@ class StockController extends AbstractController
 
             $productId = $stock->getProduct()->getId();
 
-            return $this->redirectToRoute('product_show', [
+            return $this->redirectToRoute('backend_product_show', [
                 'id' => $productId,
             ]);
         }
@@ -62,7 +62,7 @@ class StockController extends AbstractController
 
             $productId = $stock->getProduct()->getId();
 
-            return $this->redirectToRoute('product_show', [
+            return $this->redirectToRoute('backend_product_show', [
                 'id' => $productId,
             ]);
         }
@@ -88,7 +88,7 @@ class StockController extends AbstractController
         $productId = $stock->getProduct()->getId();
 
 
-        return $this->redirectToRoute('product_show', [
+        return $this->redirectToRoute('backend_product_show', [
             'id' => $productId,
         ]);
     }

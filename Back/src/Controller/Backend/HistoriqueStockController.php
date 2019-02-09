@@ -12,7 +12,7 @@ use Knp\Component\Pager\PaginatorInterface;
 class HistoriqueStockController extends AbstractController
 {
     /**
-     * @Route("backend/historique/stock", name="historique_stock")
+     * @Route("backend/historique/stock", name="backend_historique_stock")
      */
     public function index(HistoriqueStockRepository $historiqueStockRepo, EntityManagerInterface $em, Request $request, PaginatorInterface $paginator)
     {
