@@ -3,6 +3,15 @@
 {% block title %}Modification {{modification.name}} {% endblock %}
 
 {% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+    <ul>
+      <li><a href="{{path('index')}}">Acceuil</a></li>
+      <li><a href="{{ path('modification_index') }}">Liste des modifications</a></li>
+      <li class="is-active"><a href="#" aria-current="page">{{modification.name}}</a></li>
+    </ul>
+  </nav>
+
 <div class="new-title">
         <h2 class="title is-3">Modification du type de modification :</h2>
     </div>

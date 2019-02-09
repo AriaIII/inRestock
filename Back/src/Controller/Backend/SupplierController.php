@@ -2,13 +2,14 @@
 
 namespace App\Controller\Backend;
 
+use App\Entity\Product;
 use App\Entity\Supplier;
 use App\Form\SupplierType;
 use App\Repository\SupplierRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/backend/supplier")
@@ -16,19 +17,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class SupplierController extends AbstractController
 {
     /**
-     * @Route("/", name="supplier_index", methods={"GET"})
+     * @Route("/new/{id}", name="supplier_new", methods={"GET","POST"})
      */
-    public function index(SupplierRepository $supplierRepository): Response
-    {
-        return $this->render('backend/supplier/index.html.twig', [
-            'suppliers' => $supplierRepository->findAll(),
-        ]);
-    }
-
-    /**
-     * @Route("/new", name="supplier_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
+    public function new(Request $request, Product $product): Response
     {
         $supplier = new Supplier();
         $form = $this->createForm(SupplierType::class, $supplier);
@@ -44,9 +35,21 @@ class SupplierController extends AbstractController
 
         return $this->render('backend/supplier/new.html.twig', [
             'supplier' => $supplier,
+            'product' => $product,
             'form' => $form->createView(),
         ]);
     }
+    
+    /**
+     * @Route("/", name="supplier_index", methods={"GET"})
+     */
+    public function index(SupplierRepository $supplierRepository): Response
+    {
+        return $this->render('backend/supplier/index.html.twig', [
+            'suppliers' => $supplierRepository->findAll(),
+        ]);
+    }
+
 
     /**
      * @Route("/{id}", name="supplier_show", methods={"GET"})

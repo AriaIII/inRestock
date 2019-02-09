@@ -3,6 +3,14 @@
 {% block title %}Liste des fournisseurs{% endblock %}
 
 {% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="{{path('index')}}">Accueil</a></li>
+        <li class="is-active"><a href="#" aria-current="page">Fournisseurs</a></li>
+    </ul>
+</nav>
+
 <div class="new-title">
     <h2 class="title is-2">Liste des fournisseurs</h2>
 </div>

@@ -38,6 +38,9 @@ $tag-background-color: $grey-transparent;
 
 $body-background-color: $grey;
 
+$breadcrumb-item-color: black;
+$breadcrumb-item-separator-color: black;
+
 $control-border-width: 2px;
 $input-border-color: $purple-light;
 $input-shadow: none;
@@ -58,6 +61,7 @@ $input-shadow: none;
 @import "../bulma-0.7.2/sass/components/card.sass";
 @import "../bulma-0.7.2/sass/components/media.sass";
 @import "../bulma-0.7.2/sass/components/pagination.sass";
+@import "../bulma-0.7.2/sass/components/breadcrumb.sass";
 @import "../bulma-0.7.2/sass/grid/columns.sass";
 @import "../bulma-0.7.2/sass/layout/hero.sass";
 @import "../bulma-0.7.2/sass/layout/section.sass";
