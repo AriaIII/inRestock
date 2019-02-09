@@ -12,11 +12,12 @@ security:
             anonymous: true
             form_login: 
                 login_path: security_login
-                check_path: security_login               
+                check_path: security_login 
+                default_target_path: backend_index             
                      
             logout:
                 path: security_logout
-                target: index
+                target: backend_index
             provider: user_provider
         
         login:
