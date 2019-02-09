@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("/backend/supplier")
+ * @Route("/backend/supplier", name="backend_")
  */
 class SupplierController extends AbstractController
 {
@@ -31,7 +31,7 @@ class SupplierController extends AbstractController
             $entityManager->persist($supplier);
             $entityManager->flush();
 
-            return $this->redirectToRoute('supplier_index');
+            return $this->redirectToRoute('backend_supplier_index');
         }
 
         return $this->render('backend/supplier/new.html.twig', [
@@ -72,7 +72,7 @@ class SupplierController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('supplier_index', [
+            return $this->redirectToRoute('backend_supplier_index', [
                 'id' => $supplier->getId(),
             ]);
         }
@@ -94,6 +94,6 @@ class SupplierController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('supplier_index');
+        return $this->redirectToRoute('backend_supplier_index');
     }
 }

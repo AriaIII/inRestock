@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backend/product")
+ * @Route("/backend/product", name="backend_")
  */
 class ProductController extends AbstractController
 {
@@ -39,7 +39,7 @@ class ProductController extends AbstractController
             $entityManager->persist($product);
             $entityManager->flush();
 
-            return $this->redirectToRoute('product_index');
+            return $this->redirectToRoute('backend_product_index');
         }
 
         return $this->render('backend/product/new.html.twig', [
@@ -69,7 +69,7 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('product_index', [
+            return $this->redirectToRoute('backend_product_index', [
                 'id' => $product->getId(),
             ]);
         }
@@ -91,6 +91,6 @@ class ProductController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('product_index');
+        return $this->redirectToRoute('backend_product_index');
     }
 }

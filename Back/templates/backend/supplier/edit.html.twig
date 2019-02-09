@@ -6,13 +6,13 @@
 
 <nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
     <ul>
-        <li><a href="{{path('index')}}">Accueil</a></li>
-        <li><a href="{{ path('supplier_index') }}">Fournisseurs</a></li>        
+        <li><a href="{{ path('backend_index')}}">Accueil</a></li>
+        <li><a href="{{ path('backend_supplier_index') }}">Fournisseurs</a></li>        
         
-        {% if referer == url('supplier_index') %}
+        {% if referer == url('backend_supplier_index') %}
             <li class="is-active"><a href="#" aria-current="page">{{supplier.name}} : modification</a></li>
-        {% elseif referer == url('supplier_show', {'id' : supplier.id}) %}
-            <li><a href="{{ path('supplier_show', {'id' : supplier.id}) }}">{{supplier.name}}</a></li>        
+        {% elseif referer == url('backend_supplier_show', {'id' : supplier.id}) %}
+            <li><a href="{{ path('backend_supplier_show', {'id' : supplier.id}) }}">{{supplier.name}}</a></li>        
             <li class="is-active"><a href="#" aria-current="page">{{supplier.name}} : modification</a></li>
         {% endif %}
     </ul>
@@ -25,7 +25,7 @@
 {{ include('backend/supplier/_form.html.twig', {'button_label': 'valider'}) }}
 
 <p class="control">
-    <a class="button is-primary" href="{{ path('supplier_index') }}">Retour à la liste</a>
+    <a class="button is-primary" href="{{ path('backend_supplier_index') }}">Retour à la liste</a>
 </p>
 
 {{ include('backend/supplier/_delete_form.html.twig') }}

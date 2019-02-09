@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backend/role")
+ * @Route("/backend/role", name="backend_")
  */
 class RoleController extends AbstractController
 {
@@ -39,7 +39,7 @@ class RoleController extends AbstractController
             $entityManager->persist($role);
             $entityManager->flush();
 
-            return $this->redirectToRoute('role_index');
+            return $this->redirectToRoute('backend_role_index');
         }
 
         return $this->render('backend/role/new.html.twig', [
@@ -69,7 +69,7 @@ class RoleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('role_index', [
+            return $this->redirectToRoute('backend_role_index', [
                 'id' => $role->getId(),
             ]);
         }
@@ -91,6 +91,6 @@ class RoleController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('role_index');
+        return $this->redirectToRoute('backend_role_index');
     }
 }

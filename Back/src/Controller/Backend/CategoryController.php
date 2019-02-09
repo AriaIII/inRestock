@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backend/category")
+ * @Route("/backend/category", name="backend_")
  */
 class CategoryController extends AbstractController
 {
@@ -40,7 +40,7 @@ class CategoryController extends AbstractController
             $entityManager->persist($category);
             $entityManager->flush();
 
-            return $this->redirectToRoute('category_index');
+            return $this->redirectToRoute('backend_category_index');
         }
 
         return $this->render('backend/category/new.html.twig', [
@@ -70,7 +70,7 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('category_index', [
+            return $this->redirectToRoute('backend_category_index', [
                 'id' => $category->getId(),
             ]);
         }
@@ -92,6 +92,6 @@ class CategoryController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('category_index');
+        return $this->redirectToRoute('backend_category_index');
     }
 }
