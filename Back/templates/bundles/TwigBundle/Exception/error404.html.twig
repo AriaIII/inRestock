@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+ {% block body %}
+ 
+ 
+ {% block stylesheets %}
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+
+  <!-- Custom stlylesheet -->
+  <link type="text/css" rel="stylesheet" href="{{asset('css/style404.css')}}" />
+ {% endblock %}
+ 
+    
+
+     <div id="notfound">
+         <div class="notfound">
+             <div class="notfound-404">
+                 <h1>404</h1>
+             </div>
+             <h2>Oops, La page que vous avez demandé n'a pas pu être trouvé !</h2>
+
+             <a href="{{path('index')}}"><span class="arrow"></span>Retourner a l'accueil</a>
+         </div>
+     </div>
+ 
+
+ 
+
+{% endblock %} 
