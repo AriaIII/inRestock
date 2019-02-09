@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
 use App\Entity\Product;
 use App\Repository\ProductRepository;
@@ -12,6 +12,9 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+    * @Route("/api", name="api_")
+ */
 class ProductController extends AbstractController
 {
 

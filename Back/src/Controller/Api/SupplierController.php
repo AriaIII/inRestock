@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
 use App\Entity\Supplier;
 use App\Repository\ProductRepository;
@@ -9,6 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+    * @Route("/api", name="api_")
+ */
 class SupplierController extends AbstractController
 {
     /**

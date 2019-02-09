@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
 use App\Entity\Category;
 use App\Repository\CategoryRepository;
@@ -8,6 +8,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+    * @Route("/api", name="api_")
+ */
 class CategoryController extends AbstractController
 {
     /**
@@ -27,8 +30,6 @@ class CategoryController extends AbstractController
          }
 
     $jsonCategories = \json_encode($array);
-    dump($jsonCategories);
-
      $response = new Response($jsonCategories);
      $response->headers->set('Content-Type', 'application/json');
      // $response->headers->set('Access-Control-Allow-Origin', '');
@@ -74,8 +75,6 @@ class CategoryController extends AbstractController
 
 
    $jsonOneCategory = \json_encode($array);
-   dump($jsonOneCategory);
-
    $response = new Response($jsonOneCategory);
    $response->headers->set('Content-Type', 'application/json');
    // $response->headers->set('Access-Control-Allow-Origin', '');

@@ -2,8 +2,8 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-login_check:
-    path: /login_check
+api_login_check:
+    path: /api/login_check
 
 app_logout:
     path: /logout
