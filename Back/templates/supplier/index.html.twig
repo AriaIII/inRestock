@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des fournisseurs{% endblock %}
+
+{% block body %}
+
+<div class="new-title">
+    <h2 class="title is-2">Liste des fournisseurs</h2>
+</div>
+
+<div class="table__wrapper">
+    <table class="table is-hoverable">
+        <thead>
+            <tr>
+                <th>Société</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+                <th>Adresse</th>
+                <th>Code postal</th>
+                <th>Ville</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for supplier in suppliers %}
+            <tr>
+                <td>{{ supplier.societyName }}</td>
+                <td>{{ supplier.name }}</td>
+                <td>{{ supplier.mail }}</td>
+                <td>{{ supplier.phone }}</td>
+                <td>{{ supplier.adress }}</td>
+                <td>{{ supplier.postcode }}</td>
+                <td>{{ supplier.town }}</td>
+                <td>
+                    <a href="{{ path('supplier_show', {'id': supplier.id}) }}"><i class="fas fa-info-circle"></i></a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="9">Aucun fournisseur</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}
