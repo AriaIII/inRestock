@@ -36,7 +36,9 @@ class HistoriqueController extends AbstractController
 
        $modification = $req->modification;
        $modifToSet = $modifRepo->findById($modification);
-       $modif = $modifToSet->getName();
+       
+       $modif = $modifToSet[0]->getName();
+       
 
        // On récupère le stock associé au produit que l'on doit modifier :
         $product = $req->product;
@@ -60,7 +62,7 @@ class HistoriqueController extends AbstractController
         // $newLine->setUserString($userToSet);
 
         $newLine->setStock($stock[0]);
-        $newLine->setModification($modifToSet);
+        $newLine->setModification($modifToSet[0]);
         $newLine->setUser($user[0]);
 
         $newLine->setPost($user[0]->getPost()->getName());

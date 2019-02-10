@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Postes{% endblock %}
+
+{% block body %}
+
+{% for post in posts %}
+<div id="post-card" class="card">
+    {# <a href="{{ path('category_index', {'id': post.id}) }}"> #}
+        <div class="card-content">
+            <div class="media">
+                <div class="media-content">
+                    <div>
+                        <ul class="transparent-list">
+                            <li class="list-li">{{ post.name }}</li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="media-right">
+                    <figure class="image is-128x128">
+                        <img src="{{ asset(image_upload_path ~  (post.photo ?: 'default-poste.jpeg')) }}">
+                    </figure>
+                </div>
+            </div>
+        </div>
+    {# </a> #}
+</div>
+{% else %}
+<tr>
+    <td colspan="3">Aucun poste trouvé</td>
+</tr>
+{% endfor %}
+
+{% endblock %}

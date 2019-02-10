@@ -10,31 +10,31 @@
     <h3 class="subtitle is-5">Produits associés à cette catégorie :</h3>
     {% for product in category.products %}
 
-        <ul>
-             <li>
-                    <a href="{{ path('backend_product_show', {'id': product.id}) }}">{{product.name}}</a>
-            </li>
-    {% else %}
-            <li>Aucun produit trouvé </li>
-        </ul>
+    <ul>
+        <li>
+            <a href="{{ path('backend_product_show', {'id': product.id}) }}">{{product.name}}</a>
+        </li>
+        {% else %}
+        <li>Aucun produit trouvé </li>
+    </ul>
     {% endfor %}
 </div>
 
-    <div class="field is-grouped create-new">
-            <p class="control">
-              <a class="button is-primary" href="{{ path('backend__category_index') }}">
-                  Retour a la liste
-              </a>
-            </p>
-            <p class="control">
-              <a class="button is-warning" href="{{ path('backend__category_edit', {'id': category.id}) }}">
-                  Modifier la catégorie
-              </a>
-            </p>
-            <p class="control">
-            {{ include('backend/category/_delete_form.html.twig') }}
+<div class="field is-grouped create-new">
+    <p class="control">
+        <a class="button is-primary" href="{{ path('backend_category_index') }}">
+            Retour a la liste
+        </a>
+    </p>
+    <p class="control">
+        <a class="button is-warning" href="{{ path('backend_category_edit', {'id': category.id}) }}">
+            Modifier la catégorie
+        </a>
+    </p>
+    <p class="control">
+        {{ include('backend/category/_delete_form.html.twig') }}
 
-            </p>
-          </div>
+    </p>
+</div>
 
 {% endblock %}
