@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+{% block title %}{{ supplier.name }}{% endblock %}
+{% block body %}
+
+<div class="card">
+    <div class="card-content">
+        <div class="media">
+
+            <div class="media-content">
+                <div class="new-title">
+                    <h3 class="title is-3">{{ supplier.name }}</h3>
+                </div>
+                <p>Société : {{ supplier.societyName }}</p>
+                <p>Adresse : {{ supplier.adress }}, {{ supplier.postcode }} {{ supplier.town }}</p>
+                <p>Téléphone : {{ supplier.phone }}</p>
+                <p>Email : {{ supplier.mail }}</p>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="card-content">
+        <div class="new-title">
+            <h3 class="title is-4">Produit(s) fourni(s) :</h3>
+        </div>
+        <ul>
+            {% for product in supplier.products %}
+            <li>{{product.name}}</li>
+            {% else %}
+            <p>Néant</p>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
