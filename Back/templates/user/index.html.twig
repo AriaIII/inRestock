@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+
+
+{% for user in users %}
+
+<figure class="image is-128x128">
+        <img class="is-rounded" src="{{ asset(image_upload_path ~  ((user.photo ?: 'default-user-image.jpg')))  }}">
+    </figure>
+<a href="{{path('security_login', {'username' : user.username } )}}">{{user.firstName}}</a>
+    
+{% endfor %}
+
+
+{% endblock %}
