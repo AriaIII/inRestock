@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+<div class="field is-grouped">
+<form action="{{ path('security_login') }}" method="post">
+    <label for="username">Nom d'utilisateur :</label>
+    <div class="control"> 
+       <input class="input is-rounded" type="text" id="username" name="_username" value="{{ username }}" />
+    </div>
+    <label for="password">Mot de passe :</label>
+    <div class="control">
+        <input class="input is-rounded" type="password" id="password" name="_password" />
+    </div>
+    <div class="control create-form">
+        <button class="button is-primary" type="submit">Connexion</button>
+    </div>
+    </form>
+</div>
+
+{% endblock %}
+
