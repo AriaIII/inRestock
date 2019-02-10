@@ -74,38 +74,39 @@ class HistoriqueController extends AbstractController
 
         if ($newStock < $stockAlert){
 
-            $mail = $this->mail($productToSet, $stockAlert);
+            $mail = $this->mail($productToSet, $stockAlert, $newStock);
         }
 
         return $this->json(['stock' => $newStock]);
 
     }
 
-    public function mail($productToSet, $stockAlert){
+    public function mail($productToSet, $stockAlert,$newStock){
     
-         $transport = (new \Swift_SmtpTransport('smtp.free.fr', 25))
+         $transport = (new \Swift_SmtpTransport('smtp.free.fr', 465, 'ssl'))
          ->setUsername('inrestock@free.fr')
          ->setPassword('In2Restock7')
          ;
 
          $mailer = new \Swift_Mailer($transport);
 
-         $message = (new \Swift_Message('Limite atteinte du produit :'.$productToSet))
+         $message = (new \Swift_Message('Limite atteinte du produit : '.$productToSet))
          ->setFrom(['inrestock@free.fr' => 'restaurant X'])
          ->setTo(['inrestock@free.fr'])
          ->setBody(
              '<html>' .
              '   <body>' .
              '       <p>Bonjour,</p>'.
-             '       <p>Le produit : <span>'.$productToSet.' </span> à atteint la limite du seuil d\'alerte : <span>'.$stockAlert.'</span></p>'.
-             '       <p>Pensez à commander !.</p>'.
+             '       <p>Le produit : <span>'.$productToSet.' </span> a atteint la limite du seuil d\'alerte : <span>'.$stockAlert.'</span></p>'.
+             ' <p> Le nouveau stock est de : '.$newStock.'</p>'.
+             '       <p>Pensez à commander !</p>'.
              '       <p>Bien cordialement,</p>'.
              '       <p>La direction</p>'.
              '   </body>' .
              '</html>',
              'text/html')
          ->addPart('Bonjour, '.
-             'Le produit : '.$productToSet.' à atteint la limite du seuil d\'alerte : '.$stockAlert.
+             'Le produit : '.$productToSet.' a atteint la limite du seuil d\'alerte : '.$stockAlert.
              'Pensez à commander !',
              'text/plain')
          ;
