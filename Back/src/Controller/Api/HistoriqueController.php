@@ -77,7 +77,7 @@ class HistoriqueController extends AbstractController
             $mail = $this->mail($productToSet, $stockAlert);
         }
 
-        return new Response('OK SUPER');
+        return $this->json(['stock' => $newStock]);
 
     }
 

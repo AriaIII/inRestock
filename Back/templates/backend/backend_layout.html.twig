@@ -2,50 +2,51 @@
 
 
 {% block stylesheets %}
+
 {% endblock %}
 
 
 {% block nav %}
 
-    <nav class="navbar is-warning">
-        <div class="container">
-          <div class="navbar-brand">
-            <a  href= "{{path('backend_index')}}">
-              <img src="{{asset('images/logoNavP.svg')}}" width="55" height="35">
-            </a>
+<nav class="navbar is-warning">
+  <div class="container">
+    <div class="navbar-brand">
+      <a href="{{path('backend_index')}}">
+        <img src="{{asset('images/logoNavP.svg')}}" width="55" height="35">
+      </a>
 
-            <span class="navbar-burger burger" data-target="navMenu">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-          </div>
-          <div id="navMenu" class="navbar-menu">
-            <div class="navbar-start">
-              <a href="{{ path('backend_user_index') }}" class="navbar-item">Utilisateurs</a>
-              <a href="{{ path('backend_product_index') }}" class="navbar-item">Produits</a>
-              <a href="{{ path('backend_supplier_index') }}" class="navbar-item">Fournisseurs</a>
-              <a href="{{ path('backend_category_index') }}" class="navbar-item">Categories</a>
-              <a href="{{ path('backend_post_index') }}" class="navbar-item">Postes</a>
-              <a href="{{ path('backend_role_index') }}" class="navbar-item">Rôles</a>
-              <a href="{{ path('backend_modification_index') }}" class="navbar-item">Modifications</a>
-              <a href="{{ path('backend_historique_stock') }}" class="navbar-item">Historique des modifications</a>
-              <a style="margin-top:1em" href="{{path('security_logout')}}" id="deconnexion" class="navbar-item button is-danger">Déconnexion</a>
-            </div>
+      <span class="navbar-burger burger" data-target="navMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </div>
+    <div id="navMenu" class="navbar-menu">
+      <div class="navbar-start">
+        <a href="{{ path('backend_user_index') }}" class="navbar-item">Utilisateurs</a>
+        <a href="{{ path('backend_product_index') }}" class="navbar-item">Produits</a>
+        <a href="{{ path('backend_supplier_index') }}" class="navbar-item">Fournisseurs</a>
+        <a href="{{ path('backend_category_index') }}" class="navbar-item">Categories</a>
+        <a href="{{ path('backend_post_index') }}" class="navbar-item">Postes</a>
+        <a href="{{ path('backend_role_index') }}" class="navbar-item">Rôles</a>
+        <a href="{{ path('backend_modification_index') }}" class="navbar-item">Modifications</a>
+        <a href="{{ path('backend_historique_stock') }}" class="navbar-item">Historique des modifications</a>
+        <a style="margin-top:1em" href="{{path('security_logout')}}" id="deconnexion" class="navbar-item button is-danger">Déconnexion</a>
+      </div>
 
 
-          </div>
-        </div>
-      </nav>
+    </div>
+  </div>
+</nav>
 
-      <script type="text/javascript">
-        (function() {
-          var burger = document.querySelector('.burger');
-          var nav = document.querySelector('#'+burger.dataset.target);
-          burger.addEventListener('click', function(){
-            burger.classList.toggle('is-active');
-            nav.classList.toggle('is-active');
-          });
-        })();
-      </script>
+<script type="text/javascript">
+  (function () {
+    var burger = document.querySelector('.burger');
+    var nav = document.querySelector('#' + burger.dataset.target);
+    burger.addEventListener('click', function () {
+      burger.classList.toggle('is-active');
+      nav.classList.toggle('is-active');
+    });
+  })();
+</script>
 {% endblock %}

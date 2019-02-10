@@ -6,7 +6,7 @@
 
 {% for post in posts %}
 <div id="post-card" class="card">
-    {# <a href="{{ path('category_index', {'id': post.id}) }}"> #}
+    <a href="{{ path('category_index', {'id': post.id}) }}">
         <div class="card-content">
             <div class="media">
                 <div class="media-content">
@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-    {# </a> #}
+    </a>
 </div>
 {% else %}
 <tr>

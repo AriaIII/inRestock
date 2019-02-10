@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{product.name}} : modification{% endblock %}
+
+{% block body %}
+
+{{product.name}}
+
+<span id="js-stock">{{product.stock.stock}}</span>
+{% for modification in modifications %}   
+<button data-{{modification.name}}="{{modification ? modification.id|json_encode|e('html_attr')}}" id="js-{{modification.name}}">{{modification.name}}</button>
+{% endfor %}
+
+
+<form method="post">
+    <input id="js-input" type="text" class="text" value="0">
+    <button id="js-plus">+</button>
+    <button id="js-minus">-</button>
+    <button id="js-valid" data-product="{{product ? product.id|json_encode|e('html_attr')}}" data-user="{{ app.user ? app.user.id|json_encode|e('html_attr') }}" type="submit">Valider</button>
+</form>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="{{asset('js/modification.js' ) }}"></script>
+{% endblock %}

@@ -128,7 +128,9 @@ ul li {
 
 
 /* pagination */
-
+.pagination {
+    margin-top: 1.5em;
+}
 .pagination-list li {
     list-style:none;
 }
@@ -156,6 +158,11 @@ ul li {
 
 .pagination-link:hover, .pagination-previous:hover , .pagination-next:hover{
     color: #E0E3E1;
+}
+
+.pagination-ellipsis{
+    color: black;
+    font-weight: bold;
 }
 
 /* card pour les utilisateurs, fournisseurs, postes*/

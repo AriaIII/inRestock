@@ -13,7 +13,7 @@
         {% for product in category.products %}
 
         <span class="tag is-large">
-            <a href="{# {{ path('product_show', {'id': product.id}) }} #}">
+            <a href="{{ path('product_modification', {'productId': product.id, "categoryId" : category.id, "postId" : postId }) }}">
                 {{product.name}}
             </a>
         </span>

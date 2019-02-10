@@ -4,19 +4,30 @@
 
 {% block body %}
 
-<div class="new-title"><h2 class="title is-4">Choisissez la catégorie du produit recherché : </h2></div>
+<div class="new-title">
+    <h2 class="title is-4">Choisissez la catégorie du produit recherché : </h2>
+</div>
 
+<style>
+    html {
+        background: url("../../images/inox.jpg") no-repeat center fixed;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: rgb(145, 143, 143);
+    }
+</style>
 
 <div class="tags">
     {% for category in categories %}
 
-            <span class="tag is-large">
-                <a href="{{ path('category_show', {'id': category.id}) }}">
-                    {{category.name}}
-                </a>
-            </span>
+    <span class="tag is-large">
+        <a href="{{ path('category_show', {'postId' : postId, 'categoryId': category.id}) }}">
+            {{category.name}}
+        </a>
+    </span>
 
-     {% else %}
+    {% else %}
     <p>Aucune catégorie trouvée</p>
     {% endfor %}
 </div>
