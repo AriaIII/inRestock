@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{category.name}}{% endblock %}
+
+{% block body %}
+<div class="new-title">
+    <h2 class="title is-3">{{category.name}}</h2>
+</div>
+<div class="transparent">
+    <h3 class="subtitle is-5">Choisissez le produit à modifier :</h3>
+
+    <div class="tags">
+        {% for product in category.products %}
+
+        <span class="tag is-large">
+            <a href="{# {{ path('product_show', {'id': product.id}) }} #}">
+                {{product.name}}
+            </a>
+        </span>
+        {% else %}
+        <p>Aucun produit trouvé </p>
+
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
