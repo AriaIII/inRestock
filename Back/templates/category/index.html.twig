@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories{% endblock %}
+
+{% block body %}
+
+<div class="new-title"><h2 class="title is-4">Choisissez la catégorie du produit recherché : </h2></div>
+
+
+<div class="tags">
+    {% for category in categories %}
+
+            <span class="tag is-large">
+                <a href="{{ path('category_show', {'id': category.id}) }}">
+                    {{category.name}}
+                </a>
+            </span>
+
+     {% else %}
+    <p>Aucune catégorie trouvée</p>
+    {% endfor %}
+</div>
+
+{% endblock %}
