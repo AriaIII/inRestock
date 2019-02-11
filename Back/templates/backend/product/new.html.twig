@@ -3,6 +3,15 @@
 {% block title %}Nouveau produit{% endblock %}
 
 {% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+    <ul>
+      <li><a href="{{ path('backend_index')}}">Accueil</a></li>
+      <li><a href="{{ path('backend_product_index')}}">Liste des produits</a></li>
+      <li class="is-active"><a href="#" aria-current="page">Nouveau produit</a></li>
+    </ul>
+  </nav>
+
 <div class="new-title">
     <h4 class="title is-4">Créer un nouveau produit</h4>
 </div>
