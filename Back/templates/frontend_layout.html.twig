@@ -12,52 +12,57 @@
 {% block nav %}
 
 <nav class="navbar is-warning">
-    <div class="container">
-      <div class="navbar-brand">
-        <a href="{{path('index')}}">
-          <img src="{{asset('images/logoNavP.svg')}}" width="55" height="35">
-        </a>
-  
-        <span class="navbar-burger burger" data-target="navMenu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-      </div>
-      <div id="navMenu" class="navbar-menu">
-        <div class="navbar-start">
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <a href="{{ path('post_index') }}" class="navbar-item">Postes</a>
-            <a href="{{ path('category_index', {'id': app.user.post.id}) }}" class="navbar-item">Catégories</a>
-            <a href="{{ path('supplier_index') }}" class="navbar-item">Fournisseurs</a>
-            
-            
-          </div>
-          <div class="navbar-end">
-            {% if is_granted('ROLE_MANAGER') %}
-            <a href="{{ path('backend_index') }}" id="admin" class="navbar-item button is-primary">Administration</a>
-            {% endif %}
-            <a  href="{{ path('security_logout')}}" id="deconnexion" class="navbar-item button is-danger">Déconnexion</a>
-            {% else %}
-            <a href="{{ path('index') }}" class="navbar-item">Accueil</a>
-            {% endif %}
-         </div>
-  
-  
-      </div>
+  <div class="container">
+    <div class="navbar-brand">
+      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+      <a class href="{{path('security_logout')}}">
+        <img src="{{asset('images/logoNavP.svg')}}" width="55" height="35">
+      </a>
+      {% else %}
+      <a href="{{path('index')}}">
+        <img src="{{asset('images/logoNavP.svg')}}" width="55" height="35">
+      </a>
+      {% endif %}
+
+      <span class="navbar-burger burger" data-target="navMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
     </div>
-  </nav>
-  
-  <script type="text/javascript">
-    (function () {
-      var burger = document.querySelector('.burger');
-      var nav = document.querySelector('#' + burger.dataset.target);
-      burger.addEventListener('click', function () {
-        burger.classList.toggle('is-active');
-        nav.classList.toggle('is-active');
-      });
-    })();
-  </script>
+    <div id="navMenu" class="navbar-menu">
+      <div class="navbar-start">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a href="{{ path('post_index') }}" class="navbar-item">Postes</a>
+        <a href="{{ path('category_index', {'id': app.user.post.id}) }}" class="navbar-item">Catégories</a>
+        <a href="{{ path('supplier_index') }}" class="navbar-item">Fournisseurs</a>
+
+
+      </div>
+      <div class="navbar-end">
+        {% if is_granted('ROLE_MANAGER') %}
+        <a href="{{ path('backend_index') }}" id="admin" class="navbar-item button is-primary">Administration</a>
+        {% endif %}
+        <a href="{{ path('security_logout')}}" id="deconnexion" class="navbar-item button is-danger">Déconnexion</a>
+        {% else %}
+        <a href="{{ path('index') }}" class="navbar-item">Accueil</a>
+        {% endif %}
+      </div>
+
+
+    </div>
+  </div>
+</nav>
+
+<script type="text/javascript">
+  (function () {
+    var burger = document.querySelector('.burger');
+    var nav = document.querySelector('#' + burger.dataset.target);
+    burger.addEventListener('click', function () {
+      burger.classList.toggle('is-active');
+      nav.classList.toggle('is-active');
+    });
+  })();
+</script>
 
 {% endblock %}
-

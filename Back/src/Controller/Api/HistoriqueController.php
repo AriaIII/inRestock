@@ -57,7 +57,7 @@ class HistoriqueController extends AbstractController
         
         //! Si la somme/soustratction du stock rentré par l'utilisateur passe sous 0 alors on stop tout et on retourne un message d'erreur
         if ($newStock < 0){
-            return $this->json(['stock' => 'Ce n\'est pas possible d\'avoir un stock inferieur à 0']);
+            return $this->json(['stock' => 'Il n\'est pas possible d\'avoir un stock inférieur à 0']);
         }
         // on set le newStock et on le push en bdd
         $stock[0]->setStock($newStock);

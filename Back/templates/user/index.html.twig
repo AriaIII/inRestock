@@ -8,7 +8,7 @@
 
 {% for user in users %}
 <div class="transparent">
-<a  href="{{path('security_login', {'username' : user.username } )}}">
+<a href="{{path('security_login', {'username' : user.username} )}}">
        <figure class="image is-128x128">
             <img class="is-rounded" src="{{ asset(image_upload_path ~  ((user.photo ?: 'default-user-image.jpg')))  }}">
         </figure>    

@@ -11,8 +11,8 @@ security:
         backend_login:
             anonymous: true
             form_login: 
-                login_path: security_login
-                check_path: security_login 
+                login_path: index
+                check_path: security_login
                 default_target_path: post_index             
                      
             logout:
@@ -59,7 +59,7 @@ security:
         - { path: ^/post, roles: ROLE_APPRENTI }
         - { path: ^/supplier, roles: ROLE_APPRENTI }
     
-
+    
     
         # - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         # - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
@@ -70,4 +70,6 @@ security:
         ROLE_ADMIN : ROLE_MANAGER
         ROLE_MANAGER: ROLE_USER
         ROLE_USER: ROLE_APPRENTI
+
+    
 
