@@ -3,6 +3,16 @@
 {% block title %} {{post.name}} : modification {% endblock %}
 
 {% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="{{ path('backend_index')}}">Accueil</a></li>
+        <li><a href="{{ path('backend_post_index')}}">Liste des postes</a></li>
+        <li><a href="{{ path('backend_post_show', {"id" : post.id})}}">{{post.name}}</a></li>
+        <li class="is-active"><a href="#" aria-current="page">Modification : {{post.name}}</a></li>
+    </ul>
+</nav>
+
 <div class="new-title">
         <h2 class="title is-3">Modification du poste :</h2>
 </div>

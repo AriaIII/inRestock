@@ -3,6 +3,14 @@
 {% block title %}Liste des produits{% endblock %}
 
 {% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+    <ul>
+      <li><a href="{{ path('backend_index')}}">Accueil</a></li>
+      <li class="is-active"><a href="#" aria-current="page">Liste des produits</a></li>
+    </ul>
+  </nav>
+
 <div class="new-title">
     <h2 class="title is-2">Liste des produits disponibles :</h2>
 </div>
