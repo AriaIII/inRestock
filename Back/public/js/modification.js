@@ -45,7 +45,7 @@ function onClickBtn(evt) {
     var user = valid.dataset.user; // id de l'utilisateur passé par twig
     var product =  valid.dataset.product; // id du produit 
    
-axios.post('/api/history/add', {
+axios.post('Back/public/api/history/add', {
     user: user,
     modification: modification,
     variation: input.value,

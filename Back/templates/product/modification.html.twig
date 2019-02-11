@@ -32,7 +32,7 @@
 
 
 <form method="post">
-    <div class="field is-grouper modif-center">
+    <div class="field is-grouped">
         <p class="control">
             <button class="button is-primary" id="js-plus">+</button>
         </p>
@@ -43,10 +43,12 @@
             <button class="button is-primary" id="js-minus">-</button>
         </p>
     </div>
-    <div class="field is-grouped modif-center">
-        <button class="button is-danger" id="js-valid" data-product="{{product ? product.id|json_encode|e('html_attr')}}"
-            data-user="{{ app.user ? app.user.id|json_encode|e('html_attr') }}" type="submit">Valider</button>
-    </div>
+    
+        <div class="field is-grouped ">
+            <button class="button is-danger" id="js-valid" data-product="{{product ? product.id|json_encode|e('html_attr')}}"
+                data-user="{{ app.user ? app.user.id|json_encode|e('html_attr') }}" type="submit">Valider</button>
+        </div>
+   
 </form>
 
 {% else %}
