@@ -56,7 +56,11 @@ security:
         - { path: ^/backend/user, roles: ROLE_ADMIN }
         - { path: ^/backend/post, roles: ROLE_ADMIN }
         - { path: ^/backend, roles: ROLE_MANAGER }
-            
+        - { path: ^/post, roles: ROLE_APPRENTI }
+        - { path: ^/supplier, roles: ROLE_APPRENTI }
+    
+
+    
         # - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         # - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
 

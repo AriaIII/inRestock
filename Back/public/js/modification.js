@@ -55,6 +55,7 @@ axios.post('/api/history/add', {
    // recuperation de la clé stock dans la réponse de l'api
     var stock = response.data.stock;
     newStock.textContent = stock;
+    input.value = 0;
 
 }).catch(function (error) {
     console.log(error);

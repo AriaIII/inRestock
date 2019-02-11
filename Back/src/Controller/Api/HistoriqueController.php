@@ -24,10 +24,13 @@ class HistoriqueController extends AbstractController
     {
         // On recupere l'integralité de la request et on la stocke
        $data = $request->getContent();
+       
        // On utilise la fonction native de chez php : json_decode pour décodé le json
        $req = json_decode($data);
+       
        // On récupère l'id de l'user courant
        $userId = $req->user;
+       
        // On récupère l'user associé à l'id de l'user courant
        $user = $userRepo->findById($userId);
        $userToSet = $user[0]->getFirstName();
@@ -45,10 +48,17 @@ class HistoriqueController extends AbstractController
         $stock = $stockRepo->findByProduct($product);
         $productToSet = $stock[0]->getProduct()->getName(); 
         $stockAlert = $stock[0]->getStockAlert();
-       //On récupère le stock courant
+       
+        //On récupère le stock courant
         $currentStock = $stock[0]->getStock();
+        
         // On lui rajoute la variation
         $newStock = $currentStock + $variation;
+        
+        //! Si la somme/soustratction du stock rentré par l'utilisateur passe sous 0 alors on stop tout et on retourne un message d'erreur
+        if ($newStock < 0){
+            return $this->json(['stock' => 'Ce n\'est pas possible d\'avoir un stock inferieur à 0']);
+        }
         // on set le newStock et on le push en bdd
         $stock[0]->setStock($newStock);
         $entityManager = $this->getDoctrine()->getManager();
@@ -77,7 +87,7 @@ class HistoriqueController extends AbstractController
             $mail = $this->mail($productToSet, $stockAlert, $newStock);
         }
 
-        return $this->json(['stock' => $newStock]);
+        return $this->json(['stock' => $newStock], 200);
 
     }
 
