@@ -2,7 +2,8 @@
 
 
 {% block stylesheets %}
-
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/front.css') }}">
 {% endblock %}
 
 
@@ -54,5 +55,5 @@
     })();
   </script>
 
-
 {% endblock %}
+

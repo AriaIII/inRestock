@@ -8,6 +8,8 @@ html{
     background-color:  rgb(145, 143, 143);    
 }
 
+
+
 .section {
     padding-bottom : 0;
 }
@@ -98,22 +100,30 @@ ul li {
 }  
 
 #admin:hover, .button.is-danger:hover {
-    background-color: #75688B;
+    background-color: #B5A1D7;
     border-color: transparent;
     color: #E0E3E1;
   }
 
 #admin {
     margin-top: 0.8em;
-}  
+} 
 
+#modified-stock {
+    margin-bottom: 1rem;
+}
 
+#modified-stock > .field.is-grouped > .control > .button.is-warning,
 .delete-form > .button.is-danger,
 .create-form > .button.is-warning {
     margin: 0.5rem;
 }
 
- 
+#js-plus, #js-minus, #js-input, #js-valid {
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 0.5rem;
+}
 
 /* tableaux  */
 
@@ -190,6 +200,13 @@ ul li {
     min-height: 265px;
 }
 
+.card-post-front {
+    margin: 1rem;  
+    min-height: 265px;
+    
+}
+
+
 .media-right {
     margin: 1rem;
 }
@@ -204,6 +221,8 @@ ul li {
         display: block;
     }
   }
+
+
 
 /* gestion des fonds transparents */
 .transparent{
@@ -242,7 +261,10 @@ p.transparent {
 }
 
 
-
+/* #modified-stock {
+    font-size: 1.5rem;
+    padding: 1rem;
+} */
 
 
 
