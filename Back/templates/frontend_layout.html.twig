@@ -27,16 +27,18 @@
             <a href="{{ path('post_index') }}" class="navbar-item">Postes</a>
             <a href="{{ path('category_index', {'id': app.user.post.id}) }}" class="navbar-item">Catégories</a>
             <a href="{{ path('supplier_index') }}" class="navbar-item">Fournisseurs</a>
-
+            
+            
+          </div>
+          <div class="navbar-end">
             {% if is_granted('ROLE_MANAGER') %}
             <a href="{{ path('backend_index') }}" id="admin" class="navbar-item button is-primary">Administration</a>
             {% endif %}
-
             <a  href="{{ path('security_logout')}}" id="deconnexion" class="navbar-item button is-danger">Déconnexion</a>
             {% else %}
             <a href="{{ path('index') }}" class="navbar-item">Accueil</a>
             {% endif %}
-        </div>
+         </div>
   
   
       </div>
