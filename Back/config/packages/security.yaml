@@ -9,6 +9,7 @@ security:
                 property: username
     firewalls:
         backend_login:
+            anonymous: true
             form_login: 
                 login_path: security_login
                 check_path: security_login 
