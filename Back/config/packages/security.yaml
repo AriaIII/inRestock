@@ -9,7 +9,6 @@ security:
                 property: username
     firewalls:
         backend_login:
-            anonymous: true
             form_login: 
                 login_path: security_login
                 check_path: security_login 
@@ -52,14 +51,14 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/backend, roles: ROLE_MANAGER }
-        - { path: ^/backend/user, roles: ROLE_ADMIN }
         - { path: ^/backend/role, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/backend/user, roles: ROLE_ADMIN }
+        - { path: ^/backend/post, roles: ROLE_ADMIN }
+        - { path: ^/backend, roles: ROLE_MANAGER }
             
         # - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         # - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
 
-    access_denied_url: /post
 
     role_hierarchy:
         ROLE_SUPER_ADMIN : ROLE_ADMIN
