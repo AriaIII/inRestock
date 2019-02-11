@@ -93,6 +93,21 @@ ul li {
     color: #E0E3E1;
   }
 
+#deconnexion {
+    margin-top: 0.8em;
+}  
+
+#admin:hover, .button.is-danger:hover {
+    background-color: #75688B;
+    border-color: transparent;
+    color: #E0E3E1;
+  }
+
+#admin {
+    margin-top: 0.8em;
+}  
+
+
 .delete-form > .button.is-danger,
 .create-form > .button.is-warning {
     margin: 0.5rem;
