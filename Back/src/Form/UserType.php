@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Post;
 use App\Entity\Role;
 use App\Entity\User;
 use Symfony\Component\Form\FormEvent;
@@ -151,7 +152,25 @@ class UserType extends AbstractType
                 'multiple' => false,
                 'expanded' => true,
                 'required' => true,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Vous devez sélectionner un rôle.'
+                    ]),
+                ]
             ])
+            ->add('post', EntityType::class, [
+                'label' => 'Poste* :',
+                'class' => Post::class,
+                'choice_label' => 'name',
+                'multiple' => false,
+                'expanded' => true,
+                'required' => true,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Vous devez sélectionner un poste'
+                    ]),
+                ]
+            ] )
        ;
     }
 
