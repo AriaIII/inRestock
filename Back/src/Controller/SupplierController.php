@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SupplierController extends AbstractController
 {
     /**
-     * @Route("/fournisseurs", name="supplier_index")
+     * @Route("/suppliers", name="supplier_index")
      */
     public function index(SupplierRepository $supplierRepo)
     {
@@ -22,7 +22,7 @@ class SupplierController extends AbstractController
     }
 
     /**
-     * @Route("/fournisseurs/{id}", name="supplier_show")
+     * @Route("/supplier/{id}", name="supplier_show")
      */
     public function show(Supplier $supplier)
     {

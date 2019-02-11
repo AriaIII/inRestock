@@ -35,7 +35,7 @@
         {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path('backend_post_index') }}" class="navbar-item">Postes</a>
         {% endif %}
-        {% if is_granted('ROLE_SUPER_ADMIN') %}
+        {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path('backend_role_index') }}" class="navbar-item">Rôles</a>
         {% endif %}
         
