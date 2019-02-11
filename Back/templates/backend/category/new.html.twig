@@ -3,6 +3,15 @@
 {% block title %}Nouvelle catégorie {% endblock %}
 
 {% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="{{ path('backend_index')}}">Accueil</a></li>
+        <li><a href="{{ path('backend_category_index')}}">Liste des catégories</a></li>
+        <li class="is-active"><a href="#" aria-current="page">Nouvelle catégorie</a></li>
+    </ul>
+</nav>
+
 <div class="new-title">
     <h4 class="title is-4">Créer une nouvelle catégorie</h4>
 </div>

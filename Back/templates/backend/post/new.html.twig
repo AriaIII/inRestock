@@ -3,6 +3,15 @@
 {% block title %}Nouveau poste{% endblock %}
 
 {% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="{{ path('backend_index')}}">Accueil</a></li>
+        <li><a href="{{ path('backend_post_index')}}">Liste des postes</a></li>
+        <li class="is-active"><a href="#" aria-current="page">Nouveau poste</a></li>
+    </ul>
+</nav>
+
 <div class="new-title">
     <h4 class="title is-4">Créer un nouveau poste</h4>
 </div>

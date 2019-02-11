@@ -23,14 +23,24 @@
     </div>
     <div id="navMenu" class="navbar-menu">
       <div class="navbar-start">
+        {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path('backend_user_index') }}" class="navbar-item">Utilisateurs</a>
+        {% endif %}
+        
+       
         <a href="{{ path('backend_product_index') }}" class="navbar-item">Produits</a>
         <a href="{{ path('backend_supplier_index') }}" class="navbar-item">Fournisseurs</a>
         <a href="{{ path('backend_category_index') }}" class="navbar-item">Categories</a>
         <a href="{{ path('backend_post_index') }}" class="navbar-item">Postes</a>
+       
+        
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
         <a href="{{ path('backend_role_index') }}" class="navbar-item">Rôles</a>
+        {% endif %}
+        
         <a href="{{ path('backend_modification_index') }}" class="navbar-item">Modifications</a>
         <a href="{{ path('backend_historique_stock') }}" class="navbar-item">Historique des modifications</a>
+        <a style="margin-top:1em" href="{{ path('post_index') }}" class="navbar-item button is-primary">Retour au site</a>
         <a style="margin-top:1em" href="{{path('security_logout')}}" id="deconnexion" class="navbar-item button is-danger">Déconnexion</a>
       </div>
 

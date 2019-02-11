@@ -3,6 +3,15 @@
 {% block title %}{{post.name}}{% endblock %}
 
 {% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="{{ path('backend_index')}}">Accueil</a></li>
+        <li><a href="{{ path('backend_post_index')}}">Liste des postes</a></li>
+        <li class="is-active"><a href="#" aria-current="page">{{post.name}}</a></li>
+    </ul>
+</nav>
+
 <div class="new-title">
     <h2 class="title is-2">Poste : {{post.name}}</h2>
 </div>
