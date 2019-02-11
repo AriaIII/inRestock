@@ -1,49 +1,62 @@
 {% extends 'backend/backend_layout.html.twig' %}
 
-{% block title %}Rôle {{role.name}}{% endblock %}
+{% block title %}{{role.name}}{% endblock %}
 
 {% block body %}
 
 <nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
     <ul>
         <li><a href="{{ path('backend_index')}}">Accueil</a></li>
-        <li><a href="{{ path('backend_role_index')}}">Liste des rôles</a></li>
+        <li><a href="{{ path('backend_post_index')}}">Liste des roles</a></li>
         <li class="is-active"><a href="#" aria-current="page">{{role.name}}</a></li>
     </ul>
 </nav>
 
-<h2 class="title is-2">Rôle {{role.name}}</h2>
-
 <div class="new-title">
-    <h4 class="title is-4">Liste des salariés ayant ce rôle</h4>
+    <h2 class="title is-2">Role : {{role.name}}</h2>
 </div>
+
 <div class="transparent">
-    <ul>
-        {% for user in role.users %}
-        <li>
-            {{ user.lastname }} {{ user.firstname }}
-        </li>
-        {% else %}
-        <tr>
-            <td colspan="12">Aucun salarié</td>
-        </tr>
-        {% endfor %}
-    </ul>
+    <div id="post-card" class="card">
+        <div class="card-content">
+            <div class="media">
+                <div class="media-content">
+                    <h3 class="subtitle">Employés actuellement affectés à ce role : </h3>
+                    <div>
+                        <ul class="transparent-list">
+                            {% for user in role.users %}
+
+                            <li class="list-li">
+                                {{user.firstName}} {{user.lastName}}
+                            </li>
+                            {% else %}
+                            <li>Aucun salarié à ce rôle </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="field is-grouped">
+
+
+<div class="field is-grouped create-new">
     <p class="control">
         <a class="button is-primary" href="{{ path('backend_role_index') }}">
-            Retour à la liste
+            Retour a la liste
         </a>
     </p>
     <p class="control">
         <a class="button is-warning" href="{{ path('backend_role_edit', {'id': role.id}) }}">
-            Modifier le rôle
+            Modifier le role
         </a>
     </p>
     <p class="control">
         {{ include('backend/role/_delete_form.html.twig') }}
+
     </p>
 </div>
+
 
 {% endblock %}
