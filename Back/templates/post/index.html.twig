@@ -11,8 +11,8 @@
         <a href="{{ path('category_index', {'id': post.id}) }}">
             <div class="card padding-top">
                 <div class="card-image">
-                    <figure class="image is-128x128">
-                        <img width="128px" height="128px" src="{{ asset(image_upload_path ~  (post.photo ?: 'default-poste.jpeg')) }}">
+                    <figure class="image is-128x128 image-center">
+                        <img class="post-img" src="{{ asset(image_upload_path ~  (post.photo ?: 'default-poste.jpeg')) }}">
                     </figure>
                 </div>
                 <div class="card-content">
