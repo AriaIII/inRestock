@@ -32,7 +32,7 @@
 
 
 <form method="post">
-    <div class="field is-grouped">
+    <div id="modif-button" class="field is-grouped">
         <p class="control">
             <button class="button is-primary" id="js-minus">-</button>
         </p>
@@ -44,7 +44,7 @@
         </p>
     </div>
 
-    <div class="field is-grouped ">
+    <div id="modif-valid" class="field is-grouped">
         <button class="button is-danger" id="js-valid" data-product="{{product ? product.id|json_encode|e('html_attr')}}"
             data-user="{{ app.user ? app.user.id|json_encode|e('html_attr') }}" type="submit">Valider</button>
     </div>

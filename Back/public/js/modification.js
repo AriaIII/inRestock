@@ -6,7 +6,6 @@ var minus = document.getElementById('js-minus');
 var valid = document.getElementById('js-valid');
 var newStock = document.getElementById('js-stock');
 var inventory = document.getElementById('js-Inventaire')
-console.log(inventory);
 var picking = document.getElementById('js-Prélèvement')
 var order = document.getElementById('js-Commande')
 var modification = 1

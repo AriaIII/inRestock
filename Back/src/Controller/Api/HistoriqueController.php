@@ -34,21 +34,18 @@ class HistoriqueController extends AbstractController
        // On récupère l'user associé à l'id de l'user courant
        $user = $userRepo->findById($userId);
        $userToSet = $user[0]->getFirstName();
-       dump($userToSet);
        
        $variation = $req->variation;
 
        $modification = $req->modification;
        $modifToSet = $modifRepo->findById($modification);
        $modif = $modifToSet[0]->getName();
-       dump($modif);
        
-
        // On récupère le stock associé au produit que l'on doit modifier :
         $product = $req->product;
         $stock = $stockRepo->findByProduct($product);
         $productToSet = $stock[0]->getProduct()->getName(); 
-        dump($productToSet);
+
         $stockAlert = $stock[0]->getStockAlert();       
         //On récupère le stock courant
         $currentStock = $stock[0]->getStock();

@@ -5,3 +5,9 @@ html {
     background-repeat: no-repeat;
     background-color: rgb(145, 143, 143);
 }
+
+
+#modif-valid, #modif-button {
+    display: flex;
+    justify-content: center;
+}
