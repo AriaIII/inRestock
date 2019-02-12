@@ -86,14 +86,10 @@ class User implements UserInterface, \Serializable
      */
     private $post;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\HistoriqueStock", mappedBy="user")
-     */
-    private $historiqueStocks;
-
+   
     public function __construct()
     {
-        $this->historiqueStocks = new ArrayCollection();
+        
 
     }
 
@@ -242,37 +238,6 @@ class User implements UserInterface, \Serializable
     public function setPost(?Post $post): self
     {
         $this->post = $post;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|HistoriqueStock[]
-     */
-    public function getHistoriqueStocks(): Collection
-    {
-        return $this->historiqueStocks;
-    }
-
-    public function addHistoriqueStock(HistoriqueStock $historiqueStock): self
-    {
-        if (!$this->historiqueStocks->contains($historiqueStock)) {
-            $this->historiqueStocks[] = $historiqueStock;
-            $historiqueStock->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeHistoriqueStock(HistoriqueStock $historiqueStock): self
-    {
-        if ($this->historiqueStocks->contains($historiqueStock)) {
-            $this->historiqueStocks->removeElement($historiqueStock);
-            // set the owning side to null (unless already changed)
-            if ($historiqueStock->getUser() === $this) {
-                $historiqueStock->setUser(null);
-            }
-        }
 
         return $this;
     }

@@ -34,18 +34,13 @@ class Stock
     private $product;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\HistoriqueStock", mappedBy="stock")
-     */
-    private $historiqueStocks;
-
-    /**
      * @ORM\Column(type="string", length=100, nullable=true)
      */
     private $packaging;
 
     public function __construct()
     {
-        $this->historiqueStocks = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -85,37 +80,6 @@ class Stock
     public function setProduct(?Product $product): self
     {
         $this->product = $product;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|HistoriqueStock[]
-     */
-    public function getHistoriqueStocks(): Collection
-    {
-        return $this->historiqueStocks;
-    }
-
-    public function addHistoriqueStock(HistoriqueStock $historiqueStock): self
-    {
-        if (!$this->historiqueStocks->contains($historiqueStock)) {
-            $this->historiqueStocks[] = $historiqueStock;
-            $historiqueStock->setStock($this);
-        }
-
-        return $this;
-    }
-
-    public function removeHistoriqueStock(HistoriqueStock $historiqueStock): self
-    {
-        if ($this->historiqueStocks->contains($historiqueStock)) {
-            $this->historiqueStocks->removeElement($historiqueStock);
-            // set the owning side to null (unless already changed)
-            if ($historiqueStock->getStock() === $this) {
-                $historiqueStock->setStock(null);
-            }
-        }
 
         return $this;
     }

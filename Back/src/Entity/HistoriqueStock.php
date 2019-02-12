@@ -27,21 +27,6 @@ class HistoriqueStock
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Stock", inversedBy="historiqueStocks")
-     */
-    private $stock;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Modification", inversedBy="historiqueStocks")
-     */
-    private $modification;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="historiqueStocks")
-     */
-    private $user;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $newStock;
@@ -55,6 +40,21 @@ class HistoriqueStock
      * @ORM\Column(type="string", length=50)
      */
     private $role;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $user;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $modification;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $product;
 
     public function getId(): ?int
     {
@@ -81,42 +81,6 @@ class HistoriqueStock
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getStock(): ?stock
-    {
-        return $this->stock;
-    }
-
-    public function setStock(?stock $stock): self
-    {
-        $this->stock = $stock;
-
-        return $this;
-    }
-
-    public function getModification(): ?Modification
-    {
-        return $this->modification;
-    }
-
-    public function setModification(?Modification $modification): self
-    {
-        $this->modification = $modification;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
 
         return $this;
     }
@@ -157,6 +121,42 @@ class HistoriqueStock
     public function setRole(string $role): self
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+    public function getUser(): ?string
+    {
+        return $this->User;
+    }
+
+    public function setUser(string $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getModification(): ?string
+    {
+        return $this->modification;
+    }
+
+    public function setModification(string $modification): self
+    {
+        $this->modification = $modification;
+
+        return $this;
+    }
+
+    public function getProduct(): ?string
+    {
+        return $this->product;
+    }
+
+    public function setProduct(string $product): self
+    {
+        $this->product = $product;
 
         return $this;
     }
