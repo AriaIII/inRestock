@@ -1,20 +1,88 @@
 {% extends 'frontend_layout.html.twig' %}
 
 
-{% block title %}Hello UserController!{% endblock %}
+{% block title %}Bienvenue sur inRestock !{% endblock %}
 
 {% block body %}
 
 
-{% for user in users %}
-<div class="transparent">
-<a href="{{path('security_login', {'username' : user.username} )}}">
-       <figure class="image is-128x128">
-            <img class="is-rounded" src="{{ asset(image_upload_path ~  ((user.photo ?: 'default-user-image.jpg')))  }}">
-        </figure>    
-           <p> {{user.firstName}}</p>      
-</a></div>
-{% endfor %}
 
+<div class="list-ul">
+    {% for user in users if user.role.code == 'ROLE_ADMIN' %}
+    <div class="list-li">
+        <a href="{{path('security_login', {'username' : user.username} )}}">
+            <div class="card padding-top">
+                <div class="card-image">
+                    <figure class="image is-128x128 image-center">
+                        <img src="{{ asset(image_upload_path ~  ((user.photo ?: 'default-user-image.jpg')))  }}">
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-content">
+                            <div class="new-title">
+                                <h2 class="title is-5">{{user.firstName}}</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+
+
+<div class="list-ul">
+    {% for user in users if user.role.code == 'ROLE_MANAGER' %}
+
+    <div class="list-li">
+        <a href="{{path('security_login', {'username' : user.username} )}}">
+            <div class="card padding-top">
+                <div class="card-image">
+                    <figure class="image is-128x128 image-center">
+                        <img src="{{ asset(image_upload_path ~  ((user.photo ?: 'default-user-image.jpg')))  }}">
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-content">
+                            <div class="new-title">
+                                <h2 class="title is-5">{{user.firstName}}</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="list-ul">
+    {% for user in users if user.role.code == 'ROLE_USER' %}
+
+    <div class="list-li">
+        <a href="{{path('security_login', {'username' : user.username} )}}">
+            <div class="card padding-top">
+                <div class="card-image">
+                    <figure class="image is-128x128 image-center">
+                        <img src="{{ asset(image_upload_path ~  ((user.photo ?: 'default-user-image.jpg')))  }}">
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-content">
+                            <div class="new-title">
+                                <h2 class="title is-5">{{user.firstName}}</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
 
 {% endblock %}

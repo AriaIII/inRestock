@@ -19,7 +19,7 @@
     pour le modifier.</p>
 </div>
 
-<ul class="list-ul">
+<ul class="list-ul product-left">
     {% for product in products %}
     <li class="list-li"> {{ product.name }}
         <a href="{{ path('backend_product_show', {'id': product.id}) }}"><i class="fas fa-info-circle"></i></a>

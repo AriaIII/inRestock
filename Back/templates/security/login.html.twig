@@ -8,7 +8,11 @@
 {% if error %}
 <div class="error-red">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
-<div class="field is-grouped">
+
+<div class="new-title">
+    <h3 class="title is-3">Saisissez votre mot de passe :</h2>
+</div>
+<div class="transparent">
     <form action="{{ path('security_login', {"username" : username}) }}" method="post">
         <label for="username">Nom d'utilisateur :</label>
         <div class="control">
@@ -18,9 +22,9 @@
         <div class="control">
             <input class="input is-rounded" type="password" id="password" name="_password" />
         </div>
-        
-            <button class="button is-primary" id="form-connexion" type="submit">Connexion</button>
-        
+
+        <button class="button is-primary" id="form-connexion" type="submit">Connexion</button>
+
     </form>
 </div>
 

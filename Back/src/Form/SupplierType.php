@@ -19,10 +19,15 @@ class SupplierType extends AbstractType
     {
         $builder
             ->add('societyName', TextType::class, [
-                'label' => 'Nom de la société :',
+                'label' => 'Nom de la société* :',
                 'attr' => [
                     'class' => 'input is-rounded'
-                    ]
+                ],
+                'constraints' => [
+                        new NotBlank([
+                            'message' => 'La valeur ne peut pas être vide'
+                        ]),
+                        ]
             ])
             ->add('name', TextType::class, [
                 'label' => 'Nom et prénom* :',

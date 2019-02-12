@@ -9,7 +9,6 @@ html{
 }
 
 
-
 .section {
     padding-bottom : 0;
 }
@@ -24,14 +23,18 @@ ul li {
     list-style:disc;
 }
 
+
 .list-ul {
     flex-wrap: wrap;
     display: flex;
-    background:  rgba(255,255,255,0.38);
-    padding:2em;
-    padding-left:4em;
+    background:  rgba(255,255,255,0.50);   
     margin-bottom : 2em;
   }
+
+  .product-left{
+    padding: 2em;
+    padding-left:4em;
+}
 
 .list-li {
     flex: 1 0 33%;
@@ -195,6 +198,18 @@ ul li {
 
 /* card pour les utilisateurs, fournisseurs, postes*/
 
+.image-center {
+    margin: auto
+    
+}
+
+.padding-top{
+padding-top: 2em;
+margin: 2em;
+}
+
+
+
 .card {
     font-weight: bold;
 }
@@ -229,7 +244,7 @@ ul li {
 
 /* gestion des fonds transparents */
 .transparent{
-    background:  rgba(255,255,255,0.38);
+    background:  rgba(255,255,255,0.50);
     padding: 2em;
 
 }

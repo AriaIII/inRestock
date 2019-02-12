@@ -40,7 +40,7 @@ class ProductType extends AbstractType
             ->add('suppliers', EntityType::class, [
                 'label' => 'Fournisseurs :',
                 'class' => Supplier::class,
-                'choice_label' => 'name',
+                'choice_label' => 'societyName',
                 'multiple' => true,
                 'expanded' => true,
                 'required' => false,
