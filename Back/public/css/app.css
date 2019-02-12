@@ -198,10 +198,13 @@ ul li {
 
 /* card pour les utilisateurs, fournisseurs, postes*/
 
+
+
 .image-center {
-    margin: auto
+    margin: auto;
     
 }
+
 
 .padding-top{
 padding-top: 2em;
