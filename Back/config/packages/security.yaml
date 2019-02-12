@@ -13,7 +13,8 @@ security:
             form_login: 
                 login_path: index
                 check_path: security_login
-                default_target_path: post_index             
+                default_target_path: post_index
+                failure_path:  security_login           
                      
             logout:
                 path: security_logout
