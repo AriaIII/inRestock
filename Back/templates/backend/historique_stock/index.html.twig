@@ -1,6 +1,6 @@
 {% extends 'backend/backend_layout.html.twig' %}
 
-{% block title %}liste des mouvements en stock{% endblock %}
+{% block title %}Mouvements en stock{% endblock %}
 
 {% block body %}
 
@@ -20,10 +20,10 @@
     <table class="table is-hoverable">
         <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(historiqueStock, 'Produit', 'p.name') }}<i class="fas fa-sort"></i></th>
-                <th>{{ knp_pagination_sortable(historiqueStock, 'Modification', 'm.name') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Produit', 'h.product') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Modification', 'h.modification') }}<i class="fas fa-sort"></i></th>
                 <th>{{ knp_pagination_sortable(historiqueStock, 'Variation', 'h.variation') }}<i class="fas fa-sort"></i></th>
-                <th>{{ knp_pagination_sortable(historiqueStock, 'Employé', 'u.firstName') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Employé', 'h.user') }}<i class="fas fa-sort"></i></th>
                 <th>{{ knp_pagination_sortable(historiqueStock, 'Poste', 'h.post') }}<i class="fas fa-sort"></i></th>
                 <th>{{ knp_pagination_sortable(historiqueStock, 'Role', 'h.role') }}<i class="fas fa-sort"></i></th>
                 <th>{{ knp_pagination_sortable(historiqueStock, 'Stock', 'h.newStock') }}<i class="fas fa-sort"></i></th>
@@ -33,10 +33,10 @@
         <tbody>
             {% for movement in historiqueStock %}
             <tr>
-                <td>{{ movement.stock.product.name }}</td>
+                <td>{{ movement.product }}</td>
                 <td>{{ movement.modification }}</td>
                 <td>{{ movement.variation }}</td>
-                <td>{{ movement.user.firstname }}</td>
+                <td>{{ movement.user}}</td>
                 <td>{{ movement.post}}</td>
                 <td>{{ movement.role}}</td>
                 <td>{{ movement.newStock}}</td>

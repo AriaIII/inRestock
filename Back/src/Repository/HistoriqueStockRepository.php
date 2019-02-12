@@ -22,10 +22,6 @@ class HistoriqueStockRepository extends ServiceEntityRepository
         public function customHistory(){
 
             return $this->createQueryBuilder('h')
-            ->join('h.stock', 's')
-            ->join('s.product','p')
-            ->join('h.user', 'u')
-            ->join('h.modification', 'm')
             ->orderBy('h.createdAt', 'DESC')
             ->getQuery()
             ;

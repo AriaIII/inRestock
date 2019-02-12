@@ -127,7 +127,7 @@ class HistoriqueStock
 
     public function getUser(): ?string
     {
-        return $this->User;
+        return $this->user;
     }
 
     public function setUser(string $user): self

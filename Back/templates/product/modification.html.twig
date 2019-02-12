@@ -13,8 +13,8 @@
 
 {% if product.stock %}
 <div id="modified-stock" class="transparent">
-   
-    
+
+
     <h3 class="subtitle is-3">
         stock actuel : <span id="js-stock">{{product.stock.stock}}</span>
     </h3>
@@ -34,21 +34,21 @@
 <form method="post">
     <div class="field is-grouped">
         <p class="control">
-            <button class="button is-primary" id="js-plus">+</button>
+            <button class="button is-primary" id="js-minus">-</button>
         </p>
         <p class="control">
             <input id="js-input" type="text" class="text button is-warning" value="0">
         </p>
         <p class="control">
-            <button class="button is-primary" id="js-minus">-</button>
+            <button class="button is-primary" id="js-plus">+</button>
         </p>
     </div>
-    
-        <div class="field is-grouped ">
-            <button class="button is-danger" id="js-valid" data-product="{{product ? product.id|json_encode|e('html_attr')}}"
-                data-user="{{ app.user ? app.user.id|json_encode|e('html_attr') }}" type="submit">Valider</button>
-        </div>
-   
+
+    <div class="field is-grouped ">
+        <button class="button is-danger" id="js-valid" data-product="{{product ? product.id|json_encode|e('html_attr')}}"
+            data-user="{{ app.user ? app.user.id|json_encode|e('html_attr') }}" type="submit">Valider</button>
+    </div>
+
 </form>
 
 {% else %}
@@ -57,7 +57,7 @@
     <p>Il n'existe aucun stock informatisé pour ce produit. Veuillez noter votre action et avertir votre supérieur.</p>
 </dir>
 
-    
+
 {% endif %}
 
 {% endblock %}
