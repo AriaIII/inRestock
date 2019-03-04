@@ -24,7 +24,6 @@ class UserController extends AbstractController
      */
     public function index(UserRepository $userRepository): Response
     {
-        
         return $this->render('backend/user/index.html.twig', [
             'users' => $userRepository->findAll(),
         ]);
@@ -33,7 +32,7 @@ class UserController extends AbstractController
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
      */
-    public function new(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $userRepo, FileUploader $fileUploader ): Response
+    public function new(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $userRepo, FileUploader $fileUploader, \Swift_Mailer $mailer ): Response
     {
         $newUser = new User();
         $form = $this->createForm(UserType::class, $newUser);
@@ -49,17 +48,18 @@ class UserController extends AbstractController
             /*------------------------- UPLOAD IMAGE ---------------------------------
              on recupere l'image du formulaire et on la stocke */
             $file = $newUser->getPhoto();
-            // on verifie si l'utilisateur a entré une image (si le champs image est null)
+            // on verifie si l'utilisateur a entré une image (si le champs image n'est pas nul)
             if(!is_null($newUser->getPhoto())){
                 $fileName = $fileUploader->upload($file);
                 $newUser->setPhoto($fileName);
             }
-            // appel à la fonction custom createPassword() pour générer un mot de passa automatique
+            // appel à la fonction custom createPassword() pour générer un mot de passe automatique
             $password = $this->createPassword(4);
             //appel a la fonction custom mail qui enverra le message au salarié
-            $mail = $this->mail($newUser, $password);
+            $mail = $this->mail($newUser, $password, $mailer);
 
             $entityManager = $this->getDoctrine()->getManager();
+            // encodage du mot de passe
             $hash = $encoder->encodePassword($newUser, $password);
             $newUser->setPassword($hash);
             $entityManager->persist($newUser);
@@ -151,7 +151,7 @@ class UserController extends AbstractController
         $firstname = $newUser->getFirstName();
         $lastname = $newUser->getLastName();
 
-        // on prend la 1e lettre du nom et du prénom et on y acolle un nombre.
+        // on prend la 1e lettre du nom et du prénom et on y accole un nombre.
         $firstLetter =  substr($firstname, 0, 1);
         $secondLetter = substr($lastname, 0, 1);
         $number = 1;
@@ -194,23 +194,16 @@ class UserController extends AbstractController
         return $password;
     }
 
-    public function mail($newUser, $password)
+    public function mail($newUser, $password, $mailer)
     {
-        // fonction créant le mail qui enverra le mot de passe au salarié, lui permettant de se connecter à son compte dans le restaurant et d'agir sur les stocks.
-        $transport = (new \Swift_SmtpTransport('smtp.free.fr', 465, 'ssl'))
-        ->setUsername('inrestock@free.fr')
-        ->setPassword('In2Restock7')
-        ;
-
-        $mailer = new \Swift_Mailer($transport);
-
         $firstname = $newUser->getFirstName();
         $lastname = $newUser->getLastName();
+        $email = $newUser->getEmail();
 
 
         $message = (new \Swift_Message('Nouveau salarié inRestock'))
         ->setFrom(['inrestock@free.fr' => 'restaurant X'])
-        ->setTo(['inrestock@free.fr'])
+        ->setTo([$email])
         ->setBody(
             '<html>' .
             '   <body>' .

@@ -36,7 +36,7 @@ order.addEventListener('click',function(evt){
     modification = order.dataset.commande;
 })
 
-// Quand on clique il éxecute cette fonction onClickBtn
+// Quand on clique il exécute cette fonction onClickBtn
 valid.addEventListener('click', onClickBtn);
 
 function onClickBtn(evt) {

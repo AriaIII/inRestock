@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -27,8 +28,8 @@ class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // je construis un formulaire en fonction de la page new ou edit : le mot de passe va être géré différemment si c'est un nouvel utilisateur ou si c'est un salarié déjà existant.
-        // On ne va pas être obligé de resaisir le mot de passe si le salarié existe déjà, on le précise à l'utilisateur
+        // je construis un formulaire en fonction de la page new ou edit : le champ 'username' va être géré différemment si c'est un nouvel utilisateur ou si c'est un salarié déjà existant. De même le champ 'mot de passe' n'apparaitra que lors de la création du salarié.
+       
         $listener = function (FormEvent $event) {
 
             //je récupère l'objet que j'essaye de setter sur mon form + le formulaire actuel en cours de construction
@@ -36,49 +37,43 @@ class UserType extends AbstractType
             $currentForm = $event->getForm();
             
         
-        /*
-         $currentForm est le formulaire en cours ce qui fait que comme un formulaire normal je peux utiliser les methodes add() comme précédemment.
-         De ce fait je peux conditionner l'ajout ou la suppression de champs potentiels dans cette méthode
-         Si mon objet a un id null, c'est que l'objet n'est pas encore créé en BDD = NEW et si mon objet a un id, c'est qu'il existe en BDD = EDIT
-        */
-        if(is_null($user->getId())){
-            $currentForm
-            ->add('username', TextType::class, [
-                'label' => 'Pseudo :',
-                'attr' => [
-                    'class' => 'input is-rounded',
-                    'readonly' => true,
-                    'placeholder' => 'Ce champ est rempli automatiquement.'
-                ],
-                
-            ])
-            ->add('password', PasswordType::class, [
-                'empty_data' => '',
-                'required' => true,
-                'attr' => [
-                    'class' => 'input is-rounded',
-                    'readonly' => true,
-                    'placeholder' => 'Le mot de passe est généré automatiquement et envoyé à votre salarié.'
-                ],
-                'label' => 'Mot de passe :'
-                
-            ])
-            
-            ;
-        } else {
-            $currentForm
-            ->add('username', TextType::class, [
-                'label' => 'Pseudo : ce champ ne peut pas être modifié',
-                'attr' => [
-                    'class' => 'input is-rounded',
-                    'readonly' => true,
-                    'placeholder' => 'Ce champ est rempli automatiquement.'
-                ],
-                
-            ])
-            ;
-        }          
-    };
+            /*
+             $currentForm est le formulaire en cours ce qui fait que comme un formulaire normal je peux utiliser les methodes add() comme précédemment.
+             De ce fait je peux conditionner l'ajout ou la suppression de champs potentiels dans cette méthode
+             Si mon objet a un id null, c'est que l'objet n'est pas encore créé en BDD = NEW et si mon objet a un id, c'est qu'il existe en BDD = EDIT
+            */
+            if(is_null($user->getId())){
+                $currentForm
+                ->add('username', TextType::class, [
+                    'label' => 'Pseudo :',
+                    'attr' => [
+                        'class' => 'input is-rounded',
+                        'readonly' => true,
+                        'placeholder' => 'Ce champ est rempli automatiquement.'
+                    ],
+                ])
+                ->add('password', PasswordType::class, [
+                    'label' => 'Mot de passe :',
+                    'attr' => [
+                        'class' => 'input is-rounded',
+                        'readonly' => true,
+                        'placeholder' => 'Le mot de passe est généré automatiquement et envoyé à votre salarié.'
+                    ],                    
+                ])                
+                ;
+            } else {
+                $currentForm
+                ->add('username', TextType::class, [
+                    'label' => 'Pseudo : ce champ ne peut pas être modifié',
+                    'attr' => [
+                        'class' => 'input is-rounded',
+                        'readonly' => true,
+                    ],
+
+                ])
+                ;
+            }          
+        };
         $builder
             ->add('firstName', TextType::class, [
                 'label' => 'Prénom* :',
@@ -136,6 +131,9 @@ class UserType extends AbstractType
                     new NotBlank([
                         'message' => 'La valeur ne peut pas être vide'
                     ]),
+                    new Email([
+                        'message' => 'La valeur saisie ne correspond pas à un email valide.'
+                    ])
                 ]
             ])
             ->add('photo', FileType::class, [

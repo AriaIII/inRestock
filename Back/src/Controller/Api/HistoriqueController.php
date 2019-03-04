@@ -25,13 +25,13 @@ class HistoriqueController extends AbstractController
         // On recupere l'integralité de la request et on la stocke
        $data = $request->getContent();
        
-       // On utilise la fonction native de chez php : json_decode pour décodé le json
+       // On utilise la fonction native de chez php : json_decode pour décoder le json
        $req = json_decode($data);
        
        // On récupère l'id de l'user courant
        $userId = $req->user;
        
-       // On récupère l'user associé à l'id de l'user courant
+       // On récupère le user associé à l'id du user courant
        $user = $userRepo->findById($userId);
        $userToSet = $user[0]->getFirstName();
        
@@ -50,10 +50,10 @@ class HistoriqueController extends AbstractController
         //On récupère le stock courant
         $currentStock = $stock[0]->getStock();
         
-        // On lui rajoute la variation
+        // On lui ajoute la variation
         $newStock = $currentStock + $variation;
         
-        //! Si la somme/soustratction du stock rentré par l'utilisateur passe sous 0 alors on stop tout et on retourne un message d'erreur
+        //! Si la somme/soustraction du stock rentrée par l'utilisateur passe sous 0 alors on stoppe tout et on retourne un message d'erreur
         if ($newStock < 0){
             return $this->json(['stock' => 'Il n\'est pas possible d\'avoir un stock inférieur à 0']);
         }
@@ -62,7 +62,7 @@ class HistoriqueController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($stock[0]);
 
-        ///ensuite on crée une nouvelle ligne HistoriqueStock et on la remplit avec les données récupérer plus haut
+        ///ensuite on crée une nouvelle ligne HistoriqueStock et on la remplit avec les données récupérées plus haut
         $newLine = new HistoriqueStock();
         $newLine->setVariation($variation);
         $newLine->setProduct($productToSet);
@@ -84,15 +84,8 @@ class HistoriqueController extends AbstractController
 
     }
 
-    public function mail($productToSet, $stockAlert,$newStock){
+    public function mail($productToSet, $stockAlert,$newStock, \Swift_Mailer $mailer){
     
-         $transport = (new \Swift_SmtpTransport('smtp.free.fr', 465, 'ssl'))
-         ->setUsername('inrestock@free.fr')
-         ->setPassword('In2Restock7')
-         ;
-
-         $mailer = new \Swift_Mailer($transport);
-
          $message = (new \Swift_Message('Limite atteinte du produit : '.$productToSet))
          ->setFrom(['inrestock@free.fr' => 'restaurant X'])
          ->setTo(['inrestock@free.fr'])
