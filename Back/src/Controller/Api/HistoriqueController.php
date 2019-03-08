@@ -20,7 +20,7 @@ class HistoriqueController extends AbstractController
     /**
      * @Route("/history/add", name="historique", methods={"POST"})
      */
-    public function line(Request $request, StockRepository $stockRepo, UserRepository $userRepo, ModificationRepository $modifRepo)
+    public function line(Request $request, StockRepository $stockRepo, UserRepository $userRepo, ModificationRepository $modifRepo, \Swift_Mailer $mailer)
     {
         // On recupere l'integralité de la request et on la stocke
        $data = $request->getContent();
@@ -77,14 +77,14 @@ class HistoriqueController extends AbstractController
 
         if ($newStock < $stockAlert){
 
-            $mail = $this->mail($productToSet, $stockAlert, $newStock);
+            $mail = $this->mail($productToSet, $stockAlert, $newStock, $mailer);
         }
 
         return $this->json(['stock' => $newStock], 200);
 
     }
 
-    public function mail($productToSet, $stockAlert,$newStock, \Swift_Mailer $mailer){
+    public function mail($productToSet, $stockAlert,$newStock, $mailer){
     
          $message = (new \Swift_Message('Limite atteinte du produit : '.$productToSet))
          ->setFrom(['inrestock@free.fr' => 'restaurant X'])
