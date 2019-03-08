@@ -49,7 +49,7 @@ class UserController extends AbstractController
              on recupere l'image du formulaire et on la stocke */
             $file = $newUser->getPhoto();
             // on verifie si l'utilisateur a entré une image (si le champs image n'est pas nul)
-            if(!is_null($newUser->getPhoto())){
+            if(!is_null($file)){
                 $fileName = $fileUploader->upload($file);
                 $newUser->setPhoto($fileName);
             }
@@ -167,8 +167,7 @@ class UserController extends AbstractController
             }
         } else {
             $test = [];
-        }
-        
+        }        
 
         while (array_search($username, $test))
         {
@@ -186,8 +185,6 @@ class UserController extends AbstractController
         for($i = 1; $i <= $passwordLength; $i++)
         {
             $nb = rand(0, 9);
-
-            $numbers [] = $nb;
 
             $password .= $nb;
         }

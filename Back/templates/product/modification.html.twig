@@ -1,6 +1,5 @@
 {% extends 'frontend_layout.html.twig' %}
 
-
 {% block title %} {{product.name}} : modification{% endblock %}
 
 {% block body %}
@@ -14,7 +13,6 @@
 {% if product.stock %}
 <div id="modified-stock" class="transparent">
 
-
     <h3 class="subtitle is-3">
         stock actuel : <span id="js-stock">{{product.stock.stock}}</span>
     </h3>
@@ -23,7 +21,8 @@
         {% for modification in modifications %}
         <p class="control">
             <button class="button is-warning" data-{{modification.name}}="{{modification ? modification.id|json_encode|e('html_attr')}}"
-                id="js-{{modification.name}}">{{modification.name}}</button>
+                id="js-{{modification.name}}">{{modification.name}}
+            </button>
         </p>
         {% endfor %}
     </div>
