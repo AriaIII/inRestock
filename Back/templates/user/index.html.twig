@@ -8,7 +8,7 @@
 
 
 <div class="list-ul">
-    {% for user in users if user.role.code == 'ROLE_ADMIN' %}
+    {% for user in users if user.role.code == 'ROLE_ADMIN' or user.role.code == 'ROLE_VISITOR' %}
     <div class="list-li">
         <a href="{{path('security_login', {'username' : user.username} )}}">
             <div class="card padding-top">

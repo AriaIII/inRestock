@@ -62,8 +62,13 @@ class UserController extends AbstractController
             // encodage du mot de passe
             $hash = $encoder->encodePassword($newUser, $password);
             $newUser->setPassword($hash);
+            $userRole = $this->getRole();
+            dd($userRole);
+            // if () {
             $entityManager->persist($newUser);
-            $entityManager->flush();
+            $entityManager->flush();    
+            // }
+            
 
             return $this->redirectToRoute('backend_user_index');
         }

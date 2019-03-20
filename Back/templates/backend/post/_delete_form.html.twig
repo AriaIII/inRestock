@@ -1,5 +1,9 @@
 <form class="delete-form"  method="post" action="{{ path('backend_post_delete', {'id': post.id}) }}" onsubmit="return confirm('Etes-vous sûr(e) de vouloir supprimer ce poste ?');">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ post.id) }}">
-    <button class="button is-danger">Supprimer</button>
+    {% if is_granted('ROLE_VISITOR') %}
+    <button class="button is-danger" disabled >Supprimer</button>
+    {% else %}
+    <button class="button is-danger" >Supprimer</button>
+    {% endif %} 
 </form>

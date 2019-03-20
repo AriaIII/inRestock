@@ -68,6 +68,7 @@ security:
 
     role_hierarchy:
         ROLE_SUPER_ADMIN : ROLE_ADMIN
+        ROLE_VISITOR : ROLE_ADMIN
         ROLE_ADMIN : ROLE_MANAGER
         ROLE_MANAGER: ROLE_USER
         ROLE_USER: ROLE_APPRENTI

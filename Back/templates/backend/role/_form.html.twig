@@ -4,6 +4,10 @@
     <p class="transparent">* champ à remplir obligatoirement</p>
     <div class="field is-grouped">
         <p class="control create-form">
-            <button class="button is-warning">{{ button_label|default('Enregistrer') }}</button>
+            {% if is_granted('ROLE_VISITOR') %}
+            <button class="button is-warning" disabled>{{ button_label|default('Enregistrer') }}</button>
+            {% else %}
+            <button class="button is-warning" >{{ button_label|default('Enregistrer') }}</button>
+            {% endif %}
         </p>
 {{ form_end(form) }}
