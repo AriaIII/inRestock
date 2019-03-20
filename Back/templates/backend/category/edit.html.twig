@@ -1,0 +1,26 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %} {{category.name}} : modification {% endblock %}
+
+{% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="{{ path('backend_index')}}">Accueil</a></li>
+        <li><a href="{{ path('backend_category_index')}}">Liste des catégories</a></li>
+        <li><a href="{{ path('backend_category_show', {"id" : category.id})}}">{{category.name}}</a></li>
+        <li class="is-active"><a href="#" aria-current="page">Modification : {{category.name}}</a></li>
+    </ul>
+</nav>
+
+<div class="new-title">
+    <h2 class="title is-3">Modification de la catégorie :</h2>
+</div>
+
+{{ include('backend/category/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+<p class="control">
+    <a class="button is-primary" href="{{ path('backend_category_index') }}">Retour à la liste</a>
+</p>
+{{ include('backend/category/_delete_form.html.twig') }}
+</div>
+{% endblock %}

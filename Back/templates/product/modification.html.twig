@@ -1,0 +1,68 @@
+{% extends 'frontend_layout.html.twig' %}
+
+{% block title %} {{product.name}} : modification{% endblock %}
+
+{% block body %}
+
+<div class="new-title">
+    <h3 class="title is-3">
+        {{product.name}}
+    </h3>
+</div>
+
+{% if product.stock %}
+<div id="modified-stock" class="transparent">
+
+    <h3 class="subtitle is-3">
+        stock actuel : <span id="js-stock">{{product.stock.stock}}</span>
+    </h3>
+    <p>Choisissez le type de modification que vous voulez faire :</p>
+    <div class="field is-grouped">
+        {% for modification in modifications %}
+        <p class="control">
+            <button class="button is-warning" data-{{modification.name}}="{{modification ? modification.id|json_encode|e('html_attr')}}"
+                id="js-{{modification.name}}">{{modification.name}}
+            </button>
+        </p>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+<form method="post">
+
+    <div id="modif-button" class="field is-grouped">
+        <p class="control">
+            <button class="button is-primary" id="js-minus">-</button>
+        </p>
+        <p class="control">
+            <input id="js-input" type="text" class="text button is-warning" value="0">
+        </p>
+        <p class="control">
+            <button class="button is-primary" id="js-plus">+</button>
+        </p>
+    </div>
+
+    <div id="modif-valid" class="field is-grouped">
+        <button class="button is-danger" id="js-valid" data-product="{{product ? product.id|json_encode|e('html_attr')}}"
+            data-user="{{ app.user ? app.user.id|json_encode|e('html_attr') }}" type="submit">Valider</button>
+    </div>
+
+</form>
+
+{% else %}
+
+<dir class="transparent">
+    <p>Il n'existe aucun stock informatisé pour ce produit. Veuillez noter votre action et avertir votre supérieur.</p>
+</dir>
+
+
+{% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="{{asset('js/modification.js' ) }}"></script>
+{% endblock %}

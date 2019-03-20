@@ -1,0 +1,44 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}Postes{% endblock %}
+
+{% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="{{ path('backend_index')}}">Accueil</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Liste des postes</a></li>
+        </ul>
+    </nav>
+
+    <div class="new-title">
+        <h2 class="title is-2">Liste des postes</h2>
+    </div>
+
+    <table class="table is-hoverable">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th class="has-text-centered">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+            <tr>
+                <td>{{ post.name }}</td>
+                <td class="has-text-centered">
+                    <a href="{{ path('backend_post_show', {'id': post.id}) }}"><i class="fas fa-info-circle has-text-centered"></i></a>
+                    <a href="{{ path('backend_post_edit', {'id': post.id}) }}"><i class="fas fa-edit has-text-centered"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun poste trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    <a class="button is-primary" href="{{ path('backend_post_new') }}">Nouveau poste </a>
+{% endblock %}

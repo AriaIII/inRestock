@@ -1,0 +1,39 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}Produits{% endblock %}
+
+{% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+    <ul>
+      <li><a href="{{ path('backend_index')}}">Accueil</a></li>
+      <li class="is-active"><a href="#" aria-current="page">Liste des produits</a></li>
+    </ul>
+  </nav>
+
+<div class="new-title">
+    <h2 class="title is-2">Liste des produits disponibles :</h2>
+</div>
+<div class="transparent">
+<p>Cliquez sur <i class="fas fa-info-circle"></i> pour accéder au détail du produit et sur <i class="fas fa-edit"></i>
+    pour le modifier.</p>
+</div>
+
+<ul class="list-ul product-left">
+    {% for product in products %}
+    <li class="list-li"> {{ product.name }}
+        <a href="{{ path('backend_product_show', {'id': product.id}) }}"><i class="fas fa-info-circle"></i></a>
+        <a href="{{ path('backend_product_edit', {'id': product.id}) }}"><i class="fas fa-edit"></i></a>
+    </li>
+    {% else %}
+    <li>Aucun produit trouvé </li>
+    {% endfor %}
+</ul>
+
+
+<a class="button is-primary" href="{{ path('backend_product_new') }}">Nouveau produit</a>
+
+
+
+
+{% endblock %}

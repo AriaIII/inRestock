@@ -1,0 +1,121 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+    <ul>
+      <li><a href="{{ path('backend_index')}}">Accueil</a></li>
+      {% if referer == url('backend_product_index') %}
+      <li><a href="{{ path('backend_modification_index') }}">Liste des produits</a></li>
+      <li class="is-active"><a href="#" aria-current="page">{{product.name}}</a></li>
+      {% elseif referer == url('backend_category_show', {"id" : product.category.id }) %}
+      <li><a href="{{ path('backend_category_index') }}">Liste des categories</a></li>
+      <li><a href="{{ path('backend_category_show', {"id" : product.category.id}) }}">{{product.category.name}}</a></li>
+      <li class="is-active"><a href="#" aria-current="page">{{product.name}}</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+
+<nav class="is-grouped">
+    {# le lien doit amener à la page du stock du produit ou à la page permettant de créer le stock avec le champ
+    produit déjà entré #}
+    {% if product.stock %}
+    <a class="button is-warning" href="{{ path('backend_stock_edit', {'id': product.stock.id} ) }}">
+        Gérer le stock du produit
+    </a>
+    {% else %}
+    <a class="button is-warning" href="{{ path('backend_stock_new', {'id': product.id}) }}">
+        Créer le stock du produit
+    </a>
+    {% endif %}
+
+    <a class="button is-warning" href="{{ path('backend_supplier_new') }}">
+        Créer un nouveau fournisseur pour ce produit
+    </a>
+</nav>
+
+<div class="new-title">
+    <h4 class="title is-4">Liste des fournisseurs de {{ product.name }}</h4>
+</div>
+
+<div class="table__wrapper">
+    <table class="table is-hoverable">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Entreprise</th>
+                <th>Adresse</th>
+                <th>Téléphone</th>
+                <th>Mail</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for supplier in product.suppliers %}
+            <tr>
+                <td>{{ supplier.name }}</td>
+                <td>{{ supplier.societyName }}</td>
+                <td>{{ supplier.town }}</td>
+                <td>{{ supplier.phone }}</td>
+                <td>{{ supplier.mail }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="12">Aucun fournisseur</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="new-title">
+    <h4 class="title is-4">Stock de {{ product.name }}</h4>
+</div>
+
+<div class="table__wrapper">
+    <table class="table is-hoverable">
+
+        <tbody>
+            {% if product.stock %}
+            <tr>
+                <th>Unité de conditionnement</th>
+                <td>{{ product.stock.packaging }}</td>
+            </tr>
+            <tr>
+                <th>Stock actuel</th>
+                <td>{{ product.stock.stock }}</td>
+            </tr>
+            <tr>
+                <th>Limite de déclenchement de l'alerte</th>
+                <td>{{ product.stock.stockAlert }}</td>
+            </tr>
+
+            {% else %}
+            <tr>
+                <td>Aucun stock</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+<div class="field is-grouped">
+    <p class="control">
+        <a class="button is-primary" href="{{ path('backend_product_index') }}">
+            Retour a la liste
+        </a>
+    </p>
+    <p class="control">
+        <a class="button is-warning" href="{{ path('backend_product_edit', {'id': product.id}) }}">
+            Modifier le produit
+        </a>
+    </p>
+    <p class="control">
+        {{ include('backend/product/_delete_form.html.twig') }}
+
+    </p>
+</div>
+
+
+
+{% endblock %}

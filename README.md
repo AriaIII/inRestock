@@ -1,4 +1,5 @@
 # inResto'ck
+
 ## introduction
 Ce site a été créé lors de mon projet de fin de formation à l'école O'clock.
 L’idée de départ de ce projet est de proposer une solution pratique et interactive pour permettre une gestion des stocks optimisée dans la restauration.
@@ -17,3 +18,4 @@ Le site permet également la mise à jour des stocks pour cause d’inventaire, 
 Chaque modification apportée est enregistrée en base de données sous forme d’une ligne d’historique des modifications. L’ensemble de cet historique est accessible à l’administrateur qui est ainsi au courant en temps réel de l’état des stocks. D’autre part, quand la quantité disponible d’un produit atteint une limite critique, l’application envoie un mail d’alerte au gestionnaire, lui permettant ainsi de penser à préparer ses commandes.
 L’usage de l’historique ne s’arrête pas là. L’idée est aussi , dans une version ultérieure, de l’utiliser pour faire des statistiques. On pourra récupérer les informations concernant un produit particulier : le rythme ou l’heure des prélèvements, la périodicité des renouvellements du stock, quel poste l’utilise le plus. Un tri des modifications par poste apportera des informations intéressantes sur son fonctionnement. On pourra également noter l’activité des employés, savoir qui va le plus souvent dans la réserve et avoir ainsi une vision du fonctionnement des équipes.
 Pour ce qui est de la gestion du restaurant, le site permet également à l’administrateur de gérer l’ensemble de ses données : salariés, fournisseurs, postes, produits, catégories. Il dispose d’un back-end lui permettant de les créer, les afficher, les modifier ou les supprimer.
+

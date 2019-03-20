@@ -1,0 +1,31 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}Accueil administration{% endblock %}
+
+{% block body %}
+
+<div class="new-title"><h1 class="title is-1">Bienvenue sur le panneau d'administration d'inRestock</h1></div>
+<div class="columns" id="home-columns">
+
+           <div class="column transparent">
+                <p>Bienvenue sur le système de gestion de inRestock. Vous pouvez gérer l'ensemble de vos données clients, salariés,
+                        produits et stock par l'intermédiaire de cete interface. En cas de besoin, vous pouvez joindre notre SAV :
+
+                       <ul>
+                           <li> tel : - 01 02 03 04 05</li>
+                        <li>mail : sav@inrestock.com </li>
+
+                       </ul>
+
+                </p>
+           </div>
+
+        <div class="column" id="home-logo"><img class width="600px" src="{{asset('images/logoInrestock.svg')}}" alt=""></div>
+</div>
+
+
+
+
+{% endblock %}
+
+

@@ -1,0 +1,24 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}Nouvelle mModification{% endblock %}
+
+{% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="{{ path('backend_index')}}#">Accueil</a></li>
+        <li><a href="{{ path('backend_modification_index')}}#">Modifications</a></li>
+        <li class="is-active"><a href="#" aria-current="page">Nouvelle modificattion</a></li>
+    </ul>
+</nav>
+
+<div class="new-title">
+    <h4 class="title is-4">Créer une nouvelle modification</h4>
+</div>
+
+    {{ include('backend/modification/_form.html.twig') }}
+    <p class="control">
+        <a class="button is-primary" href="{{ path('backend_modification_index') }}">Retour à la liste</a>
+    </p>
+</div>
+{% endblock %}

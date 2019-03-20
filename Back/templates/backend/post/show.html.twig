@@ -1,0 +1,67 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}{{post.name}}{% endblock %}
+
+{% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="{{ path('backend_index')}}">Accueil</a></li>
+        <li><a href="{{ path('backend_post_index')}}">Liste des postes</a></li>
+        <li class="is-active"><a href="#" aria-current="page">{{post.name}}</a></li>
+    </ul>
+</nav>
+
+<div class="new-title">
+    <h2 class="title is-2">Poste : {{post.name}}</h2>
+</div>
+
+<div class="transparent">
+    <div id="post-card" class="card">
+        <div class="card-content">
+            <div class="media">
+                <div class="media-content">
+                    <h3 class="subtitle">Employés actuellement affectés à ce poste : </h3>
+                    <div>
+                        <ul class="transparent-list">
+                            {% for user in post.users %}
+
+                            <li class="list-li">
+                                {{user.firstName}} {{user.lastName}}
+                            </li>
+                            {% else %}
+                            <li>Aucun salarié à ce poste </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="media-right">
+                    <figure class="image is-128x128">
+                        <img src="{{ asset(image_upload_path ~  (post.photo ?: 'default-poste.jpeg')) }}">
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="field is-grouped create-new">
+    <p class="control">
+        <a class="button is-primary" href="{{ path('backend_post_index') }}">
+            Retour a la liste
+        </a>
+    </p>
+    <p class="control">
+        <a class="button is-warning" href="{{ path('backend_post_edit', {'id': post.id}) }}">
+            Modifier le poste
+        </a>
+    </p>
+    <p class="control">
+        {{ include('backend/post/_delete_form.html.twig') }}
+
+    </p>
+</div>
+
+
+{% endblock %}

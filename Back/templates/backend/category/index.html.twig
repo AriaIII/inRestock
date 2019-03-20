@@ -1,0 +1,37 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="{{ path('backend_index')}}">Accueil</a></li>
+        <li class="is-active"><a href="#" aria-current="page">Liste des catégories</a></li>
+    </ul>
+</nav>
+
+<div class="new-title">
+    <h2 class="title is-2">Liste des catégories : </h2>
+</div>
+
+
+<div class="tags">
+    {% for category in categories %}
+
+    <span class="tag is-large">
+        <a href="{{ path('backend_category_show', {'id': category.id}) }}">
+            {{category.name}}
+        </a>
+    </span>
+
+    {% else %}
+    <p>Aucune catégorie trouvée</p>
+    {% endfor %}
+</div>
+
+
+<a class="button is-primary" href="{{ path('backend_category_new') }}">Nouvelle catégorie </a>
+
+
+{% endblock %}

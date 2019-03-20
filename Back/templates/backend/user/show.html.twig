@@ -1,0 +1,53 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %} {{user.lastname}} : fiche {% endblock %}
+
+{% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="{{ path('backend_index')}}">Accueil</a></li>
+        <li><a href="{{ path('backend_user_index') }}">Utilisateurs</a></li>
+        <li class="is-active"><a href="" aria-current="page">{{user.lastname}}</a></li>
+    </ul>
+</nav>
+
+<div class="card">
+    <div class="card-content">
+        <div class="media">
+            <div class="media-left">
+                <figure class="image is-128x128">
+                    <img class="is-rounded" src="{{ asset(image_upload_path ~  ((user.photo ?: 'default-user-image.jpg')))  }}">
+                </figure>
+            </div>
+            <div class="media-content">
+                <div class="new-title">
+                    <h3 class="title is-3">{{ user.firstName }} {{ user.lastname }}</h3>
+                </div>
+                <p>Pseudo : {{ user.username }}</p>
+                <p>Adresse : {{ user.adress }}, {{ user.postcode }} {{ user.town }}</p>
+                <p>Téléphone : {{ user.phone }}</p>
+                <p>Email : {{ user.email }}</p>
+                <p>Responsabilité actuelle : {{ user.role }} </p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="field is-grouped">
+    <p class="control">
+        <a class="button is-primary" href="{{ path('backend_user_index') }}">
+            Retour à la liste
+        </a>
+    </p>
+    <p class="control">
+        <a class="button is-warning" href="{{ path('backend_user_edit', {'id': user.id}) }}">
+            Modifier la fiche
+        </a>
+    </p>
+    
+        {{ include('backend/user/_delete_form.html.twig') }}
+    
+</div>
+{% endblock %}

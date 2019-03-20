@@ -1,0 +1,25 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}Modification {{modification.name}} {% endblock %}
+
+{% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+    <ul>
+      <li><a href="{{ path('backend_index')}}">Acceuil</a></li>
+      <li><a href="{{ path('backend_modification_index') }}">Liste des modifications</a></li>
+      <li class="is-active"><a href="#" aria-current="page">Modification : {{modification.name}}</a></li>
+    </ul>
+  </nav>
+
+<div class="new-title">
+        <h2 class="title is-3">Modification du type de modification :</h2>
+    </div>
+
+    {{ include('backend/modification/_form.html.twig', {'button_label': 'Valider'}) }}
+    <p class="control">
+        <a class="button is-primary" href="{{ path('backend_modification_index') }}">Retour à la liste</a>
+    </p>
+    {{ include('backend/modification/_delete_form.html.twig') }}
+</div>
+{% endblock %}

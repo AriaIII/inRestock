@@ -1,0 +1,47 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}Rôles{% endblock %}
+
+{% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="{{ path('backend_index')}}">Accueil</a></li>
+        <li class="is-active"><a href="{{ path('backend_role_index') }}" aria-current="page">Liste des rôles</a></li>
+    </ul>
+</nav>
+
+<div class="new-title">
+    <h2 class="title is-2">Liste des rôles</h2>
+</div>
+<div class="table__wrapper">
+    <table class="table is-hoverable">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for role in roles %}
+            <tr>
+                <td>{{ role.code }}</td>
+                <td>{{ role.name }}</td>
+                <td>
+                    <a href="{{ path('backend_role_show', {'id': role.id}) }}"><i class="fas fa-info-circle"></i></a>
+                    <a href="{{ path('backend_role_edit', {'id': role.id}) }}"><i class="fas fa-edit"></i></a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4">Aucun role trouvés</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<a class="button is-primary" href="{{ path('backend_role_new') }}">Nouveau rôle</a>
+
+{% endblock %}

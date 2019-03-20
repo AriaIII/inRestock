@@ -1,0 +1,65 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}Mouvements en stock{% endblock %}
+
+{% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+    <ul>
+      <li><a href="{{ path('backend_index')}}">Accueil</a></li>
+      <li class="is-active"><a href="#" aria-current="page">Historique des modifications</a></li>
+    </ul>
+  </nav>
+
+<div class="new-title">
+    <h2 class="title is-2">Liste des mouvements en stock</h2>
+</div>
+
+
+<div class="table__wrapper">
+    <table class="table is-hoverable">
+        <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Produit', 'h.product') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Modification', 'h.modification') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Variation', 'h.variation') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Employé', 'h.user') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Poste', 'h.post') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Role', 'h.role') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Stock', 'h.newStock') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(historiqueStock, 'Date-heure', 'h.createdAt') }}<i class="fas fa-sort"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for movement in historiqueStock %}
+            <tr>
+                <td>{{ movement.product }}</td>
+                <td>{{ movement.modification }}</td>
+                <td>{{ movement.variation }}</td>
+                <td>{{ movement.user}}</td>
+                <td>{{ movement.post}}</td>
+                <td>{{ movement.role}}</td>
+                <td>{{ movement.newStock}}</td>
+                <td>{{ movement.createdAt|date('d-m-Y H:i') }}</td>
+
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="12">Aucune historique trouvée !</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="navigation">
+    {{ knp_pagination_render(historiqueStock, null, {}, {
+    'position': 'centered',
+    'size': 'large',
+    'rounded': true,
+
+    }) }}
+
+</div>
+
+
+{% endblock %}

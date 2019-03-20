@@ -1,0 +1,44 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}Modifications{% endblock %}
+
+{% block body %}
+
+<nav class="breadcrumb has-succeeds-separator transparent" aria-label="breadcrumbs">
+    <ul>
+      <li><a href="{{ path('backend_index')}}">Accueil</a></li>
+      <li class="is-active"><a href="#" aria-current="page">Liste des modifications</a></li>
+    </ul>
+  </nav>
+
+    <div class="new-title">
+        <h2 class="title is-2">Liste des modifications :</h2>
+    </div>
+
+    <table class="table is-hoverable">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for modification in modifications %}
+            <tr>
+
+                <td>{{ modification.name }}</td>
+                <td>
+                    <a href="{{ path('backend_modification_edit', {'id': modification.id}) }}"><i class="fas fa-edit"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="button is-primary" href="{{ path('backend_modification_new') }}">Nouvelle modification</a>
+
+{% endblock %}
