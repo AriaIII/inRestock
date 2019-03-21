@@ -26,7 +26,7 @@ class SupplierController extends AbstractController
         $form = $this->createForm(SupplierType::class, $supplier);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && "ROLE_VISITOR" !== $this->getUser()->getRole()->getCode()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($supplier);
             $entityManager->flush();
@@ -69,7 +69,7 @@ class SupplierController extends AbstractController
         $form = $this->createForm(SupplierType::class, $supplier);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && "ROLE_VISITOR" !== $this->getUser()->getRole()->getCode()) {
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('backend_supplier_index', [
@@ -88,7 +88,7 @@ class SupplierController extends AbstractController
      */
     public function delete(Request $request, Supplier $supplier): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$supplier->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$supplier->getId(), $request->request->get('_token')) && "ROLE_VISITOR" !== $this->getUser()->getRole()->getCode()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($supplier);
             $entityManager->flush();

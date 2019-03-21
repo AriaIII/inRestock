@@ -17,6 +17,7 @@
         stock actuel : <span id="js-stock">{{product.stock.stock}}</span>
     </h3>
     <p>Choisissez le type de modification que vous voulez faire :</p>
+    <p>(par défaut, la touche prélèvement est sélectionnée)</p>
     <div class="field is-grouped">
         {% for modification in modifications %}
         <p class="control">
@@ -44,6 +45,9 @@
         </p>
     </div>
 
+    {% if is_granted('ROLE_ADMIN') %}
+        <p>En temps que visiteur, les modifications saisies ne seront pas enregistrées</p>
+    {% endif %}
     <div id="modif-valid" class="field is-grouped">
         <button class="button is-danger" id="js-valid" data-product="{{product ? product.id|json_encode|e('html_attr')}}"
             data-user="{{ app.user ? app.user.id|json_encode|e('html_attr') }}" type="submit">Valider</button>

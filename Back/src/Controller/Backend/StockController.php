@@ -26,7 +26,7 @@ class StockController extends AbstractController
         $form = $this->createForm(StockType::class, $stock);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && "ROLE_VISITOR" !== $this->getUser()->getRole()->getCode()) {
 
             $entityManager = $this->getDoctrine()->getManager();
             $stock->setProduct($product);
@@ -57,7 +57,7 @@ class StockController extends AbstractController
         $product = $stock->getProduct();
         
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && "ROLE_VISITOR" !== $this->getUser()->getRole()->getCode()) {
             $this->getDoctrine()->getManager()->flush();
 
             $productId = $stock->getProduct()->getId();
@@ -79,7 +79,7 @@ class StockController extends AbstractController
      */
     public function delete(Request $request, Stock $stock): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$stock->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$stock->getId(), $request->request->get('_token')) && "ROLE_VISITOR" !== $this->getUser()->getRole()->getCode()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($stock);
             $entityManager->flush();

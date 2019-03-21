@@ -34,7 +34,7 @@ class RoleController extends AbstractController
         $form = $this->createForm(RoleType::class, $role);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && "ROLE_VISITOR" !== $this->getUser()->getRole()->getCode()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($role);
             $entityManager->flush();
@@ -66,7 +66,7 @@ class RoleController extends AbstractController
         $form = $this->createForm(RoleType::class, $role);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && "ROLE_VISITOR" !== $this->getUser()->getRole()->getCode()) {
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('backend_role_index', [
@@ -85,7 +85,7 @@ class RoleController extends AbstractController
      */
     public function delete(Request $request, Role $role): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$role->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$role->getId(), $request->request->get('_token')) && "ROLE_VISITOR" !== $this->getUser()->getRole()->getCode()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($role);
             $entityManager->flush();

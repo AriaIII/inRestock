@@ -21,7 +21,10 @@
                     <div class="media">
                         <div class="media-content">
                             <div class="new-title">
-                                <h2 class="title is-5">{{user.firstName}}</h2>
+                                <h2 class="title is-5">{{user.firstName}}
+                                {% if user.role.code == 'ROLE_VISITOR' %}
+                                (Vous pouvez visiter le site en cliquant ici)
+                                {% endif %}</h2>
                             </div>
                         </div>
                     </div>

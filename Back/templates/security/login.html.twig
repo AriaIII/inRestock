@@ -10,7 +10,7 @@
 {% endif %}
 
 <div class="new-title">
-    <h3 class="title is-3">Saisissez votre mot de passe :</h2>
+    <h3 class="title is-3">Saisissez votre mot de passe :</h3>
 </div>
 <div class="transparent">
     <form action="{{ path('security_login', {"username" : username}) }}" method="post">
@@ -18,7 +18,11 @@
         <div class="control">
             <input class="input is-rounded" type="text" id="username" name="_username" value="{{username}}" />
         </div>
-        <label for="password">Mot de passe :</label>
+        {% if username == "VV1" %}
+        <label for="password">Saisissez le code 7616 dans le champ suivant :</label>
+        {% else %}
+        <label for="password">Mot de passe :</label>  
+        {% endif %}   
         <div class="control">
             <input class="input is-rounded" type="password" id="password" name="_password" />
         </div>

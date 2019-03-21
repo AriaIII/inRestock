@@ -37,10 +37,10 @@ class UserController extends AbstractController
         $newUser = new User();
         $form = $this->createForm(UserType::class, $newUser);
         $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid() && "ROLE_VISITOR" !== $this->getUser()->getRole()->getCode()) {
 
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            // appel à la fontion custom createUsername() pour créer automatique le username
+            // appel à la fontion createUsername() pour créer automatiquement le username
             $username = $this->createUsername($newUser, $userRepo);
 
             $newUser->setUsername($username);
@@ -48,12 +48,12 @@ class UserController extends AbstractController
             /*------------------------- UPLOAD IMAGE ---------------------------------
              on recupere l'image du formulaire et on la stocke */
             $file = $newUser->getPhoto();
-            // on verifie si l'utilisateur a entré une image (si le champs image n'est pas nul)
+            // on verifie si l'utilisateur a entré une image (si le champ image n'est pas nul)
             if(!is_null($file)){
                 $fileName = $fileUploader->upload($file);
                 $newUser->setPhoto($fileName);
             }
-            // appel à la fonction custom createPassword() pour générer un mot de passe automatique
+            // appel à la fonction createPassword() pour générer un mot de passe automatiquement
             $password = $this->createPassword(4);
             //appel a la fonction custom mail qui enverra le message au salarié
             $mail = $this->mail($newUser, $password, $mailer);
@@ -62,12 +62,10 @@ class UserController extends AbstractController
             // encodage du mot de passe
             $hash = $encoder->encodePassword($newUser, $password);
             $newUser->setPassword($hash);
-            $userRole = $this->getRole();
-            dd($userRole);
-            // if () {
+            
             $entityManager->persist($newUser);
             $entityManager->flush();    
-            // }
+            
             
 
             return $this->redirectToRoute('backend_user_index');
@@ -105,7 +103,7 @@ class UserController extends AbstractController
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && "ROLE_VISITOR" !== $this->getUser()->getRole()->getCode()) {
             if(!is_null($user->getPhoto())){
                 $file = $user->getPhoto();
                 $fileName = $fileUploader->upload($file);
@@ -140,7 +138,7 @@ class UserController extends AbstractController
      */
     public function delete(Request $request, User $user): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token')) && "ROLE_VISITOR" !== $this->getUser()->getRole()->getCode()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($user);
             $entityManager->flush();

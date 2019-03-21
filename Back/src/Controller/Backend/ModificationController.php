@@ -34,7 +34,7 @@ class ModificationController extends AbstractController
         $form = $this->createForm(ModificationType::class, $modification);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && "ROLE_VISITOR" !== $this->getUser()->getRole()->getCode()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($modification);
             $entityManager->flush();
@@ -66,7 +66,7 @@ class ModificationController extends AbstractController
         $form = $this->createForm(ModificationType::class, $modification);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && "ROLE_VISITOR" !== $this->getUser()->getRole()->getCode()) {
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('backend_modification_index', [
@@ -85,10 +85,11 @@ class ModificationController extends AbstractController
      */
     public function delete(Request $request, Modification $modification): Response
     {
-            $entityManager = $this->getDoctrine()->getManager();
+        if ($this->isCsrfTokenValid('delete'.$modification->getId(), $request->request->get('_token')) && "ROLE_VISITOR" !== $this->getUser()->getRole()->getCode()) {    
+        $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($modification);
             $entityManager->flush();
-
+        }
 
         return $this->redirectToRoute('backend_modification_index');
     }
