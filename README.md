@@ -1,7 +1,8 @@
 # inResto'ck
 
 ## introduction
-Ce site a été créé lors de mon projet de fin de formation à l'école O'clock. Il a été réalisé à deux, en Symfony, en 1 mois et présenté à l'issue de cette période
+Ce site a été créé lors de mon projet de fin de formation à l'école O'clock. Il a été réalisé à deux, en Symfony, en 1 mois et présenté à l'issue de cette période.
+
 L’idée de départ de ce projet est de proposer une solution pratique et interactive pour permettre une gestion des stocks optimisée dans la restauration.
 Un des élèves de l'école a travaillé dans un restaurant servant 200 à 300 couverts par jour et comportant plusieurs postes tels que la pizzeria, la pâtisserie ou la restauration traditionnelle. Il a constaté plusieurs problèmes relatifs à cette gestion des stocks.
 Pour chaque poste, on intervient sur les stocks que ce soit lors de la mise en place du service ou pendant celui-ci. Voici le déroulement courant de cette opération : un salarié du restaurant se rend dans la réserve pour prendre un ou plusieurs produits en fonction des besoins en cuisine. Il prévient son responsable de ce qu’il a pris et celui-ci doit le noter pour en garder une trace et pouvoir mettre à jour les stocks par la suite.
