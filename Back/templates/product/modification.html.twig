@@ -45,7 +45,7 @@
         </p>
     </div>
 
-    {% if is_granted('ROLE_ADMIN') %}
+    {% if is_granted('ROLE_VISITOR') %}
         <p>En temps que visiteur, les modifications saisies ne seront pas enregistrées</p>
     {% endif %}
     <div id="modif-valid" class="field is-grouped">
