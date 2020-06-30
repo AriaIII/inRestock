@@ -8,7 +8,7 @@
     <ul>
       <li><a href="{{ path('backend_index')}}">Accueil</a></li>
       {% if referer == url('backend_product_index') %}
-      <li><a href="{{ path('backend_modification_index') }}">Liste des produits</a></li>
+      <li><a href="{{ path('backend_product_index') }}">Liste des produits</a></li>
       <li class="is-active"><a href="#" aria-current="page">{{product.name}}</a></li>
       {% elseif referer == url('backend_category_show', {"id" : product.category.id }) %}
       <li><a href="{{ path('backend_category_index') }}">Liste des categories</a></li>
